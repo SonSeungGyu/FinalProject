@@ -13,14 +13,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
 @Entity
-@Table(name="tbl_member")
+@Table(name = "tbl_member")
 public class MemberEntity extends BaseEntity {
 
 	@Id
@@ -47,6 +47,8 @@ public class MemberEntity extends BaseEntity {
 	@Column(length = 50, nullable = false)
 	String memberBirthDay; // 회원 생년월일
 	
+	@Column(length = 100,nullable = false)
+	 String role; //사용자 등급
 	
 	
 	
