@@ -1,4 +1,4 @@
-package com.example.demo.member;
+package com.example.demo.member.entitly;
 
 import com.example.demo.allBaseEtity.BaseEntity;
 
