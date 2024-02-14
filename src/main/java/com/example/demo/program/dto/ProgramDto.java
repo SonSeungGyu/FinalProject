@@ -25,8 +25,8 @@ public class ProgramDto {
 	String programName;
 	String programContent;
 	int programPrice;
-	MemberEntity memberId;
-	TrainerEntity trainerId;
+	String memberId;
+	String trainerId;
 	LocalDateTime regDate;
 	LocalDateTime modDate;
 }
