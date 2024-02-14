@@ -32,4 +32,5 @@ public class TrainerEntity extends BaseEntity{
 	String trainerName;		//이름
 	
 	
+
 }
