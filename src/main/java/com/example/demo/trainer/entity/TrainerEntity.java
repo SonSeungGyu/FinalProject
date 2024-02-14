@@ -30,7 +30,5 @@ public class TrainerEntity extends BaseEntity{
 	String trainerPassword; //password
 	@Column(length = 50, nullable = false)
 	String trainerName;		//이름
-	
-	
 
 }

@@ -30,25 +30,23 @@ import lombok.ToString;
 @Builder
 public class ReviewEntity extends BaseEntity {
 
-	ProgramEntity program ; // 프로그램 넘버
 	
-	MemberEntity member ; // 멤버 아이디	
 	
 	
 	@Id // pk지정
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increament옵션
 	int reviewNo; //번호
 	
-//	@ManyToOne // 
-//	Programentity program; //게시물 - 하나의 프로그램페이지(one) 여러개 댓글(many) 가질 수 있음. 
-	
+	@ManyToOne // 
+	ProgramEntity program; //게시물 - 하나의 프로그램페이지(one) 여러개 댓글(many) 가질 수 있음. 
+	@Column(length=1500)
 	String reviewTitle;	// 리뷰 제목
 	
 	@Column(length=1500)
 	String reviewContent ; // 내용
 	
-//	@ManyToOne
-//	Member reviewWriter; //작성자 - 하나의 작성자(one) 여러개 댓글(many) 가질 수 있음.	
+	@ManyToOne
+	MemberEntity reviewWriter; //작성자 - 하나의 작성자(one) 여러개 댓글(many) 가질 수 있음.	
 	
 	
 }
