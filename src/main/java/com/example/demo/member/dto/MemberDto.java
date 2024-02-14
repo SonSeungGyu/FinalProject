@@ -19,7 +19,7 @@ public class MemberDto {
 
 	String memberId; // 회원 아이디(pk)
 
-	//String role; // 사용자 등급 추가 (사용자:ROLE_USER, 관리자:ROLE_ADMIN)
+	//String role; // 사용자 등급 추가 (사용자:ROLE_USER, 관리자:ROLE_ADMIN) 
 	
 
 	String memberPassword; // 회원 비밀번호
