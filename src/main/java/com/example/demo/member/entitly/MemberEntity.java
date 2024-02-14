@@ -5,7 +5,6 @@ import com.example.demo.allBaseEtity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,14 +19,14 @@ import lombok.ToString;
 @ToString
 @Builder
 @Entity
-@Table(name="tbl_member")
+//@Table(name="tbl_member")
 public class MemberEntity extends BaseEntity {
 
 	@Id
 	@Column(length = 50)
 	String memberId; // 회원 아이디(pk값)
 	
-	int memberNo; // 회원 넘버
+	//int memberNo; // 회원 넘버
 	
 	@Column(length = 50, nullable = false)
 	String memberPassword; // 회원 비밀번호

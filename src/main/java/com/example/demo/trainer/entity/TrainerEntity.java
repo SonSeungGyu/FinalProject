@@ -1,7 +1,5 @@
 package com.example.demo.trainer.entity;
 
-import java.time.LocalDateTime;
-
 import com.example.demo.allBaseEtity.BaseEntity;
 
 import jakarta.persistence.Column;
@@ -24,6 +22,7 @@ import lombok.ToString;
 @ToString
 @Table(name="tbl_trainer")
 public class TrainerEntity extends BaseEntity{
+	
 	@Id
 	@Column(length = 50)
 	String trainerId; 		//id
@@ -32,6 +31,5 @@ public class TrainerEntity extends BaseEntity{
 	@Column(length = 50, nullable = false)
 	String trainerName;		//이름
 	
-	LocalDateTime regDate; // 회원이 최초로 만들어진 시간
-	LocalDateTime modDate; // 회원 정보 수정된 시간
+	
 }
