@@ -3,6 +3,7 @@ package com.example.demo.notice.entity;
 
 import com.example.demo.allBaseEtity.BaseEntity;
 import com.example.demo.member.entitly.MemberEntity;
+import com.example.demo.trainer.entity.TrainerEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,11 +33,12 @@ public class NoticeEntity extends BaseEntity{
 	int noticeNo;
 	
 	@Column(length = 50, nullable = false)
-	MemberEntity noticeWriter;
+	TrainerEntity noticeWriter;
 	
 	@Column(length = 100, nullable = false)
 	String noticeTitle;
 	
 	@Column(length = 300, nullable = false)
 	String noticeContent;
+	
 }
