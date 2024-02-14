@@ -8,58 +8,59 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dto.CommentDTO;
-import com.example.demo.entity.Board;
-import com.example.demo.entity.Comment;
-import com.example.demo.repository.CommentRepository;
+import com.example.demo.program.entity.ProgramEntity;
+import com.example.demo.review.dto.ReviewDto;
+import com.example.demo.review.entity.ReviewEntity;
+import com.example.demo.review.repository.ReviewRepository;
 
 @Service//서비스 클래스로 지정하기. 컨테이너에 들어감. CommentService 호출시, CommentService상속받은 클래스 중에 CommentServiceImpl호출됨. 
-public class ReviewServiceImpl implements CommentService {
+public class ReviewServiceImpl implements ReviewService {
 	
 	@Autowired
-	CommentRepository repository;
+	ReviewRepository repository;
 
-// 등록 - 외부에서 전달받은 CommentDTO => entity로 변환시켜 저장하고 저장된 entity에서 댓글번호 반환 
+// 등록 - 외부에서 전달받은 ReviewDTO => entity로 변환시켜 저장하고 저장된 entity에서 댓글번호 반환 
 	@Override
-	public int register(CommentDTO dto) {
-		Comment entity = dtoToEntity(dto);
+	public int register(ReviewDto dto) {
+		ReviewEntity entity = dtoToEntity(dto);
 		
 		repository.save(entity);
 		
 		//저장되어 생성된 댓글 번호 반환
-		return entity.getCommentNo();
+		return entity.getReviewNo();
 	}
 
 	
-// 조회 - 게시물번호에 해당하는 댓글 리스트들 db에서 꺼내서 반환하는 메서드
+// 조회 - 프로그램번호에 해당하는 댓글 리스트들 db에서 꺼내서 반환하는 메서드
 	@Override
-	public List<CommentDTO> getListByBoardNo(int boardNo) {
+	public List<ReviewDto> getListByProgramNo (int programNo) {
 		
-		// 게시물객체 (특정 게시물 번호[PK] 있는) 생성
-		Board board = Board.builder()
-						.no(boardNo)
+		// 프로그램객체 (특정 프로그램 번호[PK] 있는) 생성
+		ProgramEntity program = ProgramEntity.builder()
+						.programNo(programNo)
 						.build();
 		
-		// 게시물번호에 해당하는 게시물 DB에서 꺼내서 entity 리스트 생성
-		List<Comment> entityList = repository.findByBoard(board);
+		// 프로그램번호에 해당하는 게시물 DB에서 꺼내서 entity 리스트 생성
+		List<ReviewEntity> entityList = repository.findByProgram(program);
 												//ㄴ CommentRepository에 쿼리메서드로 정의
-		List<CommentDTO> dtoList = new ArrayList<>();
+		List<ReviewDto> dtoList = new ArrayList<>();
 		
-		// 꺼낸 댓글entity 리스트 댓글dto로 변경해서 CommentDTO리스트에 넣기
-		for(Comment entity : entityList) {
-			CommentDTO dto = entityToDTO(entity);
+		// 꺼낸 리뷰(댓글)entity 리스트 리뷰dto로 변경해서 reviewDTo리스트에 넣기
+		for(ReviewEntity entity : entityList) {
+			ReviewDto dto = entityToDTO(entity);
 			
 			dtoList.add(dto);
 		}
 		
 		return dtoList;		
 	}
+	
 
 	// 삭제 - 특정 번호의 댓글 삭제하기   9장 19페이지 연동해서 수정
 	@Override
-	public boolean remove(int no) {
+	public boolean remove(int reviewNo) {
 	// 해당 댓글이 있는지 확인
-	Optional<Comment> comment = repository.findById(no);
+	Optional<ReviewEntity> comment = repository.findById(reviewNo);
 	
 	// 없다면 false 반환
 	if(comment.isEmpty()) { // isEmpty()는 Optional함수에 있는 메서드
@@ -67,7 +68,7 @@ public class ReviewServiceImpl implements CommentService {
 	}	
 	
 	// 있다면 댓글 삭제 후 true 반환   //여기에 if(comment.isPresent())넣고 위에거 없애도 된다.
-	repository.deleteById(no);
+	repository.deleteById(reviewNo);
 	return true;
  }	
 

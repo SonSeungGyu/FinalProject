@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Table(name = "tbl_review")
 @Entity
 @Getter
 @Setter
@@ -37,16 +39,19 @@ public class ReviewEntity extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increament옵션
 	int reviewNo; //번호
 	
-	@ManyToOne // 
+	@ManyToOne   
 	ProgramEntity program; //게시물 - 하나의 프로그램페이지(one) 여러개 댓글(many) 가질 수 있음. 
+	
+	@ManyToOne  
+	MemberEntity reviewWriter; //작성자 - 하나의 작성자(one) 여러개 댓글(many) 가질 수 있음.
+	
 	@Column(length=1500)
 	String reviewTitle;	// 리뷰 제목
 	
 	@Column(length=1500)
 	String reviewContent ; // 내용
 	
-	@ManyToOne
-	MemberEntity reviewWriter; //작성자 - 하나의 작성자(one) 여러개 댓글(many) 가질 수 있음.	
+	
 	
 	
 }

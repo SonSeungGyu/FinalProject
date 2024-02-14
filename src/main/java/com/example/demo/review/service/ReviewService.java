@@ -6,11 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dto.CommentDTO;
-import com.example.demo.dto.MemberDTO;
-import com.example.demo.entity.Board;
-import com.example.demo.entity.Comment;
-import com.example.demo.entity.Member;
+import com.example.demo.member.entitly.MemberEntity;
 import com.example.demo.program.entity.ProgramEntity;
 import com.example.demo.review.dto.ReviewDto;
 import com.example.demo.review.entity.ReviewEntity;
@@ -19,48 +15,51 @@ public interface ReviewService {
 	// 댓글 등록 메서드
 	int register (ReviewDto dto);
 	
-	// 게시물을 기준으로 댓글 목록을 조회하는 메서드
+	// 프로그램을 기준으로 댓글 목록을 조회하는 메서드
 	List<ReviewDto> getListByProgramNo(int programNo);
-	
-	/*
-	 * // 댓글 삭제 메서드 void remove(int no);
-	 */	
-	
+		
 	// 댓글 삭제 메서드
 		boolean remove(int no);
 	
 		
 	// dto => Entity 반환
 	default ReviewEntity dtoToEntity (ReviewDto dto ) {
-		// CommentDTO에서 작성자 꺼내서 멤버(Member) entity 만들기
-		ReviewEntity review = ReviewEntity.builder().id(dto.getWriter()).build();
-		// CommentDTO에서 게시물번호 꺼내서 게시물(Board) entity 만들기		
-		ProgramEntity program = ProgramEntity.builder().no(dto.getBoardNo()).build();
+		// ReviewDTO에서 작성자 꺼내서 작성자(MemberEntity) entity 만들기
+		MemberEntity member = MemberEntity.builder()
+				.memberId(dto.getMemberId())
+				.build();
+		// ReviewDTO에서 게시물번호 꺼내서 프로그램(ProgramEntity) entity 만들기		
+		ProgramEntity program = ProgramEntity.builder()
+				.programNo(dto.getProgramNo())
+				.build();
 		
 		
-		// CommentDTO에서 값 꺼내서 댓글(Comment) entity 생성
-		Comment entity = Comment.builder()
-				.commentNo(dto.getCommentNo())
-					.board(board)
-				.content(dto.getContent())
-					.writer(member)
+		// ReviewDto에서 값 꺼내서 댓글(Review) entity 생성
+		ReviewEntity entity = ReviewEntity.builder()
+				.reviewNo(dto.getReviewNo())
+				.reviewWriter(member)
+				.program(program)
+				.reviewContent(dto.getReviewContent())				
 				.build();
 				
 		return entity;		
 	}
 	
 	// Entity => dto 반환
-	default CommentDTO entityToDTO (Comment entity) {
-		CommentDTO dto = CommentDTO.builder()
-					.commentNo(entity.getCommentNo())
-				.boardNo(entity.getBoard().getNo()) 
-// entity의 멤변 Board(Board 타입)의 멤변 no(int) => CommentDTO의 멤변 boardNo(int)에 넣어줌
-					.content(entity.getContent())
-				.writer(entity.getWriter().getId()) 
-// entity의 멤변 Writer(Member 타입)의 멤변 Id(string)=> CommentDTO의 멤변 writer (String)에 넣어줌
+	default ReviewDto entityToDTO (ReviewEntity entity) {
+		ReviewDto dto = ReviewDto.builder()
+				
+					.reviewNo(entity.getReviewNo())
+				.programNo(entity.getProgram().getProgramNo()) 
+// entity의 멤변 program(ProgramEntity 타입)의 멤변 programNo(int) => ReviewDTO의 멤변 programNo(int)에 넣어줌
+					.reviewContent(entity.getReviewContent())
+				.reviewWriter(entity.getReviewWriter().getMemberId())					 
+// entity의 멤변 reviewWriter(MemberEntity 타입)의 멤변 memberId(string)=> ReviewDTO의 멤변 reviewWriter(String)에 넣어줌
 					.regDate(entity.getRegDate())
 					.modDate(entity.getModDate())
-				.build();				
+					
+						.build();
+		
 		return dto;
 	}
 	
