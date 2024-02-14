@@ -3,12 +3,14 @@ package com.example.demo.program.entity;
 import com.example.demo.allBaseEtity.BaseEntity;
 import com.example.demo.member.entitly.MemberEntity;
 import com.example.demo.notice.entity.NoticeEntity;
+import com.example.demo.trainer.entity.TrainerEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,6 +42,9 @@ public class ProgramEntity extends BaseEntity{
 	@Column(nullable = false)
 	int programPrice;
 	
-	@Column(length = 100, nullable = false)
+	@ManyToOne
 	MemberEntity memberId;
+	
+	@ManyToOne
+	TrainerEntity trainerId;
 }
