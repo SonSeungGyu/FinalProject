@@ -31,8 +31,4 @@ public class TrainerEntity extends BaseEntity{
 	String trainerPassword; //password
 	@Column(length = 50, nullable = false)
 	String trainerName;		//이름
-	
-	
-	  LocalDateTime regDate; // 회원이 최초로 만들어진 시간 
-	  LocalDateTime modDate; // 회원 정보 수정된시간
 	 }

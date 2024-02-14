@@ -41,7 +41,7 @@ public class ReviewEntity extends BaseEntity {
 	
 //	@ManyToOne // 
 //	Programentity program; //게시물 - 하나의 프로그램페이지(one) 여러개 댓글(many) 가질 수 있음. 
-	
+	@Column(length=1500)
 	String reviewTitle;	// 리뷰 제목
 	
 	@Column(length=1500)

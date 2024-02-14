@@ -27,8 +27,6 @@ public class MemberEntity extends BaseEntity {
 	@Column(length = 50)
 	String memberId; // 회원 아이디(pk값)
 	
-	int memberNo; // 회원 넘버
-	
 	@Column(length = 50, nullable = false)
 	String memberPassword; // 회원 비밀번호
 	
