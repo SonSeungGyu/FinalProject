@@ -22,7 +22,7 @@ import lombok.ToString;
 
 public class NoticeDto {
 	int noticeNo;
-	TrainerEntity noticeWriter;
+	String noticeWriter;
 	String noticeTitle;
 	String noticeContent;
 	LocalDateTime regDate;
