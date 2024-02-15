@@ -24,6 +24,7 @@ public interface MemberService {
 				.memberEmail(entity.getMemberEmail())
 				.memberNumber(entity.getMemberNumber())
 				.memberBirthDay(entity.getMemberBirthDay())
+				.role(entity.getRole())
 				.regDate(entity.getRegDate())
 				.modDate(entity.getModDate())
 				.build();
@@ -42,6 +43,7 @@ public interface MemberService {
 				.memberEmail(dto.getMemberEmail())
 				.memberNumber(dto.getMemberNumber())
 				.memberBirthDay(dto.getMemberBirthDay())
+				.role(dto.getRole())
 				.build();
 		return entity;
 		
