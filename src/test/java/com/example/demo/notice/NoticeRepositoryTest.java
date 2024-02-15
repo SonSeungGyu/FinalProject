@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.demo.member.entitly.MemberEntity;
 import com.example.demo.notice.entity.NoticeEntity;
 import com.example.demo.notice.repository.NoticeRepository;
-import com.example.demo.trainer.entity.TrainerEntity;
 
 @SpringBootTest
 public class NoticeRepositoryTest {
@@ -18,8 +18,8 @@ public class NoticeRepositoryTest {
 	
 	@Test
 	public void 공지사항등록() {
-		TrainerEntity trainerEntity = TrainerEntity.builder().trainerId("admin").build();
-		NoticeEntity noticeEntity = NoticeEntity.builder().noticeTitle("ㅇㅇ").noticeContent("ㅁㅁ").noticeWriter(trainerEntity).build(); repository.save(noticeEntity);
+		MemberEntity memberEntity = MemberEntity.builder().memberId("admin").build();
+		NoticeEntity noticeEntity = NoticeEntity.builder().noticeTitle("ㅇㅇ").noticeContent("ㅁㅁ").noticeWriter(memberEntity).build(); repository.save(noticeEntity);
 		repository.save(noticeEntity);
 	}
 	@Test

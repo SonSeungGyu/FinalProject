@@ -16,7 +16,7 @@ public class NoticeServiceTest {
 	NoticeService noticeService;
 	@Test
 	public void 공지사항등록() {
-		NoticeDto noticeDto = NoticeDto.builder().noticeTitle("공지").noticeContent("사항").noticeWriter("admin").build();
+		NoticeDto noticeDto = NoticeDto.builder().noticeTitle("공지사항").noticeContent("사항").noticeWriter("user1").build();
 		noticeService.register(noticeDto);
 	}
 	@Test

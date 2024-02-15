@@ -25,6 +25,7 @@ public class MemberTest {
 				.memberEmail("aaa@naver.com")
 				.memberNumber("010-1234-5678")
 				.memberBirthDay("1924-07-50")
+				.role("회원")
 				.build();
 		memberRepository.save(entity);
 	}

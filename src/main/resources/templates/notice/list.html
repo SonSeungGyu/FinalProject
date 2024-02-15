@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<th:block th:replace="~{/layout/ListLayout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<link href="/css/list.css" rel="stylesheet">
+        
+<section class="notice">
+  <div class="page-title">
+        <div class="container">
+            <h3>공지사항</h3>
+        </div>
+    </div>
+
+    <!-- board seach area -->
+    <div id="board-search">
+        <div class="container">
+            <div class="search-window">
+                <form action="">
+                    <div class="search-wrap">
+                        <label for="search" class="blind">공지사항 내용 검색</label>
+                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+                        <button type="submit" class="btn btn-dark">검색</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+  <!-- board list area -->
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-num">번호</th>
+                    <th scope="col" class="th-title">제목</th>
+                    <th scope="col" class="th-date">등록일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dto:${list}">
+                    <td>[[${dto.noticeNo}]]</td>
+                    <th>
+                      <a href="#!">[[${dto.noticeTitle}]]</a>
+                      <p>테스트</p>
+                    </th>
+                    <td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <div class="st-pagination"> 
+              <!--st-pagination-->
+              <ul class="pagination">
+                <li> <a href="#" aria-label="previous"><span aria-hidden="true">previous</span></a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li> <a href="#" aria-label="Next"><span aria-hidden="true">next</span></a></li>
+              </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    </th:block>
+
+</th:block>

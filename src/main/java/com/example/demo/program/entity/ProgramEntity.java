@@ -3,7 +3,6 @@ package com.example.demo.program.entity;
 import com.example.demo.allBaseEtity.BaseEntity;
 import com.example.demo.member.entitly.MemberEntity;
 import com.example.demo.notice.entity.NoticeEntity;
-import com.example.demo.trainer.entity.TrainerEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,5 +45,5 @@ public class ProgramEntity extends BaseEntity{
 	MemberEntity memberId;
 	
 	@ManyToOne
-	TrainerEntity trainerId;
+	MemberEntity trainerId;
 }
