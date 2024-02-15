@@ -25,4 +25,8 @@ public class NoticeController {
 		Page<NoticeDto> list = service.getList(page);
 		model.addAttribute("list", list);
 	}
+	@GetMapping("/register")
+	public void register() {
+		
+	}
 }
