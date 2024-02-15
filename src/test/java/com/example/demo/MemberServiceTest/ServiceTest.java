@@ -37,6 +37,7 @@ public class ServiceTest {
 				.memberEmail("isu@naber.com")
 				.memberNumber("010-1234-5678")
 				.memberBirthDay("2001-07-07")
+				.role("user")
 				.build();
 		boolean result = service.register(dto);
 		System.out.println(result);
