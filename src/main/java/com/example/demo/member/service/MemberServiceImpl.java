@@ -17,14 +17,14 @@ import com.example.demo.member.repository.MemberRepository;
 
 
 
-
 @Service
 public class MemberServiceImpl implements MemberService{
 
 	
 	@Autowired
-	MemberRepository memberRepository; 
-	
+
+	MemberRepository repository;
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
@@ -37,7 +37,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		Pageable pageable = PageRequest.of(pageIndex, 10,sort);
 		
-		Page<MemberEntity> entityPage = memberRepository.findAll(pageable);
+		Page<MemberEntity> entityPage = repository.findAll(pageable);
 		
 		Page<MemberDto> dtoPage = entityPage.map(entity-> entityToDto(entity));
 		
@@ -62,7 +62,7 @@ public class MemberServiceImpl implements MemberService{
 				.encode(entity.getMemberPassword());
 		entity.setMemberPassword(enPw);
 		
-		memberRepository.save(entity);
+		repository.save(entity);
 //		System.out.println("정상적으로 회원가입 했슈~"+repository.save(entity));
 		return true;
 	}
