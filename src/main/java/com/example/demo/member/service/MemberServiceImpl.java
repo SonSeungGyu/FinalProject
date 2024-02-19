@@ -69,7 +69,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public MemberDto read(String id) {
-		Optional<MemberEntity> result = memberRepository.findById(id);
+		Optional<MemberEntity> result = repository.findById(id);
 		if(result.isPresent()) {
 			MemberEntity entity = result.get();
 			return entityToDto(entity);
