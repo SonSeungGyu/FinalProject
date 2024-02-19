@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,7 +29,8 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
 
-				.requestMatchers("/register").permitAll().requestMatchers("/assets/*", "/css/*", "/js/*").permitAll()
+				.requestMatchers("/register").permitAll()
+				.requestMatchers("/assets/*", "/css/*", "/js/*").permitAll()
 				.requestMatchers("/").permitAll();
 		http.formLogin()
 				// 로그인 화면 주소
