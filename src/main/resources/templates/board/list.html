@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
-<th:block th:replace="~{/layout/ListLayout :: setContent(~{this::content})}">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content2})}">
+
+    <th:block th:fragment="content2">
+    	<h1>자유게시판</h1>
+     </th:block>
+
+</th:block>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
 
     <th:block th:fragment="content"> 
 <link href="/css/list.css" rel="stylesheet">
@@ -40,12 +47,12 @@
                 </thead>
                 <tbody>
                 <tr th:each="dto:${list}">
-                    <td>[[${dto.noticeNo}]]</td>
+                    <td>[[${dto.boardNo}]]</td>
                     <th>
-                      <a href="#!">[[${dto.noticeTitle}]]</a>
+                      <a href="#!">[[${dto.boardTitle}]]</a>
                       <p>테스트</p>
                     </th>
-                    <td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</td>
+                    <td>[[${#temporals.format(dto.boardDate,'yyyy/MM/dd')}]]</td>
                 </tr>
                 </tbody>
             </table>
