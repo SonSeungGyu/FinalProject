@@ -2,6 +2,7 @@ package com.example.demo.member.service;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,7 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.member.dto.MemberDto;
 import com.example.demo.member.entitly.MemberEntity;
-import com.example.demo.member.repository.memberRepository;
+import com.example.demo.member.repository.MemberRepository;
+
 
 
 
@@ -21,7 +23,7 @@ public class MemberServiceImpl implements MemberService{
 
 	
 	@Autowired
-	memberRepository repository; 
+	MemberRepository memberRepository; 
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -35,7 +37,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		Pageable pageable = PageRequest.of(pageIndex, 10,sort);
 		
-		Page<MemberEntity> entityPage = repository.findAll(pageable);
+		Page<MemberEntity> entityPage = memberRepository.findAll(pageable);
 		
 		Page<MemberDto> dtoPage = entityPage.map(entity-> entityToDto(entity));
 		
@@ -60,14 +62,14 @@ public class MemberServiceImpl implements MemberService{
 				.encode(entity.getMemberPassword());
 		entity.setMemberPassword(enPw);
 		
-		repository.save(entity);
+		memberRepository.save(entity);
 //		System.out.println("정상적으로 회원가입 했슈~"+repository.save(entity));
 		return true;
 	}
 	
 	@Override
 	public MemberDto read(String id) {
-		Optional<MemberEntity> result = repository.findById(id);
+		Optional<MemberEntity> result = memberRepository.findById(id);
 		if(result.isPresent()) {
 			MemberEntity entity = result.get();
 			return entityToDto(entity);

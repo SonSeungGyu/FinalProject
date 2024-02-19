@@ -2,18 +2,20 @@ package com.example.demo.MemberRepositoryTest;
 
 import java.util.Optional;
 
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.member.entitly.MemberEntity;
-import com.example.demo.member.repository.memberRepository;
+import com.example.demo.member.repository.MemberRepository;
+
 
 @SpringBootTest
 public class MemberTest {
 
 	@Autowired
-	memberRepository memberRepository;
+	MemberRepository memberRepository;
 	
 	@Test
 	public void 회원등록 () {
