@@ -1,14 +1,12 @@
 package com.example.demo.team;
 
 import com.example.demo.allBaseEtity.BaseEntity;
-import com.example.demo.member.entitly.MemberEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,8 +31,8 @@ public class TeamEntity extends BaseEntity{
 	
 	@Column(length = 100)
 	String teamName;
-	@OneToMany
-	MemberEntity teamMember;
+//	@OneToMany
+//	MemberEntity teamMember;
 	@Column(length = 100, nullable = false)
 	int win;
 	@Column(length = 100, nullable = false)
