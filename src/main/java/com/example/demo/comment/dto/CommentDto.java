@@ -20,7 +20,7 @@ public class CommentDto {
 		
 	int commentNo; // 리뷰넘버번호 .시스템이 자동처리
 	
-	int boardNo;
+	int board;
 	
 	String commentContent ; // 내용	
 	

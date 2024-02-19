@@ -12,7 +12,7 @@ import jakarta.transaction.Transactional;
 @Transactional
 public interface CommentRepository extends JpaRepository<CommentEntity, Integer>{
 
-	List<CommentEntity> findByBoard (BoardEntity board);
+	List<CommentEntity> findByBoard(BoardEntity board);
 	
-	void deleteByBoard (BoardEntity program);
+	void deleteByBoard(BoardEntity board);
 }

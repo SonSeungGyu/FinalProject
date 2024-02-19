@@ -19,7 +19,7 @@ public class CommentServiceTest {
 	void 프로그램창에_댓글등록() {
 		// ProgramEntity, MemberEntity db에 있는 값 입력해야.
 		CommentDto dto = CommentDto.builder()
-				.boardNo(1).commentWriter("주요한") // ProgramEntity, MemberEntity 테이블에 있는 값 입력해야
+				.board(1).commentWriter("주요한") // ProgramEntity, MemberEntity 테이블에 있는 값 입력해야
 				.build();
 		
 		commentService.register(dto);

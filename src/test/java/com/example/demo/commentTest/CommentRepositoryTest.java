@@ -26,7 +26,7 @@ public class CommentRepositoryTest {
 		MemberEntity member = MemberEntity.builder()
 							.memberId("주요한").build();  // memberId(~) 괄호안에 db에 있는 Member테이블 pk값 넣기
 		
-		CommentEntity comment = CommentEntity.builder().commentNo(0).boardNo(boardEntity).commentWriter(member).build();
+		CommentEntity comment = CommentEntity.builder().commentNo(0).board(boardEntity).commentWriter(member).build();
 		
 		repository.save(comment);		
 		

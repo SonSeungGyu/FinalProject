@@ -30,7 +30,7 @@ public interface CommentService {
 				.build();
 		// ReviewDTO에서 게시물번호 꺼내서 프로그램(ProgramEntity) entity 만들기		
 		BoardEntity board = BoardEntity.builder()
-				.boardNo(dto.getBoardNo())
+				.boardNo(dto.getBoard())
 				.build();
 		
 		
@@ -38,7 +38,7 @@ public interface CommentService {
 		CommentEntity entity = CommentEntity.builder()
 				.commentNo(dto.getCommentNo())
 				.commentWriter(member)
-				.boardNo(board)
+				.board(board)
 				.commentContent(dto.getCommentContent())				
 				.build();
 				
@@ -50,7 +50,7 @@ public interface CommentService {
 		CommentDto dto = CommentDto.builder()
 				
 					.commentNo(entity.getCommentNo())
-				.boardNo(entity.getBoardNo().getBoardNo()) 
+				.board(entity.getBoard().getBoardNo()) 
 // entity의 멤변 program(ProgramEntity 타입)의 멤변 programNo(int) => ReviewDTO의 멤변 programNo(int)에 넣어줌
 					.commentContent(entity.getCommentContent())
 				.commentWriter(entity.getCommentWriter().getMemberId())					 

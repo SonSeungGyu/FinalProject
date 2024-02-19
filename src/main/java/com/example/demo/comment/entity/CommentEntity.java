@@ -36,7 +36,7 @@ public class CommentEntity extends BaseEntity {
 	int commentNo; //번호
 	
 	@ManyToOne
-	BoardEntity boardNo;
+	BoardEntity board;
 	
 	@ManyToOne  
 	MemberEntity commentWriter; //작성자 - 하나의 작성자(one) 여러개 댓글(many) 가질 수 있음.
