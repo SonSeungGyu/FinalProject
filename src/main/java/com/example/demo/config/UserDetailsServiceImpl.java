@@ -14,7 +14,7 @@ import com.example.demo.member.service.MemberService;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private MemberService service;
+	 MemberService service;
 	
 	
 	@Override
