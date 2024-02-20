@@ -29,8 +29,10 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
 
-				.requestMatchers("/register").permitAll().requestMatchers("/assets/*", "/css/*", "/js/*").permitAll()
-				.requestMatchers("/").permitAll();
+				.requestMatchers("/register").permitAll()
+				.requestMatchers("/assets/*", "/css/*", "/js/*").permitAll()
+				.requestMatchers("/**").permitAll()
+				.anyRequest().permitAll();
 		http.formLogin()
 				// 로그인 화면 주소
 				.loginPage("/customlogin")
