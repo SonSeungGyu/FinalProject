@@ -13,6 +13,8 @@ public interface MemberService {
 	boolean register(MemberDto dto);
 	
 	MemberDto read(String id);
+
+
 	
 	// 엔티티를 dto로 변환
 	default MemberDto entityToDto(MemberEntity entity) {

@@ -33,8 +33,7 @@ public class SecurityConfig {
 				.requestMatchers("/assets/*", "/css/*", "/js/*").permitAll()
 
 				.requestMatchers("/").permitAll()
-				
-				.requestMatchers("/**").permitAll()
+			
 				.anyRequest().permitAll();
 
 		http.formLogin()

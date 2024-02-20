@@ -13,13 +13,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.member.dto.MemberDto;
 import com.example.demo.member.service.MemberService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
 	@Autowired
 	MemberService service;
-	
+
 	@GetMapping("/member/list")
 	public void list(@RequestParam(defaultValue = "0", name = "page") int page, Model model) {
 
@@ -36,22 +38,23 @@ public class MemberController {
 		System.out.println("페이지에 표시할 게시물 수" + list.getNumberOfElements());
 
 	}
-	
+
 	@GetMapping("/register")
 	public String register() {
 		return "member/register";
 	}
+
 	@PostMapping("/register")
 	public String registerPost(MemberDto dto, RedirectAttributes redirectAttributes) {
 		boolean isSuccess = service.register(dto);
-		if(isSuccess) {
+		if (isSuccess) {
 			return "redirect:/";
 		} else {
-			redirectAttributes.addFlashAttribute("msg","아이디가 중복되어 등록에 실패하였습니다");
+			redirectAttributes.addFlashAttribute("msg", "아이디가 중복되어 등록에 실패하였습니다");
 			return "redirect:/register";
 		}
 	}
-	
+
 	@GetMapping("/member/read")
 	public void read(@RequestParam(defaultValue = "0", name = "id") String id,
 			@RequestParam(defaultValue = "0", name = "page") int page, Model model) {
@@ -62,20 +65,9 @@ public class MemberController {
 
 		model.addAttribute("page", page);
 	}
-	
-	
-	
-	@GetMapping("/customlogin")
-	public  String customLogin(MemberDto dto, RedirectAttributes redirectAttributes) {
-		boolean isSuccess = service.register(dto);
-		if(isSuccess) {
-			return "redirect:/";
-		} else {
-			redirectAttributes.addFlashAttribute("msg","아이디가 중복되어 등록에 실패하였습니다");
-			return "redirect:/register";
-		}
-	}
-	}
 
 	
-
+	
+	
+	
+}
