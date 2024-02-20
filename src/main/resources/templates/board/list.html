@@ -9,7 +9,7 @@
 <section class="notice">
   <div class="page-title">
         <div class="container">
-            <h3>공지사항</h3>
+            <h3>자유게시판</h3>
         </div>
     </div>
 
@@ -19,7 +19,6 @@
             <div class="search-window">
                 <form action="">
                     <div class="search-wrap">
-                        <label for="search" class="blind">공지사항 내용 검색</label>
                         <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
                         <button type="submit" class="btn btn-dark">검색</button>
                     </div>
@@ -43,10 +42,9 @@
                 <tr th:each="dto:${list}">
                     <td>[[${dto.boardNo}]]</td>
                     <th>
-                      <a href="#!">[[${dto.boardTitle}]]</a>
-                      <p>테스트</p>
+                      <a th:href="@{/board/read(boardNo=${dto.boardNo}, page=${list.number+1})}">[[${dto.boardTitle}]]</a>
                     </th>
-                    <td>[[${#temporals.format(dto.boardDate,'yyyy/MM/dd')}]]</td>
+                    <td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</td>
                 </tr>
                 </tbody>
             </table>
@@ -54,11 +52,11 @@
             <div class="st-pagination"> 
               <!--st-pagination-->
               <ul class="pagination">
-                <li> <a href="#" aria-label="previous"><span aria-hidden="true">previous</span></a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li> <a href="#" aria-label="Next"><span aria-hidden="true">next</span></a></li>
+                
+                <li class="active"th:class="${(list.number + 1) == page?'active':''} " th:each="page: ${#numbers.sequence(1, list.totalPages)}">
+                <a th:href="@{/board/list(page = ${page})}">[[${page}]]</a>
+                </li>
+
               </ul>
             </div>
             </div>

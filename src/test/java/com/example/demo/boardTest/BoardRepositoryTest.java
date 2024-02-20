@@ -15,6 +15,12 @@ public class BoardRepositoryTest {
 	@Autowired
 	BoardRepository repository;
 	
+	@Test public void 게시물30개추가() { 
+		MemberEntity entity = MemberEntity.builder().memberId("user1").build();
+		for (int i = 1; i <= 30; i++) { 
+			BoardEntity boardEntity = BoardEntity.builder().boardTitle(i + "번글").boardContent("안녕하세요").boardWriter(entity).build();
+			  repository.save(boardEntity); } 
+		}
 	@Test
 	public void 게시물등록() {
 		MemberEntity memberEntity = MemberEntity.builder().memberId("admin").build();

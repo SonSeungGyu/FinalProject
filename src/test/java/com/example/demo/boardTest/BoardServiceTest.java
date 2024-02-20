@@ -15,12 +15,12 @@ public class BoardServiceTest {
 	@Autowired
 	BoardService boardService;
 	@Test
-	public void 공지사항등록() {
+	public void 게시물등록() {
 		BoardDto noticeDto = BoardDto.builder().boardTitle("공지사항").boardContent("사항").boardWriter("user1").build();
 		boardService.register(noticeDto);
 	}
 	@Test
-	public void 공지사항목록조회() {
+	public void 게시물목록조회() {
 		Page<BoardDto> page = boardService.getList(1);
 		List<BoardDto> list = page.getContent();
 		for(BoardDto boardDto : list) {
@@ -28,19 +28,19 @@ public class BoardServiceTest {
 		}
 	}
 	@Test
-	public void 공지사항상세조회() {
+	public void 게시물상세조회() {
 		BoardDto boardDto = boardService.read(3);
 		System.out.println(boardDto);
 	}
 	@Test
-	public void 공지사항수정() {
+	public void 게시물수정() {
 		BoardDto boardDto = boardService.read(3);
 		boardDto.setBoardTitle("수정");
 		boardDto.setBoardContent("사항");
 		boardService.modify(boardDto);
 	}
 	@Test
-	public void 공지사항삭제() {
+	public void 게시물삭제() {
 		boardService.remove(3);
 	}
 }

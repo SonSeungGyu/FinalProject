@@ -1,4 +1,4 @@
-package com.example.demo.team;
+package com.example.demo.team.dto;
 
 import java.time.LocalDateTime;
 
@@ -15,19 +15,24 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class TemaDto {
+public class TeamDto {
 
 	int teamNo;
 
 	String teamName;
 
 	String teamMember;
+	String teamMember2;
+	String teamMember3;
+	String teamMember4;
+	String teamMember5;
+	String teamMember6;
 
-	int win;
+	int teamWin;
 
-	int lose;
+	int teamLose;
 
-	int point;
+	int teamPoint;
 
 	String teamAddress;
 
