@@ -16,7 +16,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	private MemberService service;
 
-	
 	@Override
 	public UserDetails loadUserByUsername(String userName) {
 		

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
 
     <th:block th:fragment="content"> 
@@ -40,9 +39,14 @@
                 </thead>
                 <tbody>
                 <tr th:each="dto:${list}">
-                    <td>[[${dto.boardNo}]]</td>
+                    <td>[[${dto.noticeNo}]]</td>
                     <th>
+
                       <a th:href="@{/board/read(boardNo=${dto.boardNo}, page=${list.number+1})}">[[${dto.boardTitle}]]</a>
+
+                      <a href="#!">[[${dto.noticeTitle}]]</a>
+                      <p>테스트</p>
+
                     </th>
                     <td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</td>
                 </tr>
