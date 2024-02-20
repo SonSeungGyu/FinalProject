@@ -31,7 +31,12 @@ public class SecurityConfig {
 
 				.requestMatchers("/register").permitAll()
 				.requestMatchers("/assets/*", "/css/*", "/js/*").permitAll()
-				.requestMatchers("/").permitAll();
+
+				.requestMatchers("/").permitAll()
+
+				.requestMatchers("/**").permitAll()
+				.anyRequest().permitAll();
+
 		http.formLogin()
 				// 로그인 화면 주소
 				.loginPage("/customlogin")
