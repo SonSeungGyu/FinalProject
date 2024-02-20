@@ -21,62 +21,41 @@
 <!-- Bootstrap -->
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,600i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,600i,700" rel="stylesheet">
 <!-- Font Awesome -->
 <link href="/css/font-awesome.min.css" rel="stylesheet">
 <!-- Style -->
 <link href="/css/style.css" rel="stylesheet">
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js "></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js "></script>
-<![endif]-->
-	</head>
+</head>
 
 	<body>
 		<div class="header navbar-fixed-top">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-						<a href="index.html"><img src="images/logo.png"
-							alt="Interior Design Website Templates Free Download"></a>
+						<!-- <a href="index.html"> -->
+						<img src="/images/mimlogo.png" alt="Interior Design Website Templates Free Download">
+						<!-- </a> -->
 					</div>
 					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 						<div class="navigation">
 							<div id="navigation">
 								<ul>
-									<li class="active"><a href="index.html" title="Home">Home</a></li>
-									<li class="has-sub"><a href="service-list.html"
-										title="Service List">Services</a>
-										<ul>
-											<li><a href="service-list.html" title="Service List">Service
-													List</a></li>
-											<li><a href="service-detail.html" title="Service Detail">Service
-													Detail</a></li>
-										</ul></li>
-									<li class="has-sub"><a href="portfolio.html"
-										title="Portfolio">Portfolio</a>
-										<ul>
-											<li><a href="projects.html" title="Projects">Projects</a></li>
-											<li><a href="projects-detail.html"
-												title="Projects Detail">Projects Detail</a></li>
-										</ul></li>
-									<li class="has-sub"><a href="blog-default.html"
-										title="Blog ">News</a>
-										<ul>
-											<li><a href="blog-default.html" title="Blog">Blog
-													Default</a></li>
-											<li><a href="blog-single.html" title="Blog Single ">Blog
-													Single</a></li>
-										</ul></li>
-									<li><a href="contact.html" title="Contact Us">Contact</a>
+									<li class="active"><a th:href="@{/}" title="Home">Home</a></li> <!-- 메인 화면으로 가는 버튼 -->
+									<li class="active"><a th:href="@{/board/list}" title="Service List">자유게시판</a> <!-- 자유 게시판 가는 버튼 --></li>
+									<li class="active"><a href="portfolio.html" title="Portfolio">팀등록</a></li>
 									</li>
-									<li><a href="testimonial.html" title="Testimonial">Testimonial</a>
+									<li><a href="testimonial.html" title="Testimonial">매칭찾기</a>
 									</li>
-									<li><a href="error.html" title="Error">404 error</a></li>
+									<li class="has-sub"><a href="blog-default.html" title="Blog ">MyInfo</a>
+										<ul>
+											<li><a href="blog-default.html" title="Blog">MyPage</a></li>
+											<li><a href="blog-single.html" title="Blog Single ">MyTeam</a></li>
+										</ul></li>
+									<li><a href="contact.html" title="Contact Us">로그인</a>
+									</li>
+									<li><a href="testimonial.html" title="Testimonial">회원가입</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -87,13 +66,13 @@
 		<div class="hero-section">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+				<!-- <img src="/images/mainImages.jpeg" alt="Interior Design Website Templates Free Download"> -->
+					 <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 						<h1 class="hero-title">
-							<strong> </strong><br> Free Webstite template
-						</h1>
-						<a href="#" class="btn btn-white">REad more <i
+							<strong> </strong><br> Free Webstite template</h1>
+						 <a href="#" class="btn btn-white">REad more <i
 							class="fa fa-plus"></i></a>
-					</div>
+					</div>  -->
 				</div>
 			</div>
 		</div>
