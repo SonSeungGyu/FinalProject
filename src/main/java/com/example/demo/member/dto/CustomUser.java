@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.User;
 
 public class CustomUser extends User{
 	public CustomUser(MemberDto dto) {
-		super(dto.memberId, dto.memberPassword, 
+		super(dto.getMemberId(), dto.getMemberPassword(),
 				Arrays.asList(new SimpleGrantedAuthority(dto.getRole())));    
 	  }
 }

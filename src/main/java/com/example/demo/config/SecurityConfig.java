@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @EnableWebSecurity
 public class SecurityConfig {
 
+
 	@Bean
 	public PasswordEncoder passwordencoder() {
 		return new BCryptPasswordEncoder();

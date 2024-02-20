@@ -48,7 +48,7 @@ public class MemberController {
 	public String registerPost(MemberDto dto, RedirectAttributes redirectAttributes) {
 		boolean isSuccess = service.register(dto);
 		if (isSuccess) {
-			return "redirect:/";
+			return "redirect:/customlogin";
 		} else {
 			redirectAttributes.addFlashAttribute("msg", "아이디가 중복되어 등록에 실패하였습니다");
 			return "redirect:/register";
