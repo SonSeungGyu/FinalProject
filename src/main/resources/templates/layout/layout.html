@@ -37,12 +37,8 @@
 <![endif]-->
 
 
-    <link href="/css/register.css" rel="stylesheet">
-    <script src="/js/register.js"></script>
-
-
 	</head>
->>>>>>> refs/heads/feature/loggin
+
 
 	<body>
 		<div class="header navbar-fixed-top">
@@ -68,9 +64,9 @@
 											<li><a href="blog-default.html" title="Blog">MyPage</a></li>
 											<li><a href="blog-single.html" title="Blog Single ">MyTeam</a></li>
 										</ul></li>
-									<li><a href="contact.html" title="Contact Us">로그인</a>
+									<li><a th:href="@{/customlogin}" title="Contact Us">로그인</a>
 									</li>
-									<li><a href="testimonial.html" title="Testimonial">회원가입</a>
+									<li><a th:href="@{/member/register}" title="Testimonial">회원가입</a>
 									</li>
 								</ul>
 							</div>
