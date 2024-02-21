@@ -43,4 +43,9 @@ public class BoardServiceTest {
 	public void 게시물삭제() {
 		boardService.remove(3);
 	}
+	
+//	@Test
+//	public void 검색기능() {
+//		List<BoardDto>list = boardService.search()
+//	}
 }

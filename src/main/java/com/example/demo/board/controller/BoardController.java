@@ -1,6 +1,7 @@
 package com.example.demo.board.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -60,5 +61,13 @@ public class BoardController {
 	public String removePost(@RequestParam(name = "no")int no) {
 		service.remove(no);
 		return "redirect:/board/list";
+	}
+	
+	@GetMapping("/search")
+	public String search(String keyword, Model model) {
+		
+		List<BoardDto>searchList = service.search(keyword);
+		model.addAttribute("searchList",searchList);
+		return "search";
 	}
 }

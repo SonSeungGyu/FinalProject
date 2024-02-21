@@ -1,10 +1,15 @@
 package com.example.demo.board.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.example.demo.board.dto.BoardDto;
 import com.example.demo.board.entity.BoardEntity;
+import com.example.demo.board.repository.BoardRepository;
 import com.example.demo.member.entitly.MemberEntity;
+
+import jakarta.transaction.Transactional;
 
 public interface BoardService {
 	int register(BoardDto dto);
@@ -16,6 +21,11 @@ public interface BoardService {
 	void modify(BoardDto dto);
 	
 	int remove(int no);
+	
+	// 검색 서비스 기능 구현(리파지토리에 추가 되었으니 서비스에서 기능 구현)
+	List<BoardDto> search(String keyword);
+	
+	
 	
 	
 	
