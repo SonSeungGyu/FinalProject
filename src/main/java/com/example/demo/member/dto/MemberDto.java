@@ -34,11 +34,11 @@ public class MemberDto {
 
 	String memberBirthDay; // 회원 생년월일
 	
-	int win; //사용자 등급
+	int win; // 이긴 경기 수
 	
-	int lose; //사용자 등급
+	int lose; //진 경기 수
 	
-	int point; //사용자 등급
+	int point; //승점
 
 	LocalDateTime regDate; // 회원이 최초로 만들어진 시간
 	
