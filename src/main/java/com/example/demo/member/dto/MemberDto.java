@@ -32,7 +32,13 @@ public class MemberDto {
 
 	String memberNumber; // 회원 전화번호
 
-	String memberBirthDay; // 회원 생년월일 
+	String memberBirthDay; // 회원 생년월일
+	
+	int win; //사용자 등급
+	
+	int lose; //사용자 등급
+	
+	int point; //사용자 등급
 
 	LocalDateTime regDate; // 회원이 최초로 만들어진 시간
 	

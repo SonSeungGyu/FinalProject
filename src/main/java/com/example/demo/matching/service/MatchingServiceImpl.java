@@ -9,7 +9,7 @@ import com.example.demo.matching.dto.MatchingDto;
 import com.example.demo.matching.entity.MatchStatus;
 import com.example.demo.matching.entity.MatchingEntity;
 import com.example.demo.matching.repository.MatchingRepository;
-import com.example.demo.team.entity.TeamEntity;
+import com.example.demo.member.entitly.MemberEntity;
 
 @Service
 public class MatchingServiceImpl implements MatchingService{
@@ -31,7 +31,7 @@ public class MatchingServiceImpl implements MatchingService{
 	}
 
 	@Override //매칭
-	public MatchingEntity applyMatch(int id, TeamEntity teamAway) {
+	public MatchingEntity applyMatch(int id, MemberEntity teamAway) {
 		// 해당 매칭 정보를 조회
 		MatchingEntity matchingEntity = repository.findById(id).orElseThrow(() -> new RuntimeException("Match not found"));
 		// 매칭 상태가 '대기 중'인지 확인

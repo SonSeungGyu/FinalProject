@@ -48,8 +48,16 @@ public class MemberEntity extends BaseEntity {
 	String memberBirthDay; // 회원 생년월일
 	
 	@Column(length = 100,nullable = false)
-	 String role; //사용자 등급
+	String role; //사용자 등급
 	
+	@Column(nullable = true)
+	int win; //사용자 등급
+	
+	@Column(nullable = true)
+	int lose; //사용자 등급
+	
+	@Column(nullable = true)
+	int point; //사용자 등급
 	
 	
 }

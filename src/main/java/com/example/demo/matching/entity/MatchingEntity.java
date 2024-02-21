@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import com.example.demo.allBaseEtity.BaseEntity;
 import com.example.demo.court.entity.CourtEntity;
-import com.example.demo.team.entity.TeamEntity;
+import com.example.demo.member.entitly.MemberEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,10 +44,10 @@ public class MatchingEntity extends BaseEntity{
 	int matchingTime;      //매칭 시간을 숫자값으로 주고 처리
 
 	@ManyToOne
-	TeamEntity teamHome;         //먼저 매칭 등록한 팀
+	MemberEntity teamHome;         //먼저 매칭 등록한 팀
 
 	@ManyToOne  					//null이 가능하도록 한건 매치등록시 매칭에는 home팀만 등록 되기때문에?
-	TeamEntity teamAway;         //후에 매칭 신청한 팀
+	MemberEntity teamAway;         //후에 매칭 신청한 팀
 
 	@ManyToOne
 	CourtEntity matchingCourtName;
