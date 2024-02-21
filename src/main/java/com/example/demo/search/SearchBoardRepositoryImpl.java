@@ -16,7 +16,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 	@Override
 	public BoardEntity search1() {
 		
-		
+		 
 		return null;
 		
 	}
