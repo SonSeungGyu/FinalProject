@@ -7,4 +7,5 @@ import com.example.demo.member.entitly.MemberEntity;
 
 public interface MemberRepository extends JpaRepository<MemberEntity,String>{
 
+	//Optional<MemberEntity> findByLoginId(String memberId);
 }
