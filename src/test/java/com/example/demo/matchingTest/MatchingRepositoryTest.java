@@ -32,27 +32,16 @@ public class MatchingRepositoryTest {
 		matchingRepository.save(entity);
 	}
 	
-	@Test //대기중인 매칭만 조회하기 위해 데이터 등록
-	public void 매칭완료등록() {
-		LocalDate localDate = LocalDate.of(2024, 2, 26);
-		MemberEntity user = MemberEntity.builder().memberId("user1").build();
-		MemberEntity user2 = MemberEntity.builder().memberId("user2").build();
-		CourtEntity court = CourtEntity.builder().courtName("서창풋살장").build();
-		MatchingEntity entity = MatchingEntity.builder().matchingDate(localDate).matchingTime(1).matchingHome(user).matchingCourtName(court)
-				.matchingAway(user2).matchStatus("MATCHED").build();
-		matchingRepository.save(entity);
-	}
-	
 	@Test
-	public void 대기중인매칭만조회() {
-		List<MatchingEntity> list = matchingRepository.findByMatchStatus("WAITING");
+	public void 매칭목록조회() {
+		List<MatchingEntity> list = matchingRepository.findAll();
 		for(MatchingEntity entity : list) {
 			System.out.println(entity);
 		}
 	}
 	
 	@Test
-	public void 매칭() {
+	public void 매치() {
 		Optional<MemberEntity> optional2 = memberRepository.findById("user2");
 		MemberEntity awayTeam = optional2.get();
 		Optional<MatchingEntity> optional = matchingRepository.findById(1);
@@ -63,5 +52,10 @@ public class MatchingRepositoryTest {
 			entity.setMatchStatus("MATCHED");
 		}
 		matchingRepository.save(entity);
+	}
+	
+	@Test
+	public void 매칭삭제() {
+		matchingRepository.deleteById(1);
 	}
 }

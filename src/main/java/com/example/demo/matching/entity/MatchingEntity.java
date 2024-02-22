@@ -50,7 +50,7 @@ public class MatchingEntity extends BaseEntity{
 	@ManyToOne
 	MemberEntity matchingHome;         //먼저 매칭 등록한 팀
 
-	@ManyToOne  					//null이 가능하도록 한건 매치등록시 매칭에는 home팀만 등록 되기때문에?
+	@ManyToOne		  					//null이 가능하도록 한건 매치등록시 매칭에는 home팀만 등록 되기때문에?
 	MemberEntity matchingAway;         //후에 매칭 신청한 팀
 
 	@ManyToOne
