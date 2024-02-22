@@ -54,16 +54,22 @@
 							<div id="navigation">
 								<ul>
 									<li class="active"><a th:href="@{/}" title="Home">Home</a></li> <!-- 메인 화면으로 가는 버튼 -->
-									<li class="active"><a th:href="@{/board/list}" title="Service List">자유게시판</a> <!-- 자유 게시판 가는 버튼 --></li>
-									<li class="active"><a href="portfolio.html" title="Portfolio">팀등록</a></li>
-									</li>
-									<li><a href="testimonial.html" title="Testimonial">매칭찾기</a>
-									</li>
-									<li class="has-sub"><a href="blog-default.html" title="Blog ">MyInfo</a>
+									<li class="active"><a th:href="@{/board/list}" title="board">자유게시판</a> <!-- 자유 게시판 가는 버튼 --></li>
+									<!-- <li class="active"><a href="portfolio.html" title="Portfolio">팀등록</a></li> -->
+									<!-- </li> -->
+									<li><a href="#" title="searchMatching">매칭찾기</a></li>
+									
+									<li class="has-sub"><a href="#" title="Blog ">구장</a>
 										<ul>
-											<li><a th:href="@{/member/mypage}" title="Blog">MyPage</a></li>
-											<li><a href="blog-single.html" title="Blog Single ">MyTeam</a></li>
+											<li><a th:href="@{/court/list}" title="Blog">구장 목록</a></li>
+											<li><a th:href="@{/court/register}" title="Blog Single ">구장 등록</a></li>
 										</ul></li>
+									
+									<!-- <li class="has-sub"><a href="blog-default.html" title="Blog ">MyInfo</a>
+										<ul> -->
+											<li><a th:href="@{/member/mypage}" title="Blog">MyPage</a></li>
+											<!-- <li><a href="blog-single.html" title="Blog Single ">MyTeam</a></li> -->
+										<!-- </ul></li> -->
 									<li><a th:href="@{/customlogin}" title="Contact Us">로그인</a>
 									</li>
 									<li><a th:href="@{/member/register}" title="Testimonial">회원가입</a>

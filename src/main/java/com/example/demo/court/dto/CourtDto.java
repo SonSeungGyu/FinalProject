@@ -16,7 +16,7 @@ import lombok.ToString;
 //2024-02-20 구장테이블 생성
 public class CourtDto {
 	
-	
+
 	String courtName;
 	String courtAddress;
 }

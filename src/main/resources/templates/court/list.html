@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<link href="/css/list.css" rel="stylesheet">
+        
+<section class="notice">
+  <div class="page-title">
+        <div class="container">
+            <h3>구장 목록</h3>
+        </div>
+    </div>
+
+    <!-- board seach area -->
+   <!--  <div id="board-search">
+        <div class="container">
+            <div class="search-window">
+                <form action="">
+                    <div class="search-wrap">
+                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+                        <button type="submit" class="btn btn-dark">검색</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+   
+  <!-- board list area -->
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-num">구장이름</th>
+                    <th scope="col" class="th-title">구장위치</th>
+                    <!-- <th scope="col" class="th-date">등록일</th> -->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dto:${list}">
+                    <td>[[${dto.courtName}]]</td>
+                    <td>[[${dto.courtAddress}]]</td>
+                      <!-- <p>테스트</p> -->
+                   
+                </tr>
+                </tbody>
+            </table>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <div class="st-pagination"> 
+              <!--st-pagination-->
+              <ul class="pagination">
+                
+                <li class="active"th:class="${(list.number + 1) == page?'active':''} " th:each="page: ${#numbers.sequence(1, list.totalPages)}">
+                <a th:href="@{/court/list(page = ${page})}">[[${page}]]</a>
+                </li>
+
+              </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    </th:block>
+
+</th:block>
+</html>

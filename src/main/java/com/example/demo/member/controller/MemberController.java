@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,25 +95,25 @@ public class MemberController {
 
 	
 	//0222 mypage 수정 추가
-	@PostMapping("/modify")
-	public String modifyPost(Principal principal, RedirectAttributes redirectAttribytes) {
-		String id = principal.getName();
-		MemberDto dto = service.read(id);
-		//dto.setMemberId(id);
-		service.modify(dto);
-		redirectAttribytes.addAttribute("memberId", dto.getMemberId());
-		return "redirect:/member/mypage";
-	}
-	
 //	@PostMapping("/modify")
-//	public String modifyPost(@RequestParam(name="memberId")String memberId, RedirectAttributes redirectAttribytes) {
-//		//String id = principal.getName();
-//		MemberDto dto = service.read(memberId);
-//		service.modify(dto);
+//	public String modifyPost(Principal principal, RedirectAttributes redirectAttribytes) {
+//		String id = principal.getName();
+//		MemberDto dto = service.read(id);
 //		//dto.setMemberId(id);
-//		//service.modify(dto);
+//		service.modify(dto);
 //		redirectAttribytes.addAttribute("memberId", dto.getMemberId());
 //		return "redirect:/member/mypage";
 //	}
+	
+	@PostMapping("/modify")
+	public String modifyPost(@ModelAttribute MemberDto dto, Principal principal,RedirectAttributes redirectAttribytes) {
+		String id = principal.getName();
+		dto = service.read(id);
+		service.modify(dto);
+		//dto.setMemberId(id);
+		//service.modify(dto);
+		redirectAttribytes.addAttribute("memberId", dto.getMemberId());
+		return "redirect:/member/mypage";
+	}
 	
 }

@@ -9,9 +9,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="../BOARD/style.css"> -->
     <link href="/css/formstyle.css" rel="stylesheet">
-    <title>글수정</title>
+    <title>My Page</title>
+    <!-- 버튼 css, div태그 내부 컨텐츠에 맞게 동적으로 크기 변화 --> 
     <style>
+	
+			.w-btn-gray {
+    		background-color: #a3a1a1;
+   			color: #e3dede;
+   			}
+   			
+   		.w-btn {
+		    position: relative;
+		    border: none;
+		    display: inline-block;
+		    padding: 10px 20px;
+		   	margin: 0px 10px 0px 10px;
+		    border-radius: 15px;
+		    font-family: "paybooc-Light", sans-serif;
+		    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		    text-decoration: none;
+		    font-weight: 600;
+		    transition: 0.25s;
+			}
+			
+		.card{
+			overflow:hidden;
+			height:auto;
+		}
 
+	
     </style>
 </head>
 <body>
@@ -25,7 +51,7 @@
             <!-- <div class="myinfo">
                 이름dd<input type="text" placeholder="이름을 입력하세요." value="김이름">
             </div> -->
-        <form>
+        <form >
              <div class="title">
                 <label>회원이름</label><input th:value="${dto.memberName}" readonly>
             </div>
@@ -50,6 +76,8 @@
             <div class="title">
                 <label>등급</label><input th:value= "${dto.role}" readonly>
             </div>
+            <!-- <button class="w-btn w-btn-gray" type="submit">수</button> -->
+            <button class="w-btn w-btn-gray"><a th:href="@{/member/modify}">수정</a></button>
         </form>
             <!-- <div class="msg">
                 내용<textarea placeholder="내용을 입력하세요.">
@@ -62,9 +90,9 @@
             </div> -->
         </div>
 
-      <div class="btn-edit">
-            <a th:href="@{/member/modify}">수정</a>
-        </div>
+      <!-- <div class="btn-edit"> -->
+             <!-- <button class="w-btn w-btn-gray"><a th:href="@{/member/modify}">수저</a></button> -->
+        <!-- </div> -->
     </div>
 </body>
     </th:block>
