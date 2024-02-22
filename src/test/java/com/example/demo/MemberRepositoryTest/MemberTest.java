@@ -2,7 +2,6 @@ package com.example.demo.MemberRepositoryTest;
 
 import java.util.Optional;
 
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,6 +45,16 @@ public class MemberTest {
 		entity.setMemberBirthDay("1995-08-06");
 		memberRepository.save(entity);
 	}
+	
+	@Test
+	public void 수정2() {
+		Optional<MemberEntity>opt = memberRepository.findById("123");
+		MemberEntity entity = opt.get();
+		entity.setMemberBirthDay("1995-08-06");
+		memberRepository.save(entity);
+	}
+	
+	
 	@Test
 	public void 삭제() {
 		memberRepository.deleteById("user1");

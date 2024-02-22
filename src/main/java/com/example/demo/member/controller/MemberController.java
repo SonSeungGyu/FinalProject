@@ -1,5 +1,7 @@
 package com.example.demo.member.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -13,14 +15,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.member.dto.MemberDto;
 import com.example.demo.member.service.MemberService;
 
-import jakarta.servlet.http.HttpSession;
-
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
 	@Autowired
 	MemberService service;
+	
+
 
 	@GetMapping("/member/list")
 	public void list(@RequestParam(defaultValue = "0", name = "page") int page, Model model) {
@@ -66,8 +68,51 @@ public class MemberController {
 		model.addAttribute("page", page);
 	}
 
+	//0222 myPage 추가
+	@GetMapping("/mypage")
+	public void myPage(Principal principal, Model model){
+	
+	String id = principal.getName();
+	MemberDto dto = service.read(id);
+	model.addAttribute("dto", dto);
+	
+	}
 	
 	
 	
+	
+	//0222 mypage 수정 추가
+	@GetMapping("/modify")
+	public void modify(Principal principal, Model model){
+		
+	String id = principal.getName();
+	MemberDto dto = service.read(id);
+	model.addAttribute("dto", dto);
+		
+	}
+	
+
+	
+	//0222 mypage 수정 추가
+	@PostMapping("/modify")
+	public String modifyPost(Principal principal, RedirectAttributes redirectAttribytes) {
+		String id = principal.getName();
+		MemberDto dto = service.read(id);
+		//dto.setMemberId(id);
+		service.modify(dto);
+		redirectAttribytes.addAttribute("memberId", dto.getMemberId());
+		return "redirect:/member/mypage";
+	}
+	
+//	@PostMapping("/modify")
+//	public String modifyPost(@RequestParam(name="memberId")String memberId, RedirectAttributes redirectAttribytes) {
+//		//String id = principal.getName();
+//		MemberDto dto = service.read(memberId);
+//		service.modify(dto);
+//		//dto.setMemberId(id);
+//		//service.modify(dto);
+//		redirectAttribytes.addAttribute("memberId", dto.getMemberId());
+//		return "redirect:/member/mypage";
+//	}
 	
 }

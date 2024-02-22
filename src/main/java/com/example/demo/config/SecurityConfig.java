@@ -19,7 +19,12 @@ import jakarta.servlet.http.HttpServletResponse;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
+	
+	//0222 myPage 추가
+//	@Bean
+//	public InMemoryUserDetailsManager userDetailsService() {
+//		UserDetails user = User.builder();
+//	}
 
 	@Bean
 	public PasswordEncoder passwordencoder() {

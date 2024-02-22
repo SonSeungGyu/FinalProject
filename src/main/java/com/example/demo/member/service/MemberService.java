@@ -14,7 +14,8 @@ public interface MemberService {
 	
 	MemberDto read(String id);
 
-
+	//0222 내정보 수정
+	void modify(MemberDto dto);
 	
 	// 엔티티를 dto로 변환
 	default MemberDto entityToDto(MemberEntity entity) {

@@ -72,6 +72,28 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+
+	//0222 사용자 정보 수정
+	@Override
+	public void modify(MemberDto dto) {
+		//파라미터로 받은 dto는 DTO 타입이므로 프라이머리키인 no로 접근후
+		//이 no는 레파지토리의 엔티티 no와 같음을 이용하여 엔티티 타입의 변수에 할당.
+		Optional<MemberEntity> result = repository.findById(dto.getMemberId());
+		
+		if(result.isPresent()) {
+			MemberEntity entity = result.get();
+			
+			//기존 엔티티에서 제목과 내용만 변경
+			entity.setMemberAddress(dto.getMemberAddress());
+			entity.setMemberEmail(dto.getMemberEmail());
+			entity.setMemberNumber(dto.getMemberNumber());
+			entity.setMemberBirthDay(dto.getMemberBirthDay());
+			
+			//다시 저장
+			repository.save(entity);
+		}
+	}
+
 	
 	
 

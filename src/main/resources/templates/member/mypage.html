@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../BOARD/style.css"> -->
+    <link href="/css/formstyle.css" rel="stylesheet">
+    <title>글수정</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header4"><a href="../BOARD/index.html"><h1>My Page</h1></a></div>
+        <div class="card-edit">
+            <!-- <div class="myinfo">
+                이름<input type="text" placeholder="이름을 입력하세요." value="김이름">
+                비밀번호<input type="password" placeholder="비밀번호를 입력하세요." value="1234">
+            </div> -->
+            <!-- <div class="myinfo">
+                이름dd<input type="text" placeholder="이름을 입력하세요." value="김이름">
+            </div> -->
+        <form>
+             <div class="title">
+                <label>회원이름</label><input th:value="${dto.memberName}" readonly>
+            </div>
+             <div class="title">
+                <label>회원ID</label><input th:value="${dto.memberId}" readonly>
+            </div>
+             <div class="title">
+                <label>비밀번호</label><input type="password" th:value="${dto.memberPassword}" readonly>
+            </div>
+             <div class="title">
+                <label>회원주소</label><input th:value="${dto.memberAddress}" readonly>
+            </div>
+             <div class="title">
+                <label>회원이메일</label><input th:value="${dto.memberEmail}" readonly>
+            </div>
+             <div class="title">
+                <label>전화번호</label><input th:value="${dto.memberNumber}" readonly>
+            </div>
+             <div class="title">
+                <label>생년월일</label><input th:value="${dto.memberBirthDay}" readonly>
+            </div>
+            <div class="title">
+                <label>등급</label><input th:value= "${dto.role}" readonly>
+            </div>
+        </form>
+            <!-- <div class="msg">
+                내용<textarea placeholder="내용을 입력하세요.">
+동해물과 백두산이 마르고 닳도록
+하느님이 보우하사 우리나라 만세
+무궁화 삼천리 화려 강산
+대한 사람 대한으로 길이 보전하세
+                </textarea>
+                <input type="file">
+            </div> -->
+        </div>
+
+      <div class="btn-edit">
+            <a th:href="@{/member/modify}">수정</a>
+        </div>
+    </div>
+</body>
+    </th:block>
+
+</th:block>
+</html>
