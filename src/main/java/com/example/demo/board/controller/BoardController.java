@@ -22,52 +22,58 @@ import com.example.demo.board.service.BoardService;
 public class BoardController {
 	@Autowired
 	BoardService service;
-	
+
 	@GetMapping("/list")
-	public void list(@RequestParam(defaultValue = "0",name = "page")int page,Model model) {
+	public void list(@RequestParam(defaultValue = "0", name = "page") int page, Model model) {
 		Page<BoardDto> list = service.getList(page);
 		model.addAttribute("list", list);
 	}
+
 	@GetMapping("/register")
 	public void register() {
-		
+
 	}
+
 	@PostMapping("/register")
-	public String registerPost(BoardDto boardDto,RedirectAttributes redirectAttributes,Principal principal) {
+	public String registerPost(BoardDto boardDto, RedirectAttributes redirectAttributes, Principal principal) {
 		String id = principal.getName();
 		boardDto.setBoardTitle(id);
 		int no = service.register(boardDto);
 		redirectAttributes.addFlashAttribute("msg", no);
 		return "redirect:/board/list";
 	}
+
 	@GetMapping("/read")
-	public void read(@RequestParam(name = "no")int no,@RequestParam(defaultValue = "0", name = "page")int page,Model model) {
+	public void read(@RequestParam(name = "no") int no, @RequestParam(defaultValue = "0", name = "page") int page,
+			Model model) {
 		BoardDto boardDto = service.read(no);
 		model.addAttribute("dto", boardDto);
 		model.addAttribute("page", page);
 	}
+
 	@GetMapping("/modify")
-	public void modify(@RequestParam(name = "no")int no, Model model) {
+	public void modify(@RequestParam(name = "no") int no, Model model) {
 		BoardDto boardDto = service.read(no);
-		model.addAttribute("dto",boardDto);
+		model.addAttribute("dto", boardDto);
 	}
+
 	@PostMapping("/modify")
-	public String modifyPost(BoardDto boardDto,RedirectAttributes redirectAttributes) {
+	public String modifyPost(BoardDto boardDto, RedirectAttributes redirectAttributes) {
 		service.modify(boardDto);
 		redirectAttributes.addAttribute("no", boardDto.getBoardNo());
 		return "redirect:/board/read";
 	}
+
 	@PostMapping("/remove")
 	public String removePost(@RequestParam(name = "no")int no) {
 		service.remove(no);
 		return "redirect:/board/list";
 	}
-	
+
 	@GetMapping("/search")
-	public String search(String keyword, Model model) {
-		
-		List<BoardDto>searchList = service.search(keyword);
+	public void search(String keyword, Model model){
+		List<BoardDto> searchList = service.search(keyword);
 		model.addAttribute("searchList",searchList);
-		return "search";
+		
 	}
 }

@@ -1,7 +1,9 @@
 package com.example.demo.board.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,8 +15,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.board.dto.BoardDto;
 import com.example.demo.board.entity.BoardEntity;
 import com.example.demo.board.repository.BoardRepository;
-
-import jakarta.transaction.Transactional;
 @Service
 
 public class BoardServiceImpl implements BoardService{
@@ -71,16 +71,30 @@ public class BoardServiceImpl implements BoardService{
 		}
 		
 	}
-	
-	
-	// 서비스에서 메소드를 등록했으니 보드서비스 클래스에서 구현(Transactional어디에 쓰이는지 정확히 잘몰름)
-	@Transactional
+
 	@Override
 	public List<BoardDto> search(String keyword) {
-		// 리시트 보드 엔티티를 만든후 리파지토리에 있던 메소드 꺼내오기
-		List<BoardDto> boardList = repository.findByTitleContaining(keyword);
-		return boardList ;
-	
+		List<BoardEntity>list = repository.findByboardTitleContaining(keyword);
+		List<BoardDto>dtoList = new ArrayList<>();
+		dtoList	= list.stream().map(entity-> entityToDto(entity))
+				.collect(Collectors.toList());
+		return dtoList;
 	}
+
+	
+	
+	
+	
+//	@Override
+//	public Page<BoardDto> search(String keyword) {
+//		// 검색기능을 구현	
+//		Page<BoardEntity>boardList = repository.findByboardTitleContaining(keyword);
+//		// dto 변환(컨트롤러에 갈때에는 dto만 가능)
+//			Page<BoardDto>dto = boardList.map(entity -> entityToDto(entity));
+//		return dto;
+//	}
+	
+	
+	
 	
 }
