@@ -56,7 +56,8 @@ public class MatchingEntity extends BaseEntity{
 	@ManyToOne
 	CourtEntity matchingCourtName;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "varchar(255) default 'WAITING'")
-    String matchStatus; //기본 값 대기로 설정
+    MatchStatus matchStatus; //기본 값 대기로 설정
 }
 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../BOARD/style.css"> -->
+    <link href="/css/formstyle.css" rel="stylesheet">
+    <title>매칭등록</title>
+    <style>
+		.w-btn-gray {
+    		background-color: #a3a1a1;
+   			color: #e3dede;
+   			}
+   			
+   		.w-btn {
+		    position: relative;
+		    border: none;
+		    display: inline-block;
+		    padding: 10px 20px;
+		   	margin: 0px 10px 0px 10px;
+		    border-radius: 15px;
+		    font-family: "paybooc-Light", sans-serif;
+		    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		    text-decoration: none;
+		    font-weight: 600;
+		    transition: 0.25s;
+			}
+			
+		.card{
+			overflow:hidden;
+			height:auto;
+		}
+		
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header4"><h1>매칭등록</h1></div>
+        <div class="card-edit">
+        <form th:action="@{/matching/register}" th:method="post">
+             <div class="title">
+                <label>날짜</label><input type="text" name = "matchingDate">
+            </div>
+             <div class="title">
+                <label>시간</label><input type="text" name = "matchingTime">
+            </div>
+      		<div class="title">
+                <label>구장</label><input type="text" name = "matchingCourtName">
+            </div>
+              <button class="w-btn w-btn-gray" type="submit" style="">매칭등록</button>
+
+        </form>
+        </div>
+    </div>
+</body>
+    </th:block>
+
+</th:block>
+</html>
