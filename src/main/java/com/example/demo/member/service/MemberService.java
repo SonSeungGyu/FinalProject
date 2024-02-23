@@ -28,6 +28,9 @@ public interface MemberService {
 				.memberNumber(entity.getMemberNumber())
 				.memberBirthDay(entity.getMemberBirthDay())
 				.role(entity.getRole())
+				.win(entity.getWin())
+				.lose(entity.getLose())
+				.point(entity.getPoint())
 				.regDate(entity.getRegDate())
 				.modDate(entity.getModDate())
 				.build();
@@ -47,6 +50,9 @@ public interface MemberService {
 				.memberNumber(dto.getMemberNumber())
 				.memberBirthDay(dto.getMemberBirthDay())
 				.role(dto.getRole())
+				.win(dto.getWin())
+				.lose(dto.getLose())
+				.point(dto.getPoint())
 				.build();
 		return entity;
 		

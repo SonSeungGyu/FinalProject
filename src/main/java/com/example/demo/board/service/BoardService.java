@@ -1,5 +1,7 @@
 package com.example.demo.board.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.example.demo.board.dto.BoardDto;
@@ -16,6 +18,9 @@ public interface BoardService {
 	void modify(BoardDto dto);
 	
 	int remove(int no);
+	
+	List<BoardDto> search(String keyword);
+	
 	
 	
 	

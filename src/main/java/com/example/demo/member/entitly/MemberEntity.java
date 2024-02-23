@@ -51,13 +51,13 @@ public class MemberEntity extends BaseEntity {
 	String role; //사용자 등급
 	
 	@Column(nullable = true)
-	int win; //사용자 등급
+	int win; // 이긴 경기 수
 	
 	@Column(nullable = true)
-	int lose; //사용자 등급
+	int lose; // 진 경기 수
 	
 	@Column(nullable = true)
-	int point; //사용자 등급
+	int point; // 승점
 	
 	
 }

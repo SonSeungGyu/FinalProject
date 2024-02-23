@@ -10,10 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.example.demo.board.entity.BoardEntity;
 import com.example.demo.board.repository.BoardRepository;
 import com.example.demo.member.entitly.MemberEntity;
+import com.example.demo.member.repository.MemberRepository;
 @SpringBootTest
 public class BoardRepositoryTest {
 	@Autowired
 	BoardRepository repository;
+	@Autowired
+	MemberRepository memberRepository;
 	
 	@Test public void 게시물30개추가() { 
 		MemberEntity entity = MemberEntity.builder().memberId("user1").build();
@@ -23,9 +26,11 @@ public class BoardRepositoryTest {
 		}
 	@Test
 	public void 게시물등록() {
-		MemberEntity memberEntity = MemberEntity.builder().memberId("admin").build();
-		BoardEntity boardEntity = BoardEntity.builder().boardTitle("ㅇㅇ").boardContent("ㅁㅁ").boardWriter(memberEntity).build(); repository.save(boardEntity);
+		Optional<MemberEntity>opt = memberRepository.findById("user2");
+		MemberEntity entity = opt.get();
+		BoardEntity boardEntity = BoardEntity.builder().boardNo(3).boardWriter(entity).boardTitle("ㄹ").boardContent("뿌야뿌").build(); 
 		repository.save(boardEntity);
+	
 	}
 	@Test
 	public void 게시물전체조회() {
@@ -50,5 +55,11 @@ public class BoardRepositoryTest {
 	@Test
 	public void 게시물삭제() {
 		repository.deleteById(2);
+	}
+	
+	@Test
+	public void 검색기능() {
+		List<BoardEntity> entity = repository.findByboardTitleContaining("3");
+		System.out.println(entity);
 	}
 }

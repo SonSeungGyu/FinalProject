@@ -1,6 +1,9 @@
 package com.example.demo.board.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -68,5 +71,30 @@ public class BoardServiceImpl implements BoardService{
 		}
 		
 	}
+
+	@Override
+	public List<BoardDto> search(String keyword) {
+		List<BoardEntity>list = repository.findByboardTitleContaining(keyword);
+		List<BoardDto>dtoList = new ArrayList<>();
+		dtoList	= list.stream().map(entity-> entityToDto(entity))
+				.collect(Collectors.toList());
+		return dtoList;
+	}
+
+	
+	
+	
+	
+//	@Override
+//	public Page<BoardDto> search(String keyword) {
+//		// 검색기능을 구현	
+//		Page<BoardEntity>boardList = repository.findByboardTitleContaining(keyword);
+//		// dto 변환(컨트롤러에 갈때에는 dto만 가능)
+//			Page<BoardDto>dto = boardList.map(entity -> entityToDto(entity));
+//		return dto;
+//	}
+	
+	
+	
 	
 }

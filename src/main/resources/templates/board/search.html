@@ -5,7 +5,7 @@
     <th:block th:fragment="content"> 
 <link href="/css/list.css" rel="stylesheet">
         
-<section class="notice">
+<section class="board">
   <div class="page-title">
         <div class="container">
             <h3>자유게시판</h3>
@@ -18,18 +18,19 @@
             <div class="search-window">
                 <form th:action="@{/board/search}" method="get">
                     <div class="search-wrap">
-                        <input id="search" type="search" th:name="keyword" placeholder="검색어를 입력해주세요." value="">
+                        <input id="search" type="search" name="keyword" placeholder="검색어를 입력해주세요." value="">
                         <button type="submit" class="btn btn-dark">검색</button>
                     </div>
+                    
+                    
                 </form>
             </div>
         </div>
     </div>
-   
-  <!-- board list area -->
-    <div id="board-list">
+   <div id="board-list">
         <div class="container">
-            <table class="board-table">
+            <table class="board-table" >
+            
                 <thead>
                 <tr>
                     <th scope="col" class="th-num">번호</th>
@@ -38,34 +39,33 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="dto:${list}">
+                
+           
+                
+                <tr th:each="dto:${searchList}">
+                
+                [[${dto}]]
+               
                     <td>[[${dto.boardNo}]]</td>
                     <th>
+						
+                      <a th:href="@{/board/read(boardNo=${dto.boardNo}})}">aa</a>
 
-                      <a th:href="@{/board/read(boardNo=${dto.boardNo}, page=${list.number+1})}">[[${dto.boardTitle}]]</a>
-
-                      <a href="#!">[[${dto.boardTitle}]]</a>
+<!--                       <a href="#!">[[${dto.boardTitle}]]</a>
                       <p>테스트</p>
-
-                    </th>
-                    <td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</td>
+ -->
+                    </th><!-- 
+                    <td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</td> -->
                 </tr>
-                </tbody>
-            </table>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-            <div class="st-pagination"> 
-              <!--st-pagination-->
-              <ul class="pagination">
                 
-                <li class="active"th:class="${(list.number + 1) == page?'active':''} " th:each="page: ${#numbers.sequence(1, list.totalPages)}">
-                <a th:href="@{/board/list(page = ${page})}">[[${page}]]</a>
-                </li>
+                </tbody>
+            
 
-              </ul>
-            </div>
-            </div>
+              </table>
+            
         </div>
     </div>
+  
 
 </section>
 

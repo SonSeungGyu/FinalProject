@@ -18,14 +18,14 @@ public class MemberTest {
 	@Test
 	public void 회원등록 () {
 		MemberEntity entity = MemberEntity.builder()
-				.memberId("user2")
+				.memberId("user1")
 				.memberPassword("1235")
 				.memberName("뽀삐")
 				.memberAddress("인천")
 				.memberEmail("aaa@naver.com")
 				.memberNumber("010-1234-5678")
 				.memberBirthDay("1924-07-50")
-				.role("회원")
+				.role("user")
 				.build();
 		memberRepository.save(entity);
 	}

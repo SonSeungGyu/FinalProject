@@ -30,7 +30,7 @@ public class ServiceTest {
 	@Test
 	public void 회원가입() {
 		MemberDto dto = MemberDto.builder()
-				.memberId("user6")
+				.memberId("user1")
 				.memberPassword("12444")
 				.memberName("아산백호")
 				.memberAddress("인천")
