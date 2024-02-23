@@ -8,7 +8,7 @@
 <section class="notice">
   <div class="page-title">
         <div class="container">
-            <h3>구장 목록</h3>
+            <h3>회원 목록</h3>
         </div>
     </div>
 
@@ -32,16 +32,24 @@
             <table class="board-table">
                 <thead>
                 <tr>
-                    <th scope="col" class="th-num">구장이름</th>
-                    <th scope="col" class="th-title">구장위치</th>
+                    <th scope="col" class="th-num">회원ID</th>
+                    <th scope="col" class="th-title">이름</th>
+                    <th scope="col" class="th-title">가입일</th>
                     <!-- <th scope="col" class="th-date">등록일</th> -->
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="dto:${list}">
-                    <th>[[${dto.courtName}]]</th>
-                    <td>[[${dto.courtAddress}]]</td>
+                
+                    <th>
+                    <!-- <a th:href="@{/member/read(id=${dto.id}, page = ${list.number + 1})}">[[${dto.memberId}]]</a> -->
+                    <a th:href="@{/member/read(id=${dto.memberId}, page = ${list.number + 1})}">[[${dto.memberId}]]</a>
+                    <!-- [[${dto.memberId}]] -->
+                    </th>
+                    <td>[[${dto.memberName}]]</td>
+                    <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
                       <!-- <p>테스트</p> -->
+                   
                 </tr>
                 </tbody>
             </table>

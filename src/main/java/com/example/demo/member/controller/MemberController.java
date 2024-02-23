@@ -25,20 +25,17 @@ public class MemberController {
 	
 
 
-	@GetMapping("/member/list")
+	@GetMapping("/list")
 	public void list(@RequestParam(defaultValue = "0", name = "page") int page, Model model) {
 
 		Page<MemberDto> list = service.getList(page);
 
 		model.addAttribute("list", list);
 
-		System.out.println("전체 페이지 수" + list.getTotalPages());
-
-		System.out.println("전체 회원 수" + list.getTotalElements());
-
-		System.out.println("현재 페이지 번호" + (list.getNumber() + 1));
-
-		System.out.println("페이지에 표시할 게시물 수" + list.getNumberOfElements());
+//		System.out.println("전체 페이지 수" + list.getTotalPages());
+//		System.out.println("전체 회원 수" + list.getTotalElements());
+//		System.out.println("현재 페이지 번호" + (list.getNumber() + 1));
+//		System.out.println("페이지에 표시할 게시물 수" + list.getNumberOfElements());
 
 	}
 
@@ -58,7 +55,7 @@ public class MemberController {
 		}
 	}
 
-	@GetMapping("/member/read")
+	@GetMapping("/read")// /member 지움
 	public void read(@RequestParam(defaultValue = "0", name = "id") String id,
 			@RequestParam(defaultValue = "0", name = "page") int page, Model model) {
 
