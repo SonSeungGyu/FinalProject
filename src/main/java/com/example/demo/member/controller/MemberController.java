@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -102,13 +101,19 @@ public class MemberController {
 //		return "redirect:/member/mypage";
 //	}
 	
+	//0223
+//	@PostMapping("/modify")
+//	public String modifyPost(MemberDto dto, Principal principal,RedirectAttributes redirectAttribytes) {
+//		String id = principal.getName();
+//		dto = service.read(id);
+//		service.modify(dto);
+//		redirectAttribytes.addAttribute("memberId", dto.getMemberId());
+//		return "redirect:/member/mypage";
+//	}
+	
 	@PostMapping("/modify")
-	public String modifyPost(@ModelAttribute MemberDto dto, Principal principal,RedirectAttributes redirectAttribytes) {
-		String id = principal.getName();
-		dto = service.read(id);
+	public String modifyPost(MemberDto dto,RedirectAttributes redirectAttribytes) {
 		service.modify(dto);
-		//dto.setMemberId(id);
-		//service.modify(dto);
 		redirectAttribytes.addAttribute("memberId", dto.getMemberId());
 		return "redirect:/member/mypage";
 	}
