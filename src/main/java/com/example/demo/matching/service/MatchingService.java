@@ -13,11 +13,13 @@ public interface MatchingService {
 	// 매칭 등록
 	int creatMatching(MatchingDto dto);
 	// 매치가 완료된 매칭만 조회
-	List<MatchingDto> getMatchedMatches();
+	List<MatchingEntity> getMatchedMatches();
 	// 대기 중인 매칭만 조회
-	List<MatchingDto> getWaitingMatches();
-	//매칭
-	void applyMatch(int id, MemberEntity matchingAway);
+	List<MatchingEntity> getWaitingMatches();
+	// 매치
+	void applyMatch(MatchingDto id, MemberDto matchingAway);
+	
+	boolean deleteMatch(String userId, int matchId);
 	
 	default MatchingEntity dtoToEntity(MatchingDto dto) {
 		MemberEntity homeTeam = MemberEntity.builder().memberId(dto.getMatchingHome()).build();

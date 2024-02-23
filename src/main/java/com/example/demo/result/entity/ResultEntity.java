@@ -1,9 +1,7 @@
 package com.example.demo.result.entity;
 
-import com.example.demo.court.entity.CourtEntity;
 import com.example.demo.matching.entity.MatchingEntity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
