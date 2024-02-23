@@ -12,19 +12,7 @@
         </div>
     </div>
 
-    <!-- board seach area -->
-   <!--  <div id="board-search">
-        <div class="container">
-            <div class="search-window">
-                <form action="">
-                    <div class="search-wrap">
-                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-                        <button type="submit" class="btn btn-dark">검색</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> -->
+
    
   <!-- board list area -->
     <div id="board-list">
@@ -34,13 +22,18 @@
                 <tr>
                     <th scope="col" class="th-num">구장이름</th>
                     <th scope="col" class="th-title">구장위치</th>
+                    <!-- <th scope="col" class="th-title">삭제</th> -->
                     <!-- <th scope="col" class="th-date">등록일</th> -->
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="dto:${list}">
-                    <th>[[${dto.courtName}]]</th>
+                    <!-- <th>[[${dto.courtName}]]</th> -->
+                    <th>
+                    <a th:href="@{/court/read(courtName=${dto.courtName})}">[[${dto.courtName}]]</a>
+                    </th>
                     <td>[[${dto.courtAddress}]]</td>
+                    <!-- <td><button type="button" class="removeBtn">삭제</button></td> -->
                       <!-- <p>테스트</p> -->
                 </tr>
                 </tbody>
@@ -61,7 +54,18 @@
     </div>
 
 </section>
-
+<!-- <script>
+//삭제버튼 이벤트 처리
+$(".removeBtn").click(function(){
+	if(!confirm("삭제하시겠습니까?")){
+		return;
+	}
+	form
+	.attr("action", "/court/remove")
+	.attr("method", "post") //post remove로 매핑 된다.
+	.submit();
+});
+</script> -->
     </th:block>
 
 </th:block>

@@ -42,13 +42,13 @@
         <div class="card-edit">
         <form th:action="@{/court/register}" th:method="post">
              <div class="title">
-                <label>구장이름</label><input type="text" name = "courtName">
+                <label>구장이름</label><input type="text" name = "courtName" th:value=${dto.courtName}>
             </div>
              <div class="title">
-                <label>구장위치</label><input type="text" name = "courtAddress">
+                <label>구장위치</label><input type="text" name = "courtAddress" th:value=${dto.courtAddress}>
             </div>
       
-              <button class="w-btn w-btn-gray" type="submit" style="">구장등록</button>
+              <button class="w-btn w-btn-gray" type="button" >구장삭제</button>
 
         </form>
         </div>
@@ -58,10 +58,13 @@
 /* 구장 등록할지 클릭이벤트 */
 var form = $("form");
 $(".w-btn").click(function(){
-	if(!confirm("구장을 등록하시겠습니까?")){
+	if(!confirm("삭제하시겠습니까?")){
 		return;
 	}
-
+	form
+	.attr("action", "/court/remove")
+	.attr("method", "post") //post remove로 매핑 된다.
+	.submit();
 });
 </script>
     </th:block>

@@ -27,6 +27,12 @@ public class CourtController {
 		
 	}
 	
+	@GetMapping("/read")
+	public void read(@RequestParam(name="courtName")String courtName, Model model) {
+		CourtDto dto = service.read(courtName);
+		model.addAttribute("dto", dto);
+	}
+	
 	//등록화면
 	@GetMapping("/register")
 	public void register() {
@@ -37,6 +43,14 @@ public class CourtController {
 	public String register(CourtDto dto, RedirectAttributes redirectAttributes) {
 		service.register(dto);
 		
+		return "redirect:/court/list";
+	}
+	
+
+	
+	@PostMapping("/remove")
+	public String removeCourt(@RequestParam(name="CourtName") String courtName) {
+		service.remove(courtName);
 		return "redirect:/court/list";
 	}
 
