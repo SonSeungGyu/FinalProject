@@ -44,9 +44,9 @@ public class BoardServiceTest {
 		boardService.remove(3);
 	}
 	
-	@Test
-	public void 검색기능() {
-		List<BoardDto>list = boardService.search("3");
-		System.out.println(list);
-	}
+//	@Test
+//	public void 검색기능() {
+//		List<BoardDto>list = boardService.search("3");
+//		System.out.println(list);
+//	}
 }

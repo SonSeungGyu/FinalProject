@@ -3,12 +3,16 @@
 <th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
 
     <th:block th:fragment="content"> 
+
 <link href="/css/list.css" rel="stylesheet">
         
 <section class="notice">
   <div class="page-title">
         <div class="container">
-            <h3>자유게시판</h3>
+            <h3>자유게시판</h3><span> <a th:href="@{/board/register}">
+					<button class="btn btn-dark" type="submit">게시물 등록</button>
+			</a>
+			</span>
         </div>
     </div>
 
@@ -18,7 +22,7 @@
             <div class="search-window">
                 <form th:action="@{/board/search}" method="get">
                     <div class="search-wrap">
-                        <input id="search" type="search" th:name="keyword" placeholder="검색어를 입력해주세요." value="">
+                        <input id="search" type="search" th:name="keyword" placeholder="제목을 입력해주세요." value="">
                         <button type="submit" class="btn btn-dark">검색</button>
                     </div>
                 </form>
@@ -39,20 +43,14 @@
                 </thead>
                 <tbody>
                 <tr th:each="dto:${list}">
-                    <td>[[${dto.boardNo}]]</td>
-                    <th>
-
-                      <a th:href="@{/board/read(boardNo=${dto.boardNo}, page=${list.number+1})}">[[${dto.boardTitle}]]</a>
-
-                      <a href="#!">[[${dto.boardTitle}]]</a>
-                      <p>테스트</p>
-
-                    </th>
+                    
+                    <th> <a th:href="@{/board/read(boardNo=${dto.boardNo}, page=${list.number+1})}">[[${dto.boardNo}]]</a></th>
+					<td>[[${dto.boardTitle}]]</td>                  
                     <td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</td>
                 </tr>
                 </tbody>
             </table>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
             <div class="st-pagination"> 
               <!--st-pagination-->
               <ul class="pagination">
@@ -68,6 +66,19 @@
     </div>
 
 </section>
+
+<script th:inline="javascript">
+		$(document).ready(
+			function(){
+				var msg = [[${msg}]];
+				if(msg!=null){
+					alert(msg+"번 글이 등록되었습니다.");
+					}
+			});		
+		
+		
+		
+		</script>
 
     </th:block>
 

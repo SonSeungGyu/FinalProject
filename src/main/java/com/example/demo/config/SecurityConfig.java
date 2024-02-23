@@ -37,7 +37,7 @@ public class SecurityConfig {
 
 				.requestMatchers("/register").permitAll()
 				.requestMatchers("/assets/*", "/css/*", "/js/*").permitAll()
-
+				
 				.requestMatchers("/").permitAll()
 			
 				.anyRequest().permitAll();

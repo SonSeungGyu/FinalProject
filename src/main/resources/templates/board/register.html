@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+	<th:block th:fragment="content">
+		<head>
+		<title>게시물 작성</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../BOARD/style.css">
+<link href="/css/formstyle.css" rel="stylesheet">
+
+<style>
+.w-btn-gray {
+	background-color: #a3a1a1;
+	color: #e3dede;
+}
+
+.w-btn {
+	position: relative;
+	border: none;
+	display: inline-block;
+	padding: 10px 20px;
+	margin: 0px 10px 0px 10px;
+	border-radius: 15px;
+	font-family: "paybooc-Light", sans-serif;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	text-decoration: none;
+	font-weight: 600;
+	transition: 0.25s;
+}
+
+.card {
+	overflow: hidden;
+	height: auto;
+}
+</style>
+		</head>
+		<body>
+			
+			<form th:action="@{/board/register}" th:method="post"
+				enctype="multipart/form-data">
+				<div class="card">
+					<div class="card-header4"><h3>게시물 작성</h3></div>
+					<div class="card-edit">
+
+
+						<div class="title">
+							<label>게시물 제목</label><input type="text" name="boardTitle">
+						</div>
+						<div class="title">
+							<label>게시물 내용</label>
+							<input type="text"  name="boardContent">
+						</div>
+						<div class="title">
+							<label>게시물 작성자</label> <input type="text" name="boardWriter">
+						</div>
+						<div class="title">
+							<label>첨부파일</label> <input type="file" name="uploadFile" />
+						</div>
+
+
+
+
+						<button class="w-btn w-btn-gray" type="submit">등록</button>
+
+					</div>
+				</div>
+			</form>
+		</body>
+	</th:block>
+
+</th:block>
+</html>

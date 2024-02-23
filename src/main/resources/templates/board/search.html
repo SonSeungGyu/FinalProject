@@ -2,74 +2,64 @@
 <html>
 <th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
 
-    <th:block th:fragment="content"> 
-<link href="/css/list.css" rel="stylesheet">
-        
-<section class="board">
-  <div class="page-title">
-        <div class="container">
-            <h3>자유게시판</h3>
-        </div>
-    </div>
+	<th:block th:fragment="content">
+		<link href="/css/list.css" rel="stylesheet">
 
-    <!-- board seach area -->
-    <div id="board-search">
-        <div class="container">
-            <div class="search-window">
-                <form th:action="@{/board/search}" method="get">
-                    <div class="search-wrap">
-                        <input id="search" type="search" name="keyword" placeholder="검색어를 입력해주세요." value="">
-                        <button type="submit" class="btn btn-dark">검색</button>
-                    </div>
-                    
-                    
-                </form>
-            </div>
-        </div>
-    </div>
-   <div id="board-list">
-        <div class="container">
-            <table class="board-table" >
-            
-                <thead>
-                <tr>
-                    <th scope="col" class="th-num">번호</th>
-                    <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-date">등록일</th>
-                </tr>
-                </thead>
-                <tbody>
-                
-           
-                
-                <tr th:each="dto:${searchList}">
-                
-                [[${dto}]]
-               
-                    <td>[[${dto.boardNo}]]</td>
-                    <th>
-						
-                      <a th:href="@{/board/read(boardNo=${dto.boardNo}})}">aa</a>
+		<section class="board">
+			<div class="page-title">
+				<div class="container">
+					<h3>자유게시판</h3>
+				</div>
+			</div>
 
-<!--                       <a href="#!">[[${dto.boardTitle}]]</a>
-                      <p>테스트</p>
- -->
-                    </th><!-- 
-                    <td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</td> -->
-                </tr>
-                
-                </tbody>
-            
+			<!-- board seach area -->
+			<div id="board-search">
+				<div class="container">
+					<div class="search-window">
+						<form th:action="@{/board/search}" method="get">
+							<div class="search-wrap">
+								<input id="search" type="search" name="keyword"
+									placeholder="제목을 입력해주세요." value="">
+								<button type="submit" class="btn btn-dark">검색</button>
+							</div>
 
-              </table>
-            
-        </div>
-    </div>
-  
 
-</section>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div id="board-list">
+				<div class="container">
+					<table class="board-table">
 
-    </th:block>
+						<thead>
+							<tr>
+								<th scope="col" class="th-num">번호</th>
+								<th scope="col" class="th-title">제목</th>
+								<th scope="col" class="th-date">등록일</th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+
+							<tr th:each="dto:${searchList}">
+								<th><a th:href="@{/board/read(boardNo=${dto.boardNo})}">[[${dto.boardNo}]]</a></th>
+								<td>[[${dto.boardTitle}]]</td>
+								<td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</td>
+							</tr>
+						</tbody>
+
+
+					</table>
+					
+				</div>
+			</div>
+
+
+		</section>
+
+	</th:block>
 
 </th:block>
 </html>

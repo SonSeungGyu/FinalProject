@@ -19,16 +19,16 @@ public class BoardRepositoryTest {
 	MemberRepository memberRepository;
 	
 	@Test public void 게시물30개추가() { 
-		MemberEntity entity = MemberEntity.builder().memberId("user1").build();
+		MemberEntity entity = MemberEntity.builder().memberId("htg").build();
 		for (int i = 1; i <= 30; i++) { 
 			BoardEntity boardEntity = BoardEntity.builder().boardTitle(i + "번글").boardContent("안녕하세요").boardWriter(entity).build();
 			  repository.save(boardEntity); } 
 		}
 	@Test
 	public void 게시물등록() {
-		Optional<MemberEntity>opt = memberRepository.findById("user2");
+		Optional<MemberEntity>opt = memberRepository.findById("user1");
 		MemberEntity entity = opt.get();
-		BoardEntity boardEntity = BoardEntity.builder().boardNo(3).boardWriter(entity).boardTitle("ㄹ").boardContent("뿌야뿌").build(); 
+		BoardEntity boardEntity = BoardEntity.builder().boardWriter(entity).boardTitle("ㄹ").boardContent("뿌야뿌").build(); 
 		repository.save(boardEntity);
 	
 	}
@@ -57,9 +57,9 @@ public class BoardRepositoryTest {
 		repository.deleteById(2);
 	}
 	
-	@Test
-	public void 검색기능() {
-		List<BoardEntity> entity = repository.findByboardTitleContaining("3");
-		System.out.println(entity);
-	}
+//	@Test
+//	public void 검색기능() {
+//		List<BoardEntity> entity = repository.findByboardTitleContaining("3");
+//		System.out.println(entity);
+//	}
 }

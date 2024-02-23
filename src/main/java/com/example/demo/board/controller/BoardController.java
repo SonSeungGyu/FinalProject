@@ -1,10 +1,12 @@
 package com.example.demo.board.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,10 +46,10 @@ public class BoardController {
 	}
 
 	@GetMapping("/read")
-	public void read(@RequestParam(name = "no") int no, @RequestParam(defaultValue = "0", name = "page") int page,
+	public void read(@RequestParam(name = "boardNo") int boardNo, @RequestParam(defaultValue = "0", name = "page") int page,
 			Model model) {
-		BoardDto boardDto = service.read(no);
-		model.addAttribute("dto", boardDto);
+		BoardDto dto = service.read(boardNo);
+		model.addAttribute("dto", dto);
 		model.addAttribute("page", page);
 	}
 
@@ -70,10 +72,21 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
-	@GetMapping("/search")
-	public void search(String keyword, Model model){
-		List<BoardDto> searchList = service.search(keyword);
-		model.addAttribute("searchList",searchList);
-		
-	}
+	
+	  @GetMapping("/search") 
+	  public void search(String keyword, Model
+	  model,@PageableDefault(size = 10,sort = "regDate",direction = Sort.Direction.DESC)
+	  Pageable pageable){ 
+		  
+		  Page<BoardDto> searchList = service.search(keyword,
+	  pageable); model.addAttribute("searchList",searchList);
+	  
+	  }
+	  
+//	  @GetMapping("/list")
+//		public void list(@RequestParam(defaultValue = "0", name = "page") int page, Model model) {
+//			Page<BoardDto> list = service.getList(page);
+//			model.addAttribute("list", list);
+//		}
+	 
 }

@@ -1,8 +1,7 @@
 package com.example.demo.board.service;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.example.demo.board.dto.BoardDto;
 import com.example.demo.board.entity.BoardEntity;
@@ -19,7 +18,8 @@ public interface BoardService {
 	
 	int remove(int no);
 	
-	List<BoardDto> search(String keyword);
+	Page<BoardDto> search(String keyword,Pageable pagealbe);
+	
 	
 	
 	
@@ -34,7 +34,9 @@ public interface BoardService {
 		 BoardDto boardDto = BoardDto.builder().boardNo(entity.getBoardNo()).boardWriter(entity.getBoardWriter()
 				 .getMemberId()).boardTitle(entity.getBoardTitle())
 				 .boardContent(entity.getBoardContent()).regDate(entity.getRegDate())
-				 .modDate(entity.getModDate()).build();
+				 .modDate(entity.getModDate())
+				 .imgPath(entity.getImgPath())
+				 .build();
 		  return boardDto;
 	 }
 	 

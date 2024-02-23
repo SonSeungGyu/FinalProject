@@ -1,9 +1,6 @@
 package com.example.demo.board.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,15 +12,26 @@ import org.springframework.stereotype.Service;
 import com.example.demo.board.dto.BoardDto;
 import com.example.demo.board.entity.BoardEntity;
 import com.example.demo.board.repository.BoardRepository;
+import com.example.demo.board.util.FileUtil;
+
+import jakarta.transaction.Transactional;
 @Service
 
 public class BoardServiceImpl implements BoardService{
 	@Autowired
 	BoardRepository repository;
-
+	
+	@Autowired
+	FileUtil fileUtil;
+	
 	@Override
 	public int register(BoardDto dto) {
 		BoardEntity boardEntity = dtoToEntity(dto);
+		
+		String imgPath = fileUtil.fileUpload(dto.getUploadFile());
+		
+		boardEntity.setImgPath(imgPath);
+		
 		repository.save(boardEntity);
 		int newNo = boardEntity.getBoardNo();
 		return newNo;
@@ -71,27 +79,23 @@ public class BoardServiceImpl implements BoardService{
 		}
 		
 	}
-
+	@Transactional
 	@Override
-	public List<BoardDto> search(String keyword) {
-		List<BoardEntity>list = repository.findByboardTitleContaining(keyword);
-		List<BoardDto>dtoList = new ArrayList<>();
-		dtoList	= list.stream().map(entity-> entityToDto(entity))
-				.collect(Collectors.toList());
-		return dtoList;
-	}
+	public Page<BoardDto> search(String keyword,Pageable pageable) {
+		
+		Page<BoardEntity>list = repository.findByboardTitleContaining(keyword,pageable);
+		Page<BoardDto>dtoList = list.map(BoardEntity->entityToDto(BoardEntity)); 
 
-	
-	
-	
+		return dtoList;
+	}	
 	
 //	@Override
-//	public Page<BoardDto> search(String keyword) {
-//		// 검색기능을 구현	
-//		Page<BoardEntity>boardList = repository.findByboardTitleContaining(keyword);
-//		// dto 변환(컨트롤러에 갈때에는 dto만 가능)
-//			Page<BoardDto>dto = boardList.map(entity -> entityToDto(entity));
-//		return dto;
+//	public Page<BoardDto> getList(int pageNumber) {
+//		int pageNum = (pageNumber == 0) ? 0 : pageNumber -1;
+//		Pageable pageable = PageRequest.of(pageNum, 10,Sort.by("boardNo").descending());
+//		Page<BoardEntity> entityPage = repository.findAll(pageable);
+//		Page<BoardDto> dtoPage = entityPage.map(entity -> entityToDto(entity));
+//		return dtoPage;
 //	}
 	
 	
