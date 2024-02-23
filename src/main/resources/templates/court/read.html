@@ -38,9 +38,9 @@
 </head>
 <body>
     <div class="card">
-        <div class="card-header4"><h1>구장등록</h1></div>
+        <div class="card-header4"><h1>구장정보</h1></div>
         <div class="card-edit">
-        <form th:action="@{/court/register}" th:method="post">
+        <form>
              <div class="title">
                 <label>구장이름</label><input type="text" name = "courtName" th:value=${dto.courtName}>
             </div>

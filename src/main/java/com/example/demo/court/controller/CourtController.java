@@ -39,6 +39,7 @@ public class CourtController {
 		
 	}
 	
+	//등록화면 db에 저장 하고 다시 목록화면으
 	@PostMapping("/register")
 	public String register(CourtDto dto, RedirectAttributes redirectAttributes) {
 		service.register(dto);
@@ -49,7 +50,7 @@ public class CourtController {
 
 	
 	@PostMapping("/remove")
-	public String removeCourt(@RequestParam(name="CourtName") String courtName) {
+	public String removeCourt(@RequestParam(name="courtName") String courtName) {
 		service.remove(courtName);
 		return "redirect:/court/list";
 	}
