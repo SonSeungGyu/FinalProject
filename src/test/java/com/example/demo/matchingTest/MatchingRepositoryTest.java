@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.court.entity.CourtEntity;
+import com.example.demo.matching.entity.MatchStatus;
 import com.example.demo.matching.entity.MatchingEntity;
 import com.example.demo.matching.repository.MatchingRepository;
 import com.example.demo.member.entitly.MemberEntity;
@@ -44,12 +45,12 @@ public class MatchingRepositoryTest {
 	public void 매치() {
 		Optional<MemberEntity> optional2 = memberRepository.findById("user2");
 		MemberEntity awayTeam = optional2.get();
-		Optional<MatchingEntity> optional = matchingRepository.findById(1);
+		Optional<MatchingEntity> optional = matchingRepository.findById(2);
 		MatchingEntity entity = optional.get();
 		
-		if(entity.getMatchStatus() == "WAITING") {
+		if(entity.getMatchStatus() == MatchStatus.WAITING) {
 			entity.setMatchingAway(awayTeam);
-			entity.setMatchStatus("MATCHED");
+			entity.setMatchStatus(MatchStatus.MATCHED);
 		}
 		matchingRepository.save(entity);
 	}

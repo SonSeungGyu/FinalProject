@@ -7,72 +7,74 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../BOARD/style.css"> -->
     <link href="/css/formstyle.css" rel="stylesheet">
     <title>글수정</title>
     <style>
-
+		.w-btn-gray {
+    		background-color: #a3a1a1;
+   			color: #e3dede;
+   		}
+   			
+   		.w-btn {
+		    position: relative;
+		    border: none;
+		    display: inline-block;
+		    padding: 10px 20px;
+		   	margin: 0px 10px 0px 10px;
+		    border-radius: 15px;
+		    font-family: "paybooc-Light", sans-serif;
+		    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		    text-decoration: none;
+		    font-weight: 600;
+		    transition: 0.25s;
+		}
+			
+		.card{
+			overflow:hidden;
+			height:auto;
+		}
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="card-header4"><a href="../BOARD/index.html"><h1>My Page</h1></a></div>
+        <div class="card-header4"><a href="../BOARD/index.html"><h1>My Page Update</h1></a></div>
         <div class="card-edit">
-            <!-- <div class="myinfo">
-                이름<input type="text" placeholder="이름을 입력하세요." value="김이름">
-                비밀번호<input type="password" placeholder="비밀번호를 입력하세요." value="1234">
-            </div> -->
-            <!-- <div class="myinfo">
-                이름dd<input type="text" placeholder="이름을 입력하세요." value="김이름">
-            </div> -->
+
        <form>
              <div class="title">
-                <label>회원이름</label><input th:value="${dto.memberName}" readonly>
+                <label>회원이름</label><input name="memberName" th:value="${dto.memberName}" readonly>
             </div>
              <div class="title">
-                <label>회원ID</label><input th:value="${dto.memberId}" readonly>
+                <label>회원ID</label><input name="memberId" th:value="${dto.memberId}" readonly>
             </div>
              <div class="title">
-                <label>비밀번호</label><input type="password" th:value="${dto.memberPassword}" readonly>
+                <label>비밀번호</label><input type="password" name="memberPassword" th:value="${dto.memberPassword}" readonly>
             </div>
              <div class="title">
-                <label>회원주소</label><input th:value="${dto.memberAddress}">
+                <label>회원주소</label><input name="memberAddress" th:value="${dto.memberAddress}">
             </div>
              <div class="title">
-                <label>회원이메일</label><input th:value="${dto.memberEmail}">
+                <label>회원이메일</label><input name="memberEmail" th:value="${dto.memberEmail}">
             </div>
              <div class="title">
-                <label>전화번호</label><input th:value="${dto.memberNumber}">
+                <label>전화번호</label><input name="memberNumber" th:value="${dto.memberNumber}">
             </div>
              <div class="title">
-                <label>생년월일</label><input th:value="${dto.memberBirthDay}">
+                <label>생년월일</label><input name="memberBirthDay" th:value="${dto.memberBirthDay}">
             </div>
             <div class="title">
-                <label>등급</label><input th:value= "${dto.role}" readonly>
+                <label>등급</label><input name="role" th:value= "${dto.role}" readonly>
             </div>
       </form>
-      <button type="button" class="modifyBtn">수정하기</button>
-             
-            <!-- <div class="msg">
-                내용<textarea placeholder="내용을 입력하세요.">
-동해물과 백두산이 마르고 닳도록
-하느님이 보우하사 우리나라 만세
-무궁화 삼천리 화려 강산
-대한 사람 대한으로 길이 보전하세
-                </textarea>
-                <input type="file">
-            </div> -->
+      <button type="button" class="w-btn w-btn-gray modifyBtn">수정하기</button>
+      <button type="button" class="myInfo w-btn w-btn-gray">이전화면</button>
+
         </div>
-		<!-- <button type="button" class="btn-edit">수정</button> -->	
-        <div class="btn-edit">
-            <!-- <a>수정하기</a> -->
-        </div>
-       <!--  <button type="button" class="modifyBtn">수정하기</button> -->
     </div>
 
 </body>
-
+<!-- 0223 정보 수정 -->
 <script th:inline="javascript">
 	var form = $("form");
 	
@@ -83,6 +85,18 @@
 		form
 			.attr("action", "/member/modify")
 			.attr("method", "post")
+			.submit();
+	});
+	var form = $("form");
+	
+	/* 수정을 안하고 다시 mypage로 가는 클릭이벤트 */
+	$(".myInfo").click(function(){
+		if(!confirm("수정을 멈추시겠습니까?")){
+			return;
+		}
+		form
+			.attr("action", "/member/mypage")
+			.attr("method", "get")
 			.submit();
 	});
 </script>

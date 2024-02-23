@@ -1,16 +1,13 @@
 package com.example.demo.court.service;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.board.dto.BoardDto;
-import com.example.demo.board.entity.BoardEntity;
 import com.example.demo.court.dto.CourtDto;
 import com.example.demo.court.entity.CourtEntity;
 import com.example.demo.court.repository.CourtRepository;
@@ -40,6 +37,28 @@ public class CourtServiceImpl implements CourtService{
 		Page<CourtDto> dtoPage = entityPage.map(entity -> entityToDto(entity));
 		return dtoPage;
 		
+	}
+
+	
+	@Override
+	public void remove(String courtName) {
+		Optional<CourtEntity> result = repository.findById(courtName);
+		if(result.isPresent()) {
+			repository.deleteById(courtName);
+		}
+		
+	}
+
+
+	@Override
+	public CourtDto read(String courtName) {
+		Optional<CourtEntity> result = repository.findById(courtName);
+		if(result.isPresent()) {
+			CourtEntity entity = result.get();
+			CourtDto dto = entityToDto(entity);
+			return dto;
+		}
+		return null;
 	}
 
 

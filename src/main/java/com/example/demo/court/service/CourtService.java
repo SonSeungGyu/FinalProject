@@ -13,6 +13,12 @@ public interface CourtService {
 	
 	Page<CourtDto> getList(int pageNum);
 	
+	//구장 정보
+	CourtDto read(String courtName);
+	
+	
+	//구장 삭제
+	void remove(String courtName);
 	
 	// 엔티티를 dto로 변환
 	default CourtDto entityToDto(CourtEntity entity) {

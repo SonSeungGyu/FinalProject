@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,20 +24,17 @@ public class MemberController {
 	
 
 
-	@GetMapping("/member/list")
+	@GetMapping("/list")
 	public void list(@RequestParam(defaultValue = "0", name = "page") int page, Model model) {
 
 		Page<MemberDto> list = service.getList(page);
 
 		model.addAttribute("list", list);
 
-		System.out.println("전체 페이지 수" + list.getTotalPages());
-
-		System.out.println("전체 회원 수" + list.getTotalElements());
-
-		System.out.println("현재 페이지 번호" + (list.getNumber() + 1));
-
-		System.out.println("페이지에 표시할 게시물 수" + list.getNumberOfElements());
+//		System.out.println("전체 페이지 수" + list.getTotalPages());
+//		System.out.println("전체 회원 수" + list.getTotalElements());
+//		System.out.println("현재 페이지 번호" + (list.getNumber() + 1));
+//		System.out.println("페이지에 표시할 게시물 수" + list.getNumberOfElements());
 
 	}
 
@@ -58,7 +54,7 @@ public class MemberController {
 		}
 	}
 
-	@GetMapping("/member/read")
+	@GetMapping("/read")// /member 지움
 	public void read(@RequestParam(defaultValue = "0", name = "id") String id,
 			@RequestParam(defaultValue = "0", name = "page") int page, Model model) {
 
@@ -105,13 +101,19 @@ public class MemberController {
 //		return "redirect:/member/mypage";
 //	}
 	
+	//0223
+//	@PostMapping("/modify")
+//	public String modifyPost(MemberDto dto, Principal principal,RedirectAttributes redirectAttribytes) {
+//		String id = principal.getName();
+//		dto = service.read(id);
+//		service.modify(dto);
+//		redirectAttribytes.addAttribute("memberId", dto.getMemberId());
+//		return "redirect:/member/mypage";
+//	}
+	
 	@PostMapping("/modify")
-	public String modifyPost(@ModelAttribute MemberDto dto, Principal principal,RedirectAttributes redirectAttribytes) {
-		String id = principal.getName();
-		dto = service.read(id);
+	public String modifyPost(MemberDto dto,RedirectAttributes redirectAttribytes) {
 		service.modify(dto);
-		//dto.setMemberId(id);
-		//service.modify(dto);
 		redirectAttribytes.addAttribute("memberId", dto.getMemberId());
 		return "redirect:/member/mypage";
 	}

@@ -2,6 +2,8 @@ package com.example.demo.matching.dto;
 
 import java.time.LocalDate;
 
+import com.example.demo.matching.entity.MatchStatus;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,5 +27,5 @@ public class MatchingDto {
    String matchingHome;         //먼저 매칭 등록한 팀
    String matchingAway;         //후에 매칭 신청한 팀
    String matchingCourtName;         //구장 이름
-   String matchStatus;  //매칭 상태
+   MatchStatus matchStatus;  //매칭 상태
 }
