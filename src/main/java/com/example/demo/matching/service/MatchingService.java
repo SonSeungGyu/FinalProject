@@ -1,36 +1,44 @@
 package com.example.demo.matching.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.example.demo.court.entity.CourtEntity;
 import com.example.demo.matching.dto.MatchingDto;
-import com.example.demo.matching.entity.MatchStatus;
 import com.example.demo.matching.entity.MatchingEntity;
+import com.example.demo.member.dto.MemberDto;
 import com.example.demo.member.entitly.MemberEntity;
 
 public interface MatchingService {
 	// 매칭 등록
 	int creatMatching(MatchingDto dto);
+	// 매치가 완료된 매칭만 조회
+	List<MatchingDto> getMatchedMatches();
 	// 대기 중인 매칭만 조회
-	List<MatchingEntity> getWaitingMatches();
+	List<MatchingDto> getWaitingMatches();
 	//매칭
-	MatchingEntity applyMatch(int id, MemberEntity teamAway);
+	void applyMatch(int id, MemberEntity matchingAway);
 	
 	default MatchingEntity dtoToEntity(MatchingDto dto) {
-		MemberEntity homeTeam = MemberEntity.builder().memberId(dto.getTeamHome()).build();
-		MemberEntity awayTeam = MemberEntity.builder().memberId(dto.getTeamAway()).build();
+		MemberEntity homeTeam = MemberEntity.builder().memberId(dto.getMatchingHome()).build();
+		MemberEntity awayTeam = null;
+		if(dto.getMatchingAway() != null) {
+			awayTeam = MemberEntity.builder().memberId(dto.getMatchingAway()).build();
+		}
 		CourtEntity court = CourtEntity.builder().courtName(dto.getMatchingCourtName()).build();
-		MatchStatus status = dto.getStatus();
-		MatchingEntity matchingEntity = MatchingEntity.builder().matchingCourtName(court).matchingDate(dto.getMatchingDate())
-				.matchingTime(dto.getMatchingTime()).matchStatus(status).teamHome(homeTeam).teamAway(awayTeam).build();
+		LocalDate date = dto.getMatchingDate();
+		MatchingEntity matchingEntity = MatchingEntity.builder().matchingAway(awayTeam).matchingHome(homeTeam).matchingCourtName(court)
+				.matchingDate(date).matchingTime(dto.getMatchingTime()).matchStatus(dto.getMatchStatus()).build();
 		return matchingEntity;
 	}
 	default MatchingDto entityToDto(MatchingEntity entity) {
 		MatchingDto matchingDto = MatchingDto.builder().matchingCourtName(entity.getMatchingCourtName().getCourtName())
 				.matchingDate(entity.getMatchingDate()).matchingNo(entity.getMatchingNo()).matchingTime(entity.getMatchingTime())
-				.status(entity.getMatchStatus()).teamHome(entity.getTeamHome().getMemberId()).teamAway(entity.getTeamAway().getMemberId())
-				.build();
+				.matchStatus(entity.getMatchStatus()).matchingHome(entity.getMatchingHome().getMemberId())
+				.matchingAway(entity.getMatchingAway().getMemberId()).build();
 		return matchingDto;
 				
 	}
 }
+
+
