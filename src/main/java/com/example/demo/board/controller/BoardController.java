@@ -54,21 +54,21 @@ public class BoardController {
 	}
 
 	@GetMapping("/modify")
-	public void modify(@RequestParam(name = "no") int no, Model model) {
-		BoardDto boardDto = service.read(no);
-		model.addAttribute("dto", boardDto);
+	public void modify(@RequestParam(name = "boardNo") int boardNo, Model model) {
+		BoardDto dto = service.read(boardNo);
+		model.addAttribute("dto", dto);
 	}
 
 	@PostMapping("/modify")
-	public String modifyPost(BoardDto boardDto, RedirectAttributes redirectAttributes) {
-		service.modify(boardDto);
-		redirectAttributes.addAttribute("no", boardDto.getBoardNo());
+	public String modifyPost(BoardDto dto, RedirectAttributes redirectAttributes) {
+		service.modify(dto);
+		redirectAttributes.addAttribute("boardNo", dto.getBoardNo());
 		return "redirect:/board/read";
 	}
 
 	@PostMapping("/remove")
-	public String removePost(@RequestParam(name = "no")int no) {
-		service.remove(no);
+	public String removePost(@RequestParam(name = "boardNo")int boardNo) {
+		service.remove(boardNo);
 		return "redirect:/board/list";
 	}
 
