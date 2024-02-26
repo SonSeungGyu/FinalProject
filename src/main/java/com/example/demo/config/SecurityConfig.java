@@ -19,8 +19,8 @@ import jakarta.servlet.http.HttpServletResponse;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
-	//0222 myPage 추가
+
+	// 0222 myPage 추가
 //	@Bean
 //	public InMemoryUserDetailsManager userDetailsService() {
 //		UserDetails user = User.builder();
@@ -35,11 +35,10 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
 
-				.requestMatchers("/register").permitAll()
-				.requestMatchers("/assets/*", "/css/*", "/js/*").permitAll()
-				
+				.requestMatchers("/register").permitAll().requestMatchers("/assets/*", "/css/*", "/js/*").permitAll()
+
 				.requestMatchers("/").permitAll()
-			
+
 				.anyRequest().permitAll();
 
 		http.formLogin()

@@ -25,15 +25,23 @@ public interface BoardService {
 	
 	
 	 default BoardEntity dtoToEntity(BoardDto dto) {
-		  MemberEntity memberEntity = MemberEntity.builder().memberId(dto.getBoardWriter()).build();
-		  BoardEntity boardEntity = BoardEntity.builder().boardWriter(memberEntity)
-				  .boardTitle(dto.getBoardTitle()).boardContent(dto.getBoardContent()).build();
+		  MemberEntity memberEntity = MemberEntity.builder().memberId(dto.getBoardWriter())
+				  .build();
+		  BoardEntity boardEntity = BoardEntity.builder()
+				  .boardNo(dto.getBoardNo())
+				  .boardWriter(memberEntity)
+				  .boardTitle(dto.getBoardTitle())
+				  .imgPath(dto.getImgPath())
+				  .boardContent(dto.getBoardContent()).build();
+		  		  
 		  return boardEntity;
 	  }
 	 default BoardDto entityToDto(BoardEntity entity) {
-		 BoardDto boardDto = BoardDto.builder().boardNo(entity.getBoardNo()).boardWriter(entity.getBoardWriter()
+		 BoardDto boardDto = BoardDto.builder().boardNo(entity.getBoardNo())
+				 .boardWriter(entity.getBoardWriter()
 				 .getMemberId()).boardTitle(entity.getBoardTitle())
-				 .boardContent(entity.getBoardContent()).regDate(entity.getRegDate())
+				 .boardContent(entity.getBoardContent())
+				 .regDate(entity.getRegDate())
 				 .modDate(entity.getModDate())
 				 .imgPath(entity.getImgPath())
 				 .build();
