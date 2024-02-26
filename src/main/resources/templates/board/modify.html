@@ -17,6 +17,13 @@
 	color: #e3dede;
 }
 
+textarea {
+    width: 87%;
+    height: 6.25em;
+    resize: none;
+
+  }
+
 .w-btn {
 	position: relative;
 	border: none;
@@ -57,15 +64,14 @@
 					</div>
 					<div class="title">
 							<label>게시물 내용</label>
-							<input type="text" 
-						name="boardContent"	 th:value="${boardContent}">
+						<textarea rows="3" name = "boardContent">[[${dto.boardContent}]]</textarea>
 						</div>
 					<!-- <div class="title">
 						<label>게시물 작성자</label> <input type="text"
 						name="boardWriter"	th:value="${dto.boarWriter}" readonly>
 					</div> -->
 
-					<div class="title">
+					<!-- <div class="title">
 						<label>등록일</label> <input type="text"
 						name="regDate"	th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}"
 							readonly>
@@ -74,10 +80,10 @@
 						<label>수정일</label> <input type="text"
 						name="modDate"	th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}"
 							readonly>
-					</div>
+					</div> -->
 			
 						<div class="title">
-							<label>첨부파일</label> <input type="file" name="uploadFile" />
+							<label>첨부파일</label> <input type="file" name="imgPath" />
 						</div>
 					
 					</form>

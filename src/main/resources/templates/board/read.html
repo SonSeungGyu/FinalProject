@@ -17,6 +17,12 @@
 	color: #e3dede;
 }
 
+textarea {
+    width: 87%;
+    height: 6.25em;
+    resize: none;
+
+  }
 .w-btn {
 	position: relative;
 	border: none;
@@ -54,7 +60,7 @@
 					</div>
 					<div class="title">
 							<label>게시물 내용</label>
-							<input type="text"  name="boardContent" readonly>
+							<textarea cols ="40" rows="3" readonly>[[${dto.boardContent}]]</textarea>
 						</div>
 					<div class="title">
 						<label>게시물 작성자</label>
