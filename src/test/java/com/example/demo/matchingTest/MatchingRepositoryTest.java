@@ -28,7 +28,7 @@ public class MatchingRepositoryTest {
 		LocalDate localDate = LocalDate.of(2024, 2, 26);
 		MemberEntity user = MemberEntity.builder().memberId("user1").build();
 		CourtEntity court = CourtEntity.builder().courtName("서창풋살장").build();
-		MatchingEntity entity = MatchingEntity.builder().matchingDate(localDate).matchingTime(1).matchingHome(user).matchingCourtName(court)
+		MatchingEntity entity = MatchingEntity.builder().matchingDate(localDate).matchingTime("1").matchingHome(user).matchingCourtName(court)
 				.build();
 		matchingRepository.save(entity);
 	}

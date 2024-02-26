@@ -47,13 +47,19 @@
 							<label>날짜</label><input type="text" name="matchingDate">
 						</div>
 						<div class="title">
-							<label>시간</label><input type="text" name="matchingTime">
+							<label>시간</label>
+							<select name="matchingTime" id="lang">
+								<option>12:00~14:00</option>
+								<option>14:00~16:00</option>
+								<option>16:00~18:00</option>
+								<option>18:00~20:00</option>
+								<option>20:00~22:00</option>
+							</select>
 						</div>
 						<div class="title">
-							<label>구장</label>
-							<select name="matchingCourtName" id="lang">
+							<label>구장</label> <select name="matchingCourtName" id="lang">
 								<th:block th:each="dto:${list}">
-								<option>[[${dto.courtName}]]</option>
+									<option>[[${dto.courtName}]]</option>
 								</th:block>
 							</select>
 						</div>
@@ -63,6 +69,17 @@
 				</div>
 			</div>
 		</body>
+
+		<script>
+			/* 매칭 등록할지 클릭이벤트 */
+			var form = $("form");
+			$(".w-btn").click(function() {
+				if (!confirm("매칭을 등록하시겠습니까?")) {
+					return;
+				}
+
+			});
+		</script>
 	</th:block>
 
 </th:block>

@@ -23,7 +23,7 @@ public class MatchingServiceTest {
 	public void 매칭등록() {
 		LocalDate date = LocalDate.of(2024, 2, 26);
 		MatchingDto matchingDto = MatchingDto.builder().matchingCourtName("서창풋살장").matchingDate(date)
-				.matchingHome("user1").matchingTime(1).build();
+				.matchingHome("user1").matchingTime("1").build();
 		matchingService.creatMatching(matchingDto);
 	}
 	

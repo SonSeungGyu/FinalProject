@@ -45,7 +45,7 @@ public class MatchingEntity extends BaseEntity{
 	LocalDate matchingDate;//매칭 날짜
 
 	@Column(nullable=false )
-	int matchingTime;      //매칭 시간을 숫자값으로 주고 처리
+	String matchingTime;      //매칭 시간
 
 	@ManyToOne
 	MemberEntity matchingHome;         //먼저 매칭 등록한 팀
