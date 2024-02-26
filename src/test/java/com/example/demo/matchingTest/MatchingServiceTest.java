@@ -28,18 +28,10 @@ public class MatchingServiceTest {
 	}
 	
 	@Test
-	public void 대기중인매칭만조회() {
-		List<MatchingEntity> list = matchingService.getWaitingMatches();
-		for(MatchingEntity matchingEntity : list) {
-			System.out.println(matchingEntity);
-		}
-	}
-	
-	@Test
-	public void 매치가완료된매칭만조회() {
-		List<MatchingEntity> list = matchingService.getMatchedMatches();
-		for(MatchingEntity matchingEntity : list) {
-			System.out.println(matchingEntity);
+	public void 매칭조회() {
+		List<MatchingDto> list = matchingService.getList();
+		for(MatchingDto dto : list) {
+			System.out.println(dto);
 		}
 	}
 	

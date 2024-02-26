@@ -39,10 +39,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="dto:${list}">
-                    <td>[[${dto.matchingHome.getMemberId}]]</td>
+                <tr th:each="dto:${list}" th:if="${dto.matchingAway != null}">
+                    <td>[[${dto.matchingHome}]]</td>
                     <td>VS</td>
-                    <td>[[${dto.matchingAway.getMemberId}]]</td>
+                    <td>[[${dto.matchingAway}]]</td>
                    
                 </tr>
                 </tbody>

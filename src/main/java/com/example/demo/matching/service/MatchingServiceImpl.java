@@ -1,7 +1,9 @@
 package com.example.demo.matching.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,19 +34,27 @@ public class MatchingServiceImpl implements MatchingService{
 		int newNo = matchingEntity.getMatchingNo();
 		return newNo;
 	}
-
-	@Override //대기 중인 매칭만 조회
-	public List<MatchingEntity> getWaitingMatches() {
-		List<MatchingEntity> list = matchingRepository.findByMatchStatus(MatchStatus.WAITING);
+	
+	@Override
+	public List<MatchingDto> getList() {
+		List<MatchingEntity> entities = matchingRepository.findAll();
+		List<MatchingDto> list = new ArrayList<>();
+		list = entities.stream().map(entity -> entityToDto(entity)).collect(Collectors.toList());
 		return list;
+	}
+
+	@Override
+	public MatchingDto read(int matchingNo) {
+		Optional<MatchingEntity> optional = matchingRepository.findById(matchingNo);
+		if(optional.isPresent()) {
+			MatchingEntity entity = optional.get();
+			MatchingDto dto = entityToDto(entity);
+			return dto;
+		} else {
+			return null;
+		}
 	}
 	
-	@Override //매치가 완료된 매칭만 조회
-	public List<MatchingEntity> getMatchedMatches() {
-		List<MatchingEntity> list = matchingRepository.findByMatchStatus(MatchStatus.MATCHED);
-		return list;
-	}
-
 	@Override //매칭
 	public void applyMatch(MatchingDto id, MemberDto matchingAway) {
 		// 해당 매칭 정보를 조회
@@ -76,5 +86,7 @@ public class MatchingServiceImpl implements MatchingService{
 			return false;
 		}
 	}
+
+	
 
 }

@@ -43,17 +43,15 @@
                 </thead>
                 <tbody>
                 
-                <tr th:each="dto:${list}">
-                 <form th:action="@{/matching/list}" th:method = "post">
-                	<td name="matchingNo" Hidden=true value="${dto.matchingNo}"></td>
-                    <td >[[${dto.matchingHome.getMemberId}]]</td>
+                <tr th:each="dto:${list}" th:if="${dto.matchingAway == null}">
+                    <td>[[${dto.matchingHome}]]</td>
                     <td>[[${dto.matchingDate}]]</td>
                     <td>[[${dto.matchingTime}]]</td>
-                    <td>[[${dto.matchingCourtName.getCourtAddress}]]</td>
-                    <td><button class="w-btn w-btn-gray" type="submit">신청하기</button></td>
-                  </form>
+                    <td>[[${dto.matchingCourtName}]]</td>
+                    <td><a th:href="@{/matching/read(matchingNo=${dto.matchingNo})}">
+	                     신청하기
+                    </a></td>
                 </tr>
-               
                 </tbody>
             </table>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
