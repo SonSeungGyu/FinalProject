@@ -1,6 +1,9 @@
 package com.example.demo.court.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.court.dto.CourtDto;
 import com.example.demo.court.entity.CourtEntity;
 import com.example.demo.court.repository.CourtRepository;
+import com.example.demo.matching.dto.MatchingDto;
 
 
 @Service
@@ -59,6 +63,15 @@ public class CourtServiceImpl implements CourtService{
 			return dto;
 		}
 		return null;
+	}
+
+
+	@Override // 매칭 등록때 구장 조회하기 위해 만듦
+	public List<CourtDto> list() {
+		List<CourtEntity> entityList = repository.findAll();
+		List<CourtDto> list = new ArrayList<>();
+		list = entityList.stream().map(entity -> entityToDto(entity)).collect(Collectors.toList());
+		return list;
 	}
 
 

@@ -1,5 +1,7 @@
 package com.example.demo.court.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.example.demo.court.dto.CourtDto;
@@ -9,7 +11,8 @@ public interface CourtService {
 
 	
 	void register(CourtDto dto);
-	
+	// 매칭 등록때 구장 조회하기 위해 만듦 
+	List<CourtDto> list();
 	
 	Page<CourtDto> getList(int pageNum);
 	
