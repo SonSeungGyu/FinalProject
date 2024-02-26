@@ -53,10 +53,9 @@
 							th:value="${dto.boardTitle}" readonly>
 					</div>
 					<div class="title">
-						<label>게시물 내용</label>
-						<input type="text" name="boardContent"
-							th:value="${dto.boardContent}" readonly>
-					</div>
+							<label>게시물 내용</label>
+							<input type="text"  name="boardContent" readonly>
+						</div>
 					<div class="title">
 						<label>게시물 작성자</label>
 						<input type="text" name="boardWriter"
@@ -81,9 +80,9 @@
 							
 						</div>
 					</th:block>
-					<!-- <a th:href="@{/board/modify(boardNo = ${dto.boardNo})}">
+					<a th:href="@{/board/modify(boardNo = ${dto.boardNo})}">
 						<button class="w-btn w-btn-gray" type="submit">수정</button>
-					</a> --> <a th:href="@{/board/list}">
+					</a> <a th:href="@{/board/list}">
 						<button class="w-btn w-btn-gray" type="submit">목록으로</button>
 					</a>
 				</div>
