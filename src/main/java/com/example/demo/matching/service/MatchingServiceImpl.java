@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.matching.dto.MatchingDto;
 import com.example.demo.matching.entity.MatchStatus;
+import com.example.demo.matching.entity.MatchVictory;
 import com.example.demo.matching.entity.MatchingEntity;
 import com.example.demo.matching.repository.MatchingRepository;
 import com.example.demo.member.dto.MemberDto;
@@ -85,6 +86,45 @@ public class MatchingServiceImpl implements MatchingService{
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public void matchVictory(MatchingDto dto,MemberDto matchingHome,MemberDto matchingAway,MatchVictory matchVictory) {
+		// 해당 매칭 정보를 조회
+		Optional<MatchingEntity> optional = matchingRepository.findById(dto.getMatchingNo());
+		MatchingEntity matchingEntity = optional.get();
+		// 홈 팀 정보 조회
+		Optional<MemberEntity> optional2 = memberRepository.findById(matchingHome.getMemberId());
+		MemberEntity homeTeam = optional2.get();
+		// 어웨이 팀 정보 조회
+		Optional<MemberEntity> optional3 = memberRepository.findById(matchingAway.getMemberId());
+		MemberEntity awayTeam = optional3.get();
+		// 승 패 정보 저장
+		matchingEntity.setMatchVictory(matchVictory);
+		matchingRepository.save(matchingEntity);
+		
+		// 홈 팀 승, 패, 승점 정보
+		int homeTeamWin = homeTeam.getWin();
+		int homeTeamLose = homeTeam.getLose();
+		int homeTeamPoint = homeTeam.getPoint();
+		//어웨이 팀 승, 패, 승점 정보
+		int awayTeamWin = awayTeam.getWin();
+		int awayTeamLose = awayTeam.getLose();
+		int awayTeamPoint = awayTeam.getPoint();
+		
+		if(matchingEntity.getMatchVictory() == MatchVictory.WIN) {
+			homeTeam.setWin(++homeTeamWin);
+			homeTeam.setPoint(homeTeamPoint+=3);
+			awayTeam.setLose(++awayTeamLose);
+			awayTeam.setPoint(++awayTeamPoint);
+		} else if(matchingEntity.getMatchVictory() == MatchVictory.LOSE){
+			homeTeam.setLose(++homeTeamLose);
+			homeTeam.setPoint(++homeTeamPoint);
+			awayTeam.setWin(++awayTeamWin);
+			awayTeam.setPoint(awayTeamPoint+=3);
+		}
+		memberRepository.save(homeTeam);
+		memberRepository.save(awayTeam);
 	}
 
 	
