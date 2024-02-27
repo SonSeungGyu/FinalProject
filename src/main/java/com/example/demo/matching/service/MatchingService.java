@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.demo.court.entity.CourtEntity;
 import com.example.demo.matching.dto.MatchingDto;
+import com.example.demo.matching.entity.MatchVictory;
 import com.example.demo.matching.entity.MatchingEntity;
 import com.example.demo.member.dto.MemberDto;
 import com.example.demo.member.entitly.MemberEntity;
@@ -18,6 +19,8 @@ public interface MatchingService {
 	MatchingDto read(int matchingNo);
 	// 매치
 	void applyMatch(MatchingDto id, MemberDto matchingAway);
+	// 승 패 저장
+	void matchVictory(MatchingDto dto,MemberDto matchingAway,MemberDto matchingHome,MatchVictory matchVictory);
 	// 삭제
 	boolean deleteMatch(String userId, int matchId);
 	
@@ -35,6 +38,9 @@ public interface MatchingService {
 	    		.matchingDate(date)
 	    		.matchingTime(dto.getMatchingTime())
 	    		.matchStatus(dto.getMatchStatus()).build();
+	    if (entity.getMatchVictory() != null) {
+	    	entity.setMatchVictory(dto.getMatchVictory());
+	    }
 	    if (awayTeam != null) {
 	    	entity.setMatchingAway(awayTeam);
 	    }
@@ -52,6 +58,11 @@ public interface MatchingService {
 	    		.regDate(entity.getRegDate())
 	    		.modDate(entity.getModDate())
 	    		.build();
+	    if(entity.getMatchVictory() != null) {
+	    	matchingDto.setMatchVictory(entity.getMatchVictory());
+	    } else {
+	    	matchingDto.setMatchVictory(null);
+	    }
 	    if(entity.getMatchingAway() != null) {
 	    	matchingDto.setMatchingAway(entity.getMatchingAway().getMemberId());
 	    } else {

@@ -16,34 +16,22 @@ public class CommentServiceTest {
 	CommentService commentService;
 	
 	@Test
-	void 프로그램창에_댓글등록() {
-		// ProgramEntity, MemberEntity db에 있는 값 입력해야.
-		CommentDto dto = CommentDto.builder()
-				.board(1).commentWriter("주요한") // ProgramEntity, MemberEntity 테이블에 있는 값 입력해야
-				.build();
-		
+	public void 댓글등록() {
+		CommentDto dto = CommentDto.builder().commentBoardNo(1).commentWriter("htg").commentContent("안녕").build();
 		commentService.register(dto);
 	}
 	
 	@Test
-	void 프로그램별_댓글목록조회() {
-		
-		List<CommentDto> list = commentService.getListByBoardNo(0); 
-		
-		for (CommentDto dto : list) {
+	public void 댓글목록조회() {
+		List<CommentDto>dtoList = commentService.getListByCommentBoardNo(1);
+		for(CommentDto dto : dtoList) {
 			System.out.println(dto);
 		}
-		
 	}
-	
-	
 	
 	
 	@Test
-	void 특정댓글번호의_댓글삭제() {
+	public void 댓글삭제() {
 		commentService.remove(1);
 	}
-	
-	
-	
 }

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.court.dto.CourtDto;
 import com.example.demo.court.service.CourtService;
 import com.example.demo.matching.dto.MatchingDto;
+import com.example.demo.matching.entity.MatchVictory;
 import com.example.demo.matching.service.MatchingService;
 import com.example.demo.member.dto.MemberDto;
 
@@ -50,7 +51,7 @@ public class MatchingController {
 		
 	}
 	
-	@PostMapping("/list") 
+	@PostMapping("/applyMatch")
 	 public String applyMatch(MatchingDto dto, Principal principal,RedirectAttributes redirectAttributes) {
 		 String id = principal.getName();
 		 MemberDto memberDto = MemberDto.builder().memberId(id).build();
@@ -70,5 +71,19 @@ public class MatchingController {
 			List<MatchingDto> list = matchingService.getList();
 			model.addAttribute("list", list);
 			
-		}
+	 }
+	 @GetMapping("/matchingRead")
+	 public void matchingRead(@RequestParam(name = "matchingNo")int matchingNo,Model model) {
+		 MatchingDto dto = matchingService.read(matchingNo);
+		 model.addAttribute("dto", dto);
+	 }
+	 @PostMapping("/matchVictory")
+	 public String matchVictory(MatchingDto dto,RedirectAttributes redirectAttributes) {
+		 MemberDto homeTeam = MemberDto.builder().memberId(dto.getMatchingHome()).build();
+		 MemberDto awayTeam = MemberDto.builder().memberId(dto.getMatchingAway()).build();
+		 MatchVictory matchVictory = null;
+		 matchingService.matchVictory(dto, homeTeam, awayTeam, matchVictory);
+		 redirectAttributes.addFlashAttribute("msg", dto.getMatchingNo());
+		 return "redirect:/matching/matchedList";
+	 }
 }
