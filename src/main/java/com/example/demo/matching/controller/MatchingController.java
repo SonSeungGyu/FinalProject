@@ -57,7 +57,7 @@ public class MatchingController {
 		 MemberDto memberDto = MemberDto.builder().memberId(id).build();
 		 matchingService.applyMatch(dto,memberDto);
 		 redirectAttributes.addFlashAttribute("msg", dto.getMatchingNo());
-		 return "redirect:/matching/matchedList";
+		 return "redirect:/matching/matchingRead?matchingNo=" + dto.getMatchingNo();
 	 }
 	 
 	 @GetMapping("/read")
@@ -78,12 +78,19 @@ public class MatchingController {
 		 model.addAttribute("dto", dto);
 	 }
 	 @PostMapping("/matchVictory")
-	 public String matchVictory(MatchingDto dto,RedirectAttributes redirectAttributes) {
-		 MemberDto homeTeam = MemberDto.builder().memberId(dto.getMatchingHome()).build();
-		 MemberDto awayTeam = MemberDto.builder().memberId(dto.getMatchingAway()).build();
-		 MatchVictory matchVictory = null;
-		 matchingService.matchVictory(dto, homeTeam, awayTeam, matchVictory);
-		 redirectAttributes.addFlashAttribute("msg", dto.getMatchingNo());
-		 return "redirect:/matching/matchedList";
+	 public String matchVictory(@RequestParam("matchVictory") String matchVictory, MatchingDto dto, RedirectAttributes redirectAttributes) {
+	     MemberDto homeTeam = MemberDto.builder().memberId(dto.getMatchingHome()).build();
+	     MemberDto awayTeam = MemberDto.builder().memberId(dto.getMatchingAway()).build();
+	     if (matchVictory.equals("WIN")) {
+	         // WIN인 경우의 처리 로직
+	         matchingService.matchVictory(dto, homeTeam, awayTeam, MatchVictory.WIN);
+	     } else if (matchVictory.equals("LOSE")) {
+	         // LOSE인 경우의 처리 로직
+	         matchingService.matchVictory(dto, homeTeam, awayTeam, MatchVictory.LOSE);
+	     }
+	     redirectAttributes.addFlashAttribute("msg", dto.getMatchingNo());
+	     return "redirect:/matching/matchedList";
 	 }
+
 }
+

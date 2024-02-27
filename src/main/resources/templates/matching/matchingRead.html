@@ -25,13 +25,14 @@
                 <form th:action="@{/matching/matchVictory}" th:method = "post">
                 <tbody>
                 <tr>
-                    <td>[[${dto.matchingHome}]]</td>
+                	<td Hidden="true"><input type="hidden" name="matchingNo" th:value="${dto.matchingNo}"></td>
+                    <td><input type="hidden" name="matchingHome" th:value="${dto.matchingHome}">[[${dto.matchingHome}]]</td>
                     <td>VS</td>
-                    <td>[[${dto.matchingAway}]]</td>
+                    <td><input type="hidden" name="matchingAway" th:value="${dto.matchingAway}">[[${dto.matchingAway}]]</td>
                 </tr>
                 <tr>
-                	<td><input type="radio" name="matchVictory" th:value="${dto.matchVictory}"> WIN</td>
-                    <td><input type="radio" name="matchVictory" th:value="${dto.matchVictory}"> LOSE</td>
+                	<td><input type="radio" name="matchVictory" value="WIN"> WIN</td>
+                    <td><input type="radio" name="matchVictory" value="LOSE"> LOSE</td>
                     <td><button class="w-btn" style="background-color:white" type="submit">확정</button></td>
                 </tr>
                 </tbody>
@@ -52,3 +53,4 @@
 
 </th:block>
 </html>
+
