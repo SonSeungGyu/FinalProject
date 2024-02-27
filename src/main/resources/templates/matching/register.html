@@ -11,6 +11,13 @@
 <link href="/css/formstyle.css" rel="stylesheet">
 <title>매칭등록</title>
 <style>
+
+select {
+	width : 478.8px;
+	height : 40px;
+	margin : 20px 0px 20px 10px;
+	padding : 10px;
+}
 .w-btn-gray {
 	background-color: #a3a1a1;
 	color: #e3dede;
@@ -44,10 +51,12 @@
 				<div class="card-edit">
 					<form th:action="@{/matching/register}" th:method="post">
 						<div class="title">
-							<label>날짜</label><input type="text" name="matchingDate">
+							<label>날짜</label><input type="date" name="matchingDate">
 						</div>
 						<div class="title">
 							<label>시간</label>
+							</div>
+							<div class="title">
 							<select name="matchingTime" id="lang">
 								<option>12:00~14:00</option>
 								<option>14:00~16:00</option>
@@ -57,7 +66,11 @@
 							</select>
 						</div>
 						<div class="title">
-							<label>구장</label> <select name="matchingCourtName" id="lang">
+							<label>구장</label> 
+							</div>
+							<div class="title">
+							<select name="matchingCourtName" id="lang">
+							
 								<th:block th:each="dto:${list}">
 									<option>[[${dto.courtName}]]</option>
 								</th:block>
