@@ -15,7 +15,7 @@ public interface CommentService {
 
 	List<CommentDto> getListByCommentBoardNo(int boardNo);
 
-	void remove(int boardNo);
+	boolean remove(int boardNo);
 	
 	
 	

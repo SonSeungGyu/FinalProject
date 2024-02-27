@@ -2,6 +2,7 @@ package com.example.demo.comment.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,8 +45,16 @@ public class CommentServiceImpl implements CommentService {
 
 
 	@Override
-	public void remove(int boardNo) {
-		repository.deleteByCommentBoardNo(boardNo);
+	public boolean remove(int boardNo) {
+		// 해당 댓글이 있는 확인
+				Optional<CommentEntity>result  = repository.findById(boardNo);
+				// isEmpty는 값이 없다면 false 로 반환 후 종료(값이 없다면 참) 
+				if(result.isEmpty()) {
+					return false;
+				}
+				// 있다면 댓글 삭제 후  true 반환
+				repository.deleteById(boardNo);
+				return true;
 	}
 
 
