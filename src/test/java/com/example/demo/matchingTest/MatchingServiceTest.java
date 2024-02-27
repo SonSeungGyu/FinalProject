@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.matching.dto.MatchingDto;
+import com.example.demo.matching.entity.MatchVictory;
 import com.example.demo.matching.entity.MatchingEntity;
 import com.example.demo.matching.service.MatchingService;
 import com.example.demo.member.dto.MemberDto;
@@ -45,5 +46,13 @@ public class MatchingServiceTest {
 	@Test // 매칭을 등록한 사람만 삭제 가능
 	public void 매치삭제() {
 		matchingService.deleteMatch("user1", 2);
+	}
+	
+	@Test
+	public void 승패저장() {
+		MatchingDto dto = MatchingDto.builder().matchingNo(2).build();
+		MemberDto homeTeam = MemberDto.builder().memberId("user1").build();
+		MemberDto awayTeam = MemberDto.builder().memberId("user2").build();
+		matchingService.matchVictory(dto, awayTeam, homeTeam, MatchVictory.WIN);
 	}
 }

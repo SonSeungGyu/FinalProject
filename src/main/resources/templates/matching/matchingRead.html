@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<link href="/css/list.css" rel="stylesheet">
+        
+<section class="notice">
+  <div class="page-title">
+        <div class="container">
+            <h3>매치 결과</h3>
+        </div>
+    </div>
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-num">HOME TEAM</th>
+                    <th scope="col" class="th-title"></th>
+                    <th scope="col" class="th-num">AWAY TEAM</th>
+                    <!-- <th scope="col" class="th-date">등록일</th> -->
+                </tr>
+                </thead>
+                <form th:action="@{/matching/matchVictory}" th:method = "post">
+                <tbody>
+                <tr>
+                    <td>[[${dto.matchingHome}]]</td>
+                    <td>VS</td>
+                    <td>[[${dto.matchingAway}]]</td>
+                </tr>
+                <tr>
+                	<td><input type="radio" name="matchVictory" th:value="${dto.matchVictory}"> WIN</td>
+                    <td><input type="radio" name="matchVictory" th:value="${dto.matchVictory}"> LOSE</td>
+                    <td><button class="w-btn" style="background-color:white" type="submit">확정</button></td>
+                </tr>
+                </tbody>
+                </form>
+            </table>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <div class="st-pagination"> 
+              <!--st-pagination-->
+             
+            </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    </th:block>
+
+</th:block>
+</html>

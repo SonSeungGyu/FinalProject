@@ -59,5 +59,10 @@ public class MatchingEntity extends BaseEntity{
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "varchar(255) default 'WAITING'")
     MatchStatus matchStatus; //기본 값 대기로 설정
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = true)
+	MatchVictory matchVictory;
 }
+
 

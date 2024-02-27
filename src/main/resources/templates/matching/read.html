@@ -40,7 +40,7 @@
     <div class="card">
         <div class="card-header4"><h1>매칭 신청하기</h1></div>
         <div class="card-edit">
-        <form th:action="@{/matching/list}" th:method = "post">
+        <form th:action="@{/matching/applyMatch}" th:method = "post">
         		<input type="text" name = "matchingNo" th:value=${dto.matchingNo} Hidden="true">
              <div class="title">
                 <label>HOME TEAM</label><input type="text" name = "matchingHome" th:value=${dto.matchingHome}>

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.example.demo.matching.entity.MatchStatus;
+import com.example.demo.matching.entity.MatchVictory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,4 +30,5 @@ public class MatchingDto {
    String matchingAway;         //후에 매칭 신청한 팀
    String matchingCourtName;         //구장 이름
    MatchStatus matchStatus;  //매칭 상태
+   MatchVictory matchVictory; // 승 패 결정
 }
