@@ -100,7 +100,7 @@ public class MatchingServiceImpl implements MatchingService{
 	            Optional<MemberEntity> optional3 = memberRepository.findById(matchingAway.getMemberId());
 	            optional3.ifPresent(awayTeam -> {
 	                // 승 패 정보 저장
-	                matchingEntity.setMatchVictory(matchVictory);
+	                matchingEntity.setHomeMatchVictory(matchVictory);
 	                matchingRepository.save(matchingEntity);
 
 	                // 홈 팀 승, 패, 승점 정보
@@ -112,16 +112,18 @@ public class MatchingServiceImpl implements MatchingService{
 	                int awayTeamLose = awayTeam.getLose();
 	                int awayTeamPoint = awayTeam.getPoint();
 
-	                if (matchingEntity.getMatchVictory() == MatchVictory.WIN) {
+	                if (matchingEntity.getHomeMatchVictory() == MatchVictory.WIN) {
 	                    homeTeam.setWin(++homeTeamWin);
 	                    homeTeam.setPoint(homeTeamPoint += 3);
 	                    awayTeam.setLose(++awayTeamLose);
 	                    awayTeam.setPoint(++awayTeamPoint);
-	                } else if (matchingEntity.getMatchVictory() == MatchVictory.LOSE) {
+	                    matchingEntity.setAwayMatchVictory(MatchVictory.LOSE);
+	                } else if (matchingEntity.getHomeMatchVictory() == MatchVictory.LOSE) {
 	                    homeTeam.setLose(++homeTeamLose);
 	                    homeTeam.setPoint(++homeTeamPoint);
 	                    awayTeam.setWin(++awayTeamWin);
 	                    awayTeam.setPoint(awayTeamPoint += 3);
+	                    matchingEntity.setAwayMatchVictory(MatchVictory.WIN);
 	                }
 	                memberRepository.save(homeTeam);
 	                memberRepository.save(awayTeam);

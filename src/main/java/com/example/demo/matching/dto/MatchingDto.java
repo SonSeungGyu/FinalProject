@@ -30,5 +30,6 @@ public class MatchingDto {
    String matchingAway;         //후에 매칭 신청한 팀
    String matchingCourtName;         //구장 이름
    MatchStatus matchStatus;  //매칭 상태
-   MatchVictory matchVictory; // 승 패 결정
+   MatchVictory homeMatchVictory; // 승 패 결정
+   MatchVictory awayMatchVictory;
 }

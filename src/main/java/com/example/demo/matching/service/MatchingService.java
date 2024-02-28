@@ -38,8 +38,11 @@ public interface MatchingService {
 	    		.matchingDate(date)
 	    		.matchingTime(dto.getMatchingTime())
 	    		.matchStatus(dto.getMatchStatus()).build();
-	    if (entity.getMatchVictory() != null) {
-	    	entity.setMatchVictory(dto.getMatchVictory());
+	    if (entity.getHomeMatchVictory() != null) {
+	    	entity.setHomeMatchVictory(dto.getHomeMatchVictory());
+	    }
+	    if (entity.getAwayMatchVictory() != null) {
+	    	entity.setAwayMatchVictory(dto.getAwayMatchVictory());
 	    }
 	    if (awayTeam != null) {
 	    	entity.setMatchingAway(awayTeam);
@@ -58,10 +61,15 @@ public interface MatchingService {
 	    		.regDate(entity.getRegDate())
 	    		.modDate(entity.getModDate())
 	    		.build();
-	    if(entity.getMatchVictory() != null) {
-	    	matchingDto.setMatchVictory(entity.getMatchVictory());
+	    if(entity.getHomeMatchVictory() != null) {
+	    	matchingDto.setHomeMatchVictory(entity.getHomeMatchVictory());
 	    } else {
-	    	matchingDto.setMatchVictory(null);
+	    	matchingDto.setHomeMatchVictory(null);
+	    }
+	    if(entity.getAwayMatchVictory() != null) {
+	    	matchingDto.setAwayMatchVictory(entity.getAwayMatchVictory());
+	    } else {
+	    	matchingDto.setAwayMatchVictory(null);
 	    }
 	    if(entity.getMatchingAway() != null) {
 	    	matchingDto.setMatchingAway(entity.getMatchingAway().getMemberId());

@@ -62,7 +62,11 @@ public class MatchingEntity extends BaseEntity{
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = true)
-	MatchVictory matchVictory;
+	MatchVictory homeMatchVictory;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = true)
+	MatchVictory awayMatchVictory;
 }
 
 
