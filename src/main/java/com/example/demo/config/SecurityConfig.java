@@ -46,6 +46,7 @@ public class SecurityConfig {
 				.loginPage("/customlogin")
 				// 로그인 처리 주소
 				.loginProcessingUrl("/login")
+				
 				// 모든 사용자 사용 가능(접근 권한)
 				.successHandler(new AuthenticationSuccessHandler() {
 					@Override
@@ -55,6 +56,7 @@ public class SecurityConfig {
 					}
 
 				}).permitAll();
+		
 
 		// security가 제공하는 기능 중 로그아웃 기능
 		http.logout();
