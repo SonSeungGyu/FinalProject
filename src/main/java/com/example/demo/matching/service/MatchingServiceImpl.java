@@ -89,43 +89,49 @@ public class MatchingServiceImpl implements MatchingService{
 	}
 
 	@Override
-	public void matchVictory(MatchingDto dto,MemberDto matchingHome,MemberDto matchingAway,MatchVictory matchVictory) {
-		// 해당 매칭 정보를 조회
-		Optional<MatchingEntity> optional = matchingRepository.findById(dto.getMatchingNo());
-		MatchingEntity matchingEntity = optional.get();
-		// 홈 팀 정보 조회
-		Optional<MemberEntity> optional2 = memberRepository.findById(matchingHome.getMemberId());
-		MemberEntity homeTeam = optional2.get();
-		// 어웨이 팀 정보 조회
-		Optional<MemberEntity> optional3 = memberRepository.findById(matchingAway.getMemberId());
-		MemberEntity awayTeam = optional3.get();
-		// 승 패 정보 저장
-		matchingEntity.setMatchVictory(matchVictory);
-		matchingRepository.save(matchingEntity);
-		
-		// 홈 팀 승, 패, 승점 정보
-		int homeTeamWin = homeTeam.getWin();
-		int homeTeamLose = homeTeam.getLose();
-		int homeTeamPoint = homeTeam.getPoint();
-		//어웨이 팀 승, 패, 승점 정보
-		int awayTeamWin = awayTeam.getWin();
-		int awayTeamLose = awayTeam.getLose();
-		int awayTeamPoint = awayTeam.getPoint();
-		
-		if(matchingEntity.getMatchVictory() == MatchVictory.WIN) {
-			homeTeam.setWin(++homeTeamWin);
-			homeTeam.setPoint(homeTeamPoint+=3);
-			awayTeam.setLose(++awayTeamLose);
-			awayTeam.setPoint(++awayTeamPoint);
-		} else if(matchingEntity.getMatchVictory() == MatchVictory.LOSE){
-			homeTeam.setLose(++homeTeamLose);
-			homeTeam.setPoint(++homeTeamPoint);
-			awayTeam.setWin(++awayTeamWin);
-			awayTeam.setPoint(awayTeamPoint+=3);
-		}
-		memberRepository.save(homeTeam);
-		memberRepository.save(awayTeam);
+	public void matchVictory(MatchingDto dto, MemberDto matchingHome, MemberDto matchingAway, MatchVictory matchVictory) {
+	    // 해당 매칭 정보를 조회
+	    Optional<MatchingEntity> optional = matchingRepository.findById(dto.getMatchingNo());
+	    optional.ifPresent(matchingEntity -> {
+	        // 홈 팀 정보 조회
+	        Optional<MemberEntity> optional2 = memberRepository.findById(matchingHome.getMemberId());
+	        optional2.ifPresent(homeTeam -> {
+	            // 어웨이 팀 정보 조회
+	            Optional<MemberEntity> optional3 = memberRepository.findById(matchingAway.getMemberId());
+	            optional3.ifPresent(awayTeam -> {
+	                // 승 패 정보 저장
+	                matchingEntity.setHomeMatchVictory(matchVictory);
+	                matchingRepository.save(matchingEntity);
+
+	                // 홈 팀 승, 패, 승점 정보
+	                int homeTeamWin = homeTeam.getWin();
+	                int homeTeamLose = homeTeam.getLose();
+	                int homeTeamPoint = homeTeam.getPoint();
+	                // 어웨이 팀 승, 패, 승점 정보
+	                int awayTeamWin = awayTeam.getWin();
+	                int awayTeamLose = awayTeam.getLose();
+	                int awayTeamPoint = awayTeam.getPoint();
+
+	                if (matchingEntity.getHomeMatchVictory() == MatchVictory.WIN) {
+	                    homeTeam.setWin(++homeTeamWin);
+	                    homeTeam.setPoint(homeTeamPoint += 3);
+	                    awayTeam.setLose(++awayTeamLose);
+	                    awayTeam.setPoint(++awayTeamPoint);
+	                    matchingEntity.setAwayMatchVictory(MatchVictory.LOSE);
+	                } else if (matchingEntity.getHomeMatchVictory() == MatchVictory.LOSE) {
+	                    homeTeam.setLose(++homeTeamLose);
+	                    homeTeam.setPoint(++homeTeamPoint);
+	                    awayTeam.setWin(++awayTeamWin);
+	                    awayTeam.setPoint(awayTeamPoint += 3);
+	                    matchingEntity.setAwayMatchVictory(MatchVictory.WIN);
+	                }
+	                memberRepository.save(homeTeam);
+	                memberRepository.save(awayTeam);
+	            });
+	        });
+	    });
 	}
+
 
 	
 
