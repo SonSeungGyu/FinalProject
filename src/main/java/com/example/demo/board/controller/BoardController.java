@@ -24,7 +24,7 @@ import com.example.demo.board.service.BoardService;
 public class BoardController {
 	@Autowired
 	BoardService service;
-
+	
 	@GetMapping("/list")
 	public void list(@RequestParam(defaultValue = "0", name = "page") int page, Model model) {
 		Page<BoardDto> list = service.getList(page);
