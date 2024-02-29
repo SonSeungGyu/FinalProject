@@ -39,7 +39,7 @@ public class BoardController {
 	@PostMapping("/register")
 	public String registerPost(BoardDto boardDto, RedirectAttributes redirectAttributes, Principal principal) {
 		String id = principal.getName();
-		boardDto.setBoardTitle(id);
+		boardDto.setBoardWriter(id);
 		int no = service.register(boardDto);
 		redirectAttributes.addFlashAttribute("msg", no);
 		return "redirect:/board/list";

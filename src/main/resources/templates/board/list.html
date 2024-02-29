@@ -38,6 +38,7 @@
                 <tr>
                     <th scope="col" class="th-num">번호</th>
                     <th scope="col" class="th-title">제목</th>
+                    <th scope="col" class="th-writer">작성자</th>
                     <th scope="col" class="th-date">등록일</th>
                 </tr>
                 </thead>
@@ -45,7 +46,8 @@
                 <tr th:each="dto:${list}">
                     
                     <th> <a th:href="@{/board/read(boardNo=${dto.boardNo}, page=${list.number+1})}">[[${dto.boardNo}]]</a></th>
-					<td>[[${dto.boardTitle}]]</td>                  
+					<td>[[${dto.boardTitle}]]</td>  
+					<td>[[${dto.boardWriter}]]</td>                
                     <td>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</td>
                 </tr>
                 </tbody>
