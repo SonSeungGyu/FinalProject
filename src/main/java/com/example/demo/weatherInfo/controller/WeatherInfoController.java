@@ -33,9 +33,17 @@ public class WeatherInfoController {
 		String weather = service.getWeather();
 		
 		//json 문자열을 클래스로 변환
-		Root root = null;
+		Root root = null;	
 		root = mapper.readValue(weather, Root.class);
-		model.addAttribute("weather",root.response.body.items.item.get(0));
-//		model.addAttribute("weather",root.response.body.items.item.get(0));
+		//api 문서 참고 
+		model.addAttribute("weather0",root.response.body.items.item.get(0));
+		model.addAttribute("weather1",root.response.body.items.item.get(1));
+		model.addAttribute("weather2",root.response.body.items.item.get(2));
+		model.addAttribute("weather3",root.response.body.items.item.get(3));
+		model.addAttribute("weather4",root.response.body.items.item.get(4));
+		model.addAttribute("weather5",root.response.body.items.item.get(5));
+		model.addAttribute("weather6",root.response.body.items.item.get(6));
+//		model.addAttribute("weather7",root.response.body.items.item.get(7));
+//		model.addAttribute("weather8",root.response.body.items.item.get(8));
 	}
 }
