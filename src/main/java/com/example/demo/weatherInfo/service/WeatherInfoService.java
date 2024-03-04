@@ -9,6 +9,9 @@ public interface WeatherInfoService {
 	
 	public String getWeather()throws IOException;
 	
+	public String forceastTempWeather() throws IOException;
+	
+	public String forceastSkyWeather() throws IOException;
 //	default void jsonToDto() throws IOException{
 //		
 //		//json 문자열을 클래스로 변환해주는 매퍼 클래스 생성

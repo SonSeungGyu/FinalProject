@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+    
+    <link href="/css/weather.css" rel="stylesheet">
+    
+    	<div class="ajax-section">
+    		<ul class="cities">
+    			<li class="city">
+    			<h2 class="city-name">
+    				<span>incheon</span>
+    			</h2>
+    			<span class="city-temp">11<sup>℃</sup></span>
+    			<figure>
+    				<img class="city-icon" alt="" src="">
+    				<figcaption>눈</figcaption>
+    			</figure>
+    			</li>
+    			<li class="city">
+    			<h2 class="city-name">
+    				<span>incheon</span>
+    			</h2>
+    			<span class="city-temp">11<sup>℃</sup></span>
+    			<figure>
+    				<img class="city-icon" alt="" src="">
+    				<figcaption>눈</figcaption>
+    			</figure>
+    			</li>
+    		</ul>
+    	</div>
+      </th:block>
+
+</th:block>
+</html>

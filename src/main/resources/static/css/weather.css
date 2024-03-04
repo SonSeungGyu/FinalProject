@@ -1,0 +1,28 @@
+@charset "EUC-KR";
+ul{
+	list-style: none;
+}
+.ajax-section .city{
+	padding: 40px 10%;
+	border-radius:20px;
+	background:text_light;
+	color:text_med;
+}
+.city-temp{
+	font-size: 5rem;
+	font-weight: bold;
+	margin-top: 10px;
+	color: text_dark;
+}
+.city-temp sup{
+	font-size: 0.5em;
+}
+.ajax-section figcaption{
+	margin-top: 10px;
+	text-transform: uppercase;
+}
+.cities{
+	display: grid;
+	grid-template-columns: repeat(4,1fr);
+	grid-gap:32px 20px;
+}
