@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<html>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +22,7 @@
         <tbody>
         </tbody>
     </table>
-
+</body>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
     </script>
     <script>
@@ -26,7 +30,8 @@
                 function(result){
             for(var i = 0; i < result.list.length; i++){
                 var ctime = result.list[i].dt;
-                var ctemp = result.list[i].main.temp;
+                var minTemp = result.list[i].main.temp_min;
+                var maxTemp = result.list[i].main.temp_max;
                 var cweatherCode = result.list[i].weather[0].icon; 
                 
                 function convertTime(ctime){
@@ -34,21 +39,23 @@
                     var yr = ot.getFullYear();
                     var mo = ot.getMonth() + 1; 
                     var dy = ot.getDate();
-                    var hr = ot.getHours();
-                    var m = ot.getMinutes();
-                    var s = ot.getSeconds();
-                    return yr + '-' + mo + '-' + dy + ' ' + hr + ':' + m + ':' + s;
+                    
+                    return yr + '-' + mo + '-' + dy;
                 }
                 var currenTime = convertTime(ctime);
                 var imgURL = "http://openweathermap.org/img/wn/" + cweatherCode + ".png";
                 var tableHtml = '<tr>' +
                                 '<td>' + currenTime +'</td>'+
-                                '<td>' + ctemp +'</td>'+
+                                '<td>' + "최저 기온" + minTemp +'</td>'+
+                                '<td>' + "최고 기온" + maxTemp +'</td>'+
                                 '<td><img src="' + imgURL + '" alt="Weather icon"></td>'+
                                 '</tr>';
                 $('tbody').append(tableHtml)
             }
         });
     </script>
-</body>
+
+   </th:block>
+
+</th:block>
 </html>
