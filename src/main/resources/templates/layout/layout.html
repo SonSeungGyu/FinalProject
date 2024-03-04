@@ -3,7 +3,8 @@
 <th:block th:fragment="setContent(content)">
 	<!-- 파라미터로 조각코드 받기 -->
 	<head>
-	<!-- JS 라이브러리 추가 -->
+<!-- JS 라이브러리 추가 -->
+
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/menumaker.js"></script>
@@ -21,22 +22,22 @@
 <!-- Bootstrap -->
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,600i,700" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,600i,700"
+	rel="stylesheet">
 <!-- Font Awesome -->
 <link href="/css/font-awesome.min.css" rel="stylesheet">
 <!-- Style -->
 <link href="/css/style.css" rel="stylesheet">
 
-</head>
+	</head>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js "></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js "></script>
 <![endif]-->
-
-
 	</head>
 
 
@@ -46,40 +47,64 @@
 				<div class="row">
 					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 						<!-- <a href="index.html"> -->
-						<img src="/images/mimlogo.png" alt="Interior Design Website Templates Free Download">
+						<img src="/images/mimlogo.png"
+							alt="Interior Design Website Templates Free Download">
 						<!-- </a> -->
 					</div>
 					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 						<div class="navigation">
 							<div id="navigation">
 								<ul>
-									<li class="active"><a th:href="@{/}" title="Home">Home</a></li> <!-- 메인 화면으로 가는 버튼 -->
-									<li class="active"><a th:href="@{/board/list}" title="board">자유게시판</a> <!-- 자유 게시판 가는 버튼 --></li>
+									<li class="active"><a th:href="@{/}" title="Home">Home</a></li>
+									<!-- 메인 화면으로 가는 버튼 -->
+									<li class="active"><a
+										sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+										th:href="@{/board/list}" title="board">자유게시판</a> <!-- 자유 게시판 가는 버튼 --></li>
 									<!-- <li class="active"><a href="portfolio.html" title="Portfolio">팀등록</a></li> -->
 									<!-- </li> -->
-									<li class="has-sub"><a th:href="@{/matching/list}" title="Blog ">매칭</a>
+									<li class="has-sub"><a
+										sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+										th:href="@{/matching/list}" title="Blog ">매칭</a>
 										<ul>
-											<li><a th:href="@{/matching/list}" title="Blog">매칭 찾기</a></li>
-											<li><a th:href="@{/matching/register}" title="Blog Single ">매칭 등록</a></li>
-											<li><a th:href="@{/matching/matchedList}" title="Blog Single ">매칭 결과</a></li>
+											<li><a
+												sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+												th:href="@{/matching/list}" title="Blog">매칭 찾기</a></li>
+											<li><a
+												sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+												th:href="@{/matching/register}" title="Blog Single ">매칭
+													등록</a></li>
+											<li><a
+												sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+												th:href="@{/matching/matchedList}" title="Blog Single ">매칭
+													결과</a></li>
 										</ul></li>
-									
-									<li class="has-sub"><a th:href="@{/court/list}" title="Blog ">구장</a>
+
+									<li class="has-sub"><a th:href="@{/court/list}"
+										title="Blog ">구장</a>
 										<ul>
 											<li><a th:href="@{/court/list}" title="Blog">구장 목록</a></li>
-											<li><a th:href="@{/court/register}" title="Blog Single ">구장 등록</a></li>
+											<li><a th:href="@{/court/register}" title="Blog Single ">구장
+													등록</a></li>
 										</ul></li>
-									
+
 									<!-- <li class="has-sub"><a href="blog-default.html" title="Blog ">MyInfo</a>
 										<ul> -->
-											<li><a th:href="@{/member/mypage}" title="Blog">MyPage</a></li>
-											<li><a th:href="@{/member/list}" title="Blog">회원조회</a></li>
-											<!-- <li><a href="blog-single.html" title="Blog Single ">MyTeam</a></li> -->
-										<!-- </ul></li> -->
-									<li><a th:href="@{/customlogin}" title="Contact Us">로그인</a>
-									</li>
+									<li><a
+										sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+										th:href="@{/member/mypage}" title="Blog">MyPage</a></li>
+									<li><a sec:authorize="hasRole('ROLE_ADMIN')"
+										th:href="@{/member/list}" title="Blog">회원조회</a></li>
+									<!-- <li><a href="blog-single.html" title="Blog Single ">MyTeam</a></li> -->
+									<!-- </ul></li> -->
+
+									<li><a sec 
+									th:href="@{/customlogin}" title="Contact Us">로그인
+									</a></li>
 									<li><a th:href="@{/member/register}" title="Testimonial">회원가입</a>
 									</li>
+									<li><a
+										sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+										href="/logout">로그아웃</a></li>
 								</ul>
 							</div>
 						</div>
@@ -91,8 +116,8 @@
 		<div class="hero-section">
 			<div class="container">
 				<div class="row">
-				<!-- <img src="/images/mainImages.jpeg" alt="Interior Design Website Templates Free Download"> -->
-					 <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+					<!-- <img src="/images/mainImages.jpeg" alt="Interior Design Website Templates Free Download"> -->
+					<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 						<h1 class="hero-title">
 							<strong> </strong><br> Free Webstite template</h1>
 						 <a href="#" class="btn btn-white">REad more <i

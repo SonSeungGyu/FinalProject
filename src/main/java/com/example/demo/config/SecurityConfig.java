@@ -43,7 +43,9 @@ public class SecurityConfig {
 				.requestMatchers("/court/*").hasAnyRole("ADMIN","USER")
 				.anyRequest().permitAll(); //메인페이지로 바로 가게끔
 
-		http.formLogin().defaultSuccessUrl("/",true);
+		http.formLogin().defaultSuccessUrl("/",true)
+		.loginPage("/customlogin") // 로그인 화면 주소
+        .loginProcessingUrl("/login"); // 로그인 처리 주소
 		http.csrf().disable();
 		http.logout();
 
