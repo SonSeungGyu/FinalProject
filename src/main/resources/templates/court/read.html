@@ -47,8 +47,10 @@
              <div class="title">
                 <label>구장위치</label><input type="text" name = "courtAddress" th:value=${dto.courtAddress}>
             </div>
+            <div id="map" style="width:420px;height:400px; margin:0 auto;"></div>
       		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=756bd4f0caed1d874334f055fccbc52d&libraries=services"></script>
-              <button class="w-btn w-btn-gray" type="button" >구장삭제</button>
+             <!--  <button class="w-btn w-btn-gray" type="button" >구장삭제</button> -->
+              <button class="w-btn w-btn-gray"><a th:href="@{/court/list}">목록으로</a></button>
 
         </form>
 
@@ -75,8 +77,7 @@
 		var ps = new kakao.maps.services.Places(); 
 		
 		// 키워드로 장소를 검색합니다
-		/* ${dto.courtName} */
-		ps.keywordSearch('인천 가좌동 풋살장', placesSearchCB); 
+		ps.keywordSearch('[[${dto.courtName}]]', placesSearchCB); 
 	
 		// 키워드 검색 완료 시 호출되는 콜백함수
 		function placesSearchCB (data, status, pagination) {
@@ -121,7 +122,7 @@
 		}
         </script>	
 
-<script>
+<!-- <script>
 /* 구장 등록할지 클릭이벤트 */
 var form = $("form");
 $(".w-btn").click(function(){
@@ -133,7 +134,7 @@ $(".w-btn").click(function(){
 	.attr("method", "post") //post remove로 매핑 된다.
 	.submit();
 });
-</script>
+</script> -->
     </th:block>
 
 </th:block>
