@@ -47,13 +47,12 @@
              <div class="title">
                 <label>구장위치</label><input type="text" name = "courtAddress" th:value=${dto.courtAddress}>
             </div>
-            <div id="map" style="width:420px;height:400px; margin:0 auto;"></div>
+            <span style="width:100%;color:#D4D6DD;">지도의 마커를 클릭하시면 큰 지도를 보거나 길을 찾으실 수 있어요~</span>
+            <div id="map" style="width:560px;height:400px; margin:0 auto;"></div>
       		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=756bd4f0caed1d874334f055fccbc52d&libraries=services"></script>
              <!--  <button class="w-btn w-btn-gray" type="button" >구장삭제</button> -->
-              <button class="w-btn w-btn-gray"><a th:href="@{/court/list}">목록으로</a></button>
-
+            <button class="w-btn w-btn-gray"><a th:href="@{/court/list}">목록으로</a></button>
         </form>
-
         </div>
     </div>
 </body>
