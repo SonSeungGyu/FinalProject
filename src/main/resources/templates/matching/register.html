@@ -191,7 +191,7 @@ a:hover {
 				*/
 				    
                   
-				}
+				
 				    //이하 내 위치 지도
 	 			    if (navigator.geolocation) {
 				        
@@ -214,13 +214,13 @@ a:hover {
 				        var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
 				            message = 'geolocation을 사용할수 없어요..'
 				            
-				        displayMarker1(locPosition, message);
+				        displayMarker(locPosition, message);
 				    } 
 
 				    
 				    
 				    // 지도에 마커와 인포윈도우를 표시하는 함수
-				    function displayMarker1(locPosition, message) {
+				    function displayMarker(locPosition, message) {
 
 				    	//마커 이미지 주소
 					    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -252,6 +252,8 @@ a:hover {
 				        // 지도 중심좌표를 접속위치로 변경
 				        map.setCenter(locPosition);     
 				    }  
+				    
+				}
 				
 	</script>
 			
