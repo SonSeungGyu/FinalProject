@@ -18,15 +18,7 @@ import lombok.ToString;
 public class MemberDto {
 
 	String memberId; // 회원 아이디(pk)
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-	//String role; // 사용자 등급 추가 (사용자:ROLE_USER, 관리자:ROLE_ADMIN) 
-=======
-	String role; // 사용자 등급 추가 (사용자:ROLE_USER, 관리자:ROLE_ADMIN)
->>>>>>> refs/heads/feature/ssg
-=======
->>>>>>> branch 'master' of https://github.com/SonSeungGyu/FinalProject.git
 	
 	String role; // 사용자 등급 추가 (사용자:ROLE_USER, 관리자:ROLE_ADMIN)
 
