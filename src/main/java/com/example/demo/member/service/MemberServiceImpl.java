@@ -94,6 +94,34 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	@Override
+	public MemberDto saveSocialMember(String email) {
+		
+		//  기존 동일한 이메일로 가입이 있는지 확인
+		Optional<MemberEntity> result =repository.findById(email);
+		// 가입된 이메일이 있으면 반환
+		if(result.isPresent()) {
+			return entityToDto(result.get());
+		}
+		// 가입된 이메일이 없으면 회원가입 진행
+		MemberEntity memberEntity = MemberEntity.builder()
+				.memberId(email) // 모든 내용을 이메일로 처리
+				.memberName(email)
+				.memberPassword(passwordEncoder.encode("1111")) // 비밀번호 1111으로 일단 처리
+				.memberAddress(email)
+				.memberBirthDay(email)
+				.memberNumber("333")
+				.memberEmail(email)
+				.role("ROLE_USER")
+				.fromSocial(true)
+				.build();
+		repository.save(memberEntity);
+		
+		result = repository.findById(email);
+		
+		return entityToDto(result.get()); // 새로운 회원정보 or 기존 회원정보 반환
+	}
+
 	
 	
 

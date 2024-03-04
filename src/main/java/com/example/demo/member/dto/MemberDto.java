@@ -44,5 +44,6 @@ public class MemberDto {
 	LocalDateTime regDate; // 회원이 최초로 만들어진 시간
 	
 	LocalDateTime modDate; // 회원 정보 수정된 시간
-	
+
+	boolean fromSocial; // 소셜 로그인 
 }

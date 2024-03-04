@@ -30,7 +30,7 @@
 <link href="/css/style.css" rel="stylesheet">
 
 
-
+<script src="/js/scripts.js"></script>
 <link href="/css/register.css" rel="stylesheet">
 
 
@@ -130,7 +130,14 @@
 		</div>
 	
 
-
+<script th:inline="javascript">
+			$(document).ready(function(){ //html 문서가 만들어질때 호출되는 함수
+			  var msg = [[${msg}]] //실패메시지 저장
+			  if(msg != null){
+				  alert(msg); //실패메시지 팝업
+			  }
+			});
+		</script>
 
 
 </body>

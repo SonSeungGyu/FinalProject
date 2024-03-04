@@ -59,5 +59,5 @@ public class MemberEntity extends BaseEntity {
 	@Column(nullable = true)
 	int point; // 승점
 	
-	
+	boolean fromSocial; // 소셜 로그인 
 }

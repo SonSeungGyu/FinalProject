@@ -17,6 +17,8 @@ public interface MemberService {
 	//0222 내정보 수정
 	void modify(MemberDto dto);
 	
+	MemberDto saveSocialMember(String email);
+	
 	// 엔티티를 dto로 변환
 	default MemberDto entityToDto(MemberEntity entity) {
 		MemberDto dto = MemberDto.builder()
@@ -33,6 +35,7 @@ public interface MemberService {
 				.point(entity.getPoint())
 				.regDate(entity.getRegDate())
 				.modDate(entity.getModDate())
+				.fromSocial(entity.isFromSocial())
 				.build();
 		return dto;
 		
@@ -53,6 +56,7 @@ public interface MemberService {
 				.win(dto.getWin())
 				.lose(dto.getLose())
 				.point(dto.getPoint())
+				.fromSocial(dto.isFromSocial())
 				.build();
 		return entity;
 		
