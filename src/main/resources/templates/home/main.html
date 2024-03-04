@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- 유튜브 플레이어 반응형으로 만들어주는 css --> 
+<style>
+  .player {
+  padding-top: 56.25%;
+  position: relative;
+
+}
+  .player iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+<body>
+<div style="text-align:center;">
+<h1 style="font-size:65px">인기 풋살 영상</h1>
+<!-- <iframe id="ytplayer" type="text/html" width="1000" height="562.5"
+src="https://www.youtube.com/embed/?autoplay=1&mute=1&playlist=tD7nd2UpUXQ"
+frameborder="0" allowfullscreen> -->
+
+<div class=player>
+<iframe id="ytplayer" type="text/html" width="1000" height="562.5"
+src="https://www.youtube.com/embed/tGE22bfmrks?autoplay=1&mute=1&loop=1&playlist=tD7nd2UpUXQ"
+frameborder="0" allowfullscreen></iframe>
+</div>
+
+<!-- <div class=player>
+<iframe id="ytplayer" type="text/html" width="1000" height="562.5"
+src="https://www.youtube.com/embed/tGE22bfmrks?autoplay=1&playlist=bq5-GuVjJJo"
+frameborder="0" allowfullscreen>
+</div> -->
+
+<!-- <div class=player>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DY5ECUorZPs?si=O5GWCJwP19QwvrUn&autoplay=1&mute=1&loop=1&playlist=bq5-GuVjJJo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div> -->
+
+</div>
+</body>
+
+    </th:block>
+
+</th:block>
+</html>

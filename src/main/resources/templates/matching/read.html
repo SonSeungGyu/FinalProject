@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/formstyle.css" rel="stylesheet">
+    <title>매칭 신청하기</title>
+    <style>
+		.w-btn-gray {
+    		background-color: #a3a1a1;
+   			color: #e3dede;
+   			}
+   			
+   		.w-btn {
+		    position: relative;
+		    border: none;
+		    display: inline-block;
+		    padding: 10px 20px;
+		   	margin: 0px 10px 0px 10px;
+		    border-radius: 15px;
+		    font-family: "paybooc-Light", sans-serif;
+		    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		    text-decoration: none;
+		    font-weight: 600;
+		    transition: 0.25s;
+			}
+			
+		.card{
+			overflow:hidden;
+			height:auto;
+		}
+		
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header4"><h1>매칭 신청하기</h1></div>
+        <div class="card-edit">
+        <form th:action="@{/matching/applyMatch}" th:method = "post">
+        		<input type="text" name = "matchingNo" th:value=${dto.matchingNo} Hidden="true">
+             <div class="title">
+                <label>HOME TEAM</label><input type="text" name = "matchingHome" th:value=${dto.matchingHome}>
+            </div>
+             <div class="title">
+                <label>DATE</label><input type="text" name = "matchingDate" th:value=${dto.matchingDate}>
+            </div>
+            <div class="title">
+                <label>TIME</label><input type="text" name = "matchingTime" th:value=${dto.matchingTime}>
+            </div>
+            <div class="title">
+                <label>COURT</label><input type="text" name = "matchingCourtName" th:value=${dto.matchingCourtName}>
+            </div>
+             <button class="w-btn w-btn-gray" type="submit">신청하기</button>
+        </form>
+        </div>
+    </div>
+</body>
+
+<script>
+			
+			$(".w-btn").click(function() {
+				if (!confirm("매칭을 신청하시겠습니까?")) {
+					return;
+				}
+
+			});
+		</script>
+    </th:block>
+
+</th:block>
+</html>

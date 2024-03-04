@@ -18,9 +18,9 @@ import lombok.ToString;
 public class MemberDto {
 
 	String memberId; // 회원 아이디(pk)
-
-	//String role; // 사용자 등급 추가 (사용자:ROLE_USER, 관리자:ROLE_ADMIN) 
 	
+	String role; // 사용자 등급 추가 (사용자:ROLE_USER, 관리자:ROLE_ADMIN)
+
 
 	String memberPassword; // 회원 비밀번호
 
@@ -32,7 +32,13 @@ public class MemberDto {
 
 	String memberNumber; // 회원 전화번호
 
-	String memberBirthDay; // 회원 생년월일 
+	String memberBirthDay; // 회원 생년월일
+	
+	int win; // 이긴 경기 수
+	
+	int lose; //진 경기 수
+	
+	int point; //승점
 
 	LocalDateTime regDate; // 회원이 최초로 만들어진 시간
 	

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+	<th:block th:fragment="content">
+		<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <link rel="stylesheet" href="../BOARD/style.css"> -->
+<link href="/css/formstyle.css" rel="stylesheet">
+<title>매칭등록</title>
+<style>
+
+select {
+	width : 478.8px;
+	height : 40px;
+	margin : 20px 0px 20px 10px;
+	padding : 10px;
+}
+.w-btn-gray {
+	background-color: #a3a1a1;
+	color: #e3dede;
+}
+
+.w-btn {
+	position: relative;
+	border: none;
+	display: inline-block;
+	padding: 10px 20px;
+	margin: 0px 10px 0px 10px;
+	border-radius: 15px;
+	font-family: "paybooc-Light", sans-serif;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	text-decoration: none;
+	font-weight: 600;
+	transition: 0.25s;
+}
+
+.card {
+	overflow: hidden;
+	height: auto;
+}
+a:focus,
+a:hover {
+  display: inline-block;
+  color: lightgreen;
+  transform: translateY(-2px);
+  transition: 1s;
+ 
+}
+
+</style>
+		</head>
+		<body>
+	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=756bd4f0caed1d874334f055fccbc52d"></script> -->
+				<!-- 지도 api -->
+			<!-- <div id="map" style="width:500px;height:400px;"></div> -->
+<!-- 	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+	</script> -->
+	<!-- 위까지 지도 api -->
+	
+			<div class="card">
+				<div class="card-header4">
+					<h1>매칭등록</h1>
+				</div>
+				<div class="card-edit">
+					<form th:action="@{/matching/register}" th:method="post">
+						<div class="title">
+							<label>날짜</label><input type="date" name="matchingDate">
+						</div>
+						<div class="title">
+							<label>시간</label>
+							</div>
+							<div class="title">
+							<select name="matchingTime" id="lang">
+								<option>12:00~14:00</option>
+								<option>14:00~16:00</option>
+								<option>16:00~18:00</option>
+								<option>18:00~20:00</option>
+								<option>20:00~22:00</option>
+							</select>
+						</div>
+						<div class="title">
+							<label>구장</label> 
+							</div>
+							<div class="title">
+							<select name="matchingCourtName" id="lang">
+							
+								<th:block th:each="dto:${list}">
+									<option>[[${dto.courtName}]]</option>
+								</th:block>
+							</select>
+						</div>
+						<div id="map" style="width:420px;height:400px; margin:0 auto;"></div>
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=756bd4f0caed1d874334f055fccbc52d&libraries=services"></script>
+			
+						<button class="w-btn w-btn-gray" type="submit" style="">매칭등록</button>
+
+					</form>
+				</div>
+			
+			</div>
+			
+	<script>
+				var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+				var container = document.getElementById('map');
+				var options = {
+					/* 로드될 때 지도에서 가운데 좌표 */
+					center: new kakao.maps.LatLng(37.45220575592353, 126.69964671134949),
+					level: 3
+				};
+		
+				var map = new kakao.maps.Map(container, options);
+				
+				//이하 내 위치 지도
+				//이상 내 위치 지도
+				
+				/* 이하 수정 지도 */
+				// 장소 검색 객체를 생성
+				var ps = new kakao.maps.services.Places(); 
+				
+				// 키워드로 장소를 검색합니다
+				ps.keywordSearch('인천 가좌동 풋살장', placesSearchCB); 
+			
+				// 키워드 검색 완료 시 호출되는 콜백함수
+				function placesSearchCB (data, status, pagination) {
+				    if (status === kakao.maps.services.Status.OK) {
+				
+				        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+				        // LatLngBounds 객체에 좌표를 추가
+				        var bounds = new kakao.maps.LatLngBounds();
+				
+				        for (var i=0; i<data.length; i++) {
+				            displayMarker(data[i]);    
+				            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+				        }       
+				
+				        // 검색된 장소 위치를 기준으로 지도 범위를 재설정
+				        map.setBounds(bounds);
+				    } 
+				}
+				
+				// 지도에 마커를 표시하는 함수
+				function displayMarker(place) {
+				    
+				    // 마커를 생성하고 지도에 표시
+				    var marker = new kakao.maps.Marker({
+				        map: map,
+				        position: new kakao.maps.LatLng(place.y, place.x) 
+				    });
+				
+				    //마커에 클릭이벤트를 등록
+				    kakao.maps.event.addListener(marker, 'click', function() {
+				        // 마커를 클릭하면 장소명이 인포윈도우에 표출
+				        infowindow.setContent('<div style="padding:5px;font-size:12px;width:180px;">' + place.place_name + '</div>'  /* 해당 구장명 */
+				        					+'<hr style="margin:0px;height:1px;">' /* hr태그로 라인 그음 */
+				        					+'<div style="padding:5px;font-size:12px;width:180px;">' + place.address_name + '</div>' /* 해당 구장 주소 */
+				        					+'<hr style="margin:0px;height:1px;">' /* hr태그로 라인 그음 */
+				        					+'<a href="https://map.kakao.com/link/map/'+place.place_name+','+place.y+','+place.x+'"style="color:blue" target="_blank">큰지도보기</a>' /* infowindow에서 큰 지도로 볼 수 있는 링크 */
+				        					//infowindow에서 해당 구장의 위치를 길찾기로 찾을 수 있음
+				        					+'<a href="https://map.kakao.com/link/to/'+place.place_name+','+place.y+','+place.x+'" style="color:blue;padding:0px 10px 0px 10px " target="_blank">길찾기</a></div>'
+				        					);
+				        infowindow.open(map, marker);
+				    });
+				    
+				 	 // 마커에 마우스아웃 이벤트를 등록합니다
+				 /* 	kakao.maps.event.addListener(marker, 'mouseout', function() {
+				        // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거
+				        infowindow.close();
+				    }); */
+				    
+				    //이하 내 위치 지도
+				    if (navigator.geolocation) {
+				        
+				        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+				        navigator.geolocation.getCurrentPosition(function(position) {
+				            
+				            var lat = position.coords.latitude, // 위도
+				                lon = position.coords.longitude; // 경도
+				            
+				            var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+				                message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+				            
+				            // 마커와 인포윈도우를 표시합니다
+				            displayMarker(locPosition, message);
+				                
+				          });
+				        
+				    } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+				        
+				        var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+				            message = 'geolocation을 사용할수 없어요..'
+				            
+				        displayMarker(locPosition, message);
+				    }
+
+				    // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+				    function displayMarker(locPosition, message) {
+
+				        // 마커를 생성합니다
+				        var marker = new kakao.maps.Marker({  
+				            map: map, 
+				            position: locPosition
+				        }); 
+				        
+				        var iwContent = message, // 인포윈도우에 표시할 내용
+				            iwRemoveable = true;
+
+				        // 인포윈도우를 생성합니다
+				        var infowindow = new kakao.maps.InfoWindow({
+				            content : iwContent,
+				            removable : iwRemoveable
+				        });
+				        
+				        // 인포윈도우를 마커위에 표시합니다 
+				        infowindow.open(map, marker);
+				        
+				        // 지도 중심좌표를 접속위치로 변경합니다
+				        map.setCenter(locPosition);      
+				    }    
+				}
+				
+	</script>
+			
+		</body>
+
+		<script>
+			/* 매칭 등록할지 클릭이벤트 */
+			var form = $("form");
+			$(".w-btn").click(function() {
+				if (!confirm("매칭을 등록하시겠습니까?")) {
+					return;
+				}
+
+			});
+		</script>
+	</th:block>
+
+</th:block>
+</html>

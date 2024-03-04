@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<link href="/css/list.css" rel="stylesheet">
+        
+<section class="notice">
+  <div class="page-title">
+        <div class="container">
+            <h3>매치 결과</h3>
+        </div>
+    </div>
+
+    <!-- board seach area -->
+   <!--  <div id="board-search">
+        <div class="container">
+            <div class="search-window">
+                <form action="">
+                    <div class="search-wrap">
+                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+                        <button type="submit" class="btn btn-dark">검색</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+   
+  <!-- board list area -->
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-num">HOME TEAM</th>
+                    <th scope="col" class="th-title"></th>
+                    <th scope="col" class="th-title"></th>
+                    <th scope="col" class="th-title"></th>
+                    <th scope="col" class="th-num">AWAY TEAM</th>
+                    <!-- <th scope="col" class="th-date">등록일</th> -->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dto:${list}" th:if="${dto.matchingAway != null}">
+                    <td>[[${dto.matchingHome}]]</td>
+                    <td style="color:blue">[[${dto.homeMatchVictory}]]</td>
+                    <td>VS</td>
+                    <td style="color:red">[[${dto.awayMatchVictory}]]</td>
+                    <td>[[${dto.matchingAway}]]</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <div class="st-pagination"> 
+              <!--st-pagination-->
+             
+            </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    </th:block>
+
+</th:block>
+</html>
