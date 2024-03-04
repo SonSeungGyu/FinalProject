@@ -37,6 +37,10 @@ public class SecurityConfig {
 				.requestMatchers("/board/*").hasAnyRole("ADMIN","USER")
 				// 댓글 사용권한
 				.requestMatchers("/comment/*").hasAnyRole("ADMIN","USER")
+				//매칭
+				.requestMatchers("/matching/*").hasAnyRole("ADMIN","USER")
+				//구장
+				.requestMatchers("/court/*").hasAnyRole("ADMIN","USER")
 				.anyRequest().permitAll(); //메인페이지로 바로 가게끔
 
 		http.formLogin().defaultSuccessUrl("/",true);
