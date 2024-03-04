@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>날짜</td>
+                <td>온도</td>
+                <td>날씨</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+    </script>
+    <script>
+        $.getJSON('https://api.openweathermap.org/data/2.5/forecast?lat=37.45&lon=126.4161&appid=e3e3217014d0618dc71d7a84563a33fa&units=metric',
+                function(result){
+            for(var i = 0; i < result.list.length; i++){
+                var ctime = result.list[i].dt;
+                var minTemp = result.list[i].main.temp_min;
+                var maxTemp = result.list[i].main.temp_max;
+                var cweatherCode = result.list[i].weather[0].icon; 
+                
+                function convertTime(ctime){
+                    var ot = new Date(ctime*1000);
+                    var yr = ot.getFullYear();
+                    var mo = ot.getMonth() + 1; 
+                    var dy = ot.getDate();
+                    
+                    return yr + '-' + mo + '-' + dy;
+                }
+                var currenTime = convertTime(ctime);
+                var imgURL = "http://openweathermap.org/img/wn/" + cweatherCode + ".png";
+                var tableHtml = '<tr>' +
+                                '<td>' + currenTime +'</td>'+
+                                '<td>' + "최저 기온" + minTemp +'</td>'+
+                                '<td>' + "최고 기온" + maxTemp +'</td>'+
+                                '<td><img src="' + imgURL + '" alt="Weather icon"></td>'+
+                                '</tr>';
+                $('tbody').append(tableHtml)
+            }
+        });
+    </script>
+
+   </th:block>
+
+</th:block>
+</html>
