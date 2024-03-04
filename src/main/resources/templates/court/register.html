@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/formstyle.css" rel="stylesheet">
+    <title>구장등록</title>
+    <style>
+		.w-btn-gray {
+    		background-color: #a3a1a1;
+   			color: #e3dede;
+   			}
+   			
+   		.w-btn {
+		    position: relative;
+		    border: none;
+		    display: inline-block;
+		    padding: 10px 20px;
+		   	margin: 0px 10px 0px 10px;
+		    border-radius: 15px;
+		    font-family: "paybooc-Light", sans-serif;
+		    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		    text-decoration: none;
+		    font-weight: 600;
+		    transition: 0.25s;
+			}
+			
+		.card{
+			overflow:hidden;
+			height:auto;
+		}
+		
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header4"><h1>구장등록</h1></div>
+        <div class="card-edit">
+        <form th:action="@{/court/register}" th:method="post">
+             <div class="title">
+                <label>구장이름</label><input type="text" name = "courtName">
+            </div>
+             <div class="title">
+                <label>구장위치</label><input type="text" name = "courtAddress">
+            </div>
+      
+              <button class="w-btn w-btn-gray" type="submit" style="">구장등록</button>
+
+        </form>
+        </div>
+    </div>
+</body>
+<script>
+/* 구장 등록할지 클릭이벤트 */
+var form = $("form");
+$(".w-btn").click(function(){
+	if(!confirm("구장을 등록하시겠습니까?")){
+		return;
+	}
+
+});
+</script>
+    </th:block>
+
+</th:block>
+</html>

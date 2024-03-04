@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/formstyle.css" rel="stylesheet">
+    <title>구장등록</title>
+    <style>
+		.w-btn-gray {
+    		background-color: #a3a1a1;
+   			color: #e3dede;
+   			}
+   			
+   		.w-btn {
+		    position: relative;
+		    border: none;
+		    display: inline-block;
+		    padding: 10px 20px;
+		   	margin: 0px 10px 0px 10px;
+		    border-radius: 15px;
+		    font-family: "paybooc-Light", sans-serif;
+		    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		    text-decoration: none;
+		    font-weight: 600;
+		    transition: 0.25s;
+			}
+			
+		.card{
+			overflow:hidden;
+			height:auto;
+		}
+		
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header4"><h1>구장정보</h1></div>
+        <div class="card-edit">
+        <form>
+             <div class="title">
+                <label>구장이름</label><input type="text" name = "courtName" th:value=${dto.courtName}>
+            </div>
+             <div class="title">
+                <label>구장위치</label><input type="text" name = "courtAddress" th:value=${dto.courtAddress}>
+            </div>
+      		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=756bd4f0caed1d874334f055fccbc52d&libraries=services"></script>
+              <button class="w-btn w-btn-gray" type="button" >구장삭제</button>
+
+        </form>
+
+        </div>
+    </div>
+</body>
+
+        <script>
+    	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+		var container = document.getElementById('map');
+		var options = {
+			/* 로드될 때 지도에서 가운데 좌표 */
+			center: new kakao.maps.LatLng(37.45220575592353, 126.69964671134949),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+		
+		//이하 내 위치 지도
+		//이상 내 위치 지도
+		
+		/* 이하 수정 지도 */
+		// 장소 검색 객체를 생성
+		var ps = new kakao.maps.services.Places(); 
+		
+		// 키워드로 장소를 검색합니다
+		/* ${dto.courtName} */
+		ps.keywordSearch('인천 가좌동 풋살장', placesSearchCB); 
+	
+		// 키워드 검색 완료 시 호출되는 콜백함수
+		function placesSearchCB (data, status, pagination) {
+		    if (status === kakao.maps.services.Status.OK) {
+		
+		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+		        // LatLngBounds 객체에 좌표를 추가
+		        var bounds = new kakao.maps.LatLngBounds();
+		
+		        for (var i=0; i<data.length; i++) {
+		            displayMarker(data[i]);    
+		            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+		        }       
+		
+		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정
+		        map.setBounds(bounds);
+		    } 
+		}
+		
+		// 지도에 마커를 표시하는 함수
+		function displayMarker(place) {
+		    
+		    // 마커를 생성하고 지도에 표시
+		    var marker = new kakao.maps.Marker({
+		        map: map,
+		        position: new kakao.maps.LatLng(place.y, place.x) 
+		    });
+		
+		    //마커에 클릭이벤트를 등록
+		    kakao.maps.event.addListener(marker, 'click', function() {
+		        // 마커를 클릭하면 장소명이 인포윈도우에 표출
+		        infowindow.setContent('<div style="padding:5px;font-size:12px;width:180px;">' + place.place_name + '</div>'  /* 해당 구장명 */
+		        					+'<hr style="margin:0px;height:1px;">' /* hr태그로 라인 그음 */
+		        					+'<div style="padding:5px;font-size:12px;width:180px;">' + place.address_name + '</div>' /* 해당 구장 주소 */
+		        					+'<hr style="margin:0px;height:1px;">' /* hr태그로 라인 그음 */
+		        					+'<a href="https://map.kakao.com/link/map/'+place.place_name+','+place.y+','+place.x+'"style="color:blue" target="_blank">큰지도보기</a>' /* infowindow에서 큰 지도로 볼 수 있는 링크 */
+		        					//infowindow에서 해당 구장의 위치를 길찾기로 찾을 수 있음
+		        					+'<a href="https://map.kakao.com/link/to/'+place.place_name+','+place.y+','+place.x+'" style="color:blue;padding:0px 10px 0px 10px " target="_blank">길찾기</a></div>'
+		        					);
+		        infowindow.open(map, marker);
+		    });
+		}
+        </script>	
+
+<script>
+/* 구장 등록할지 클릭이벤트 */
+var form = $("form");
+$(".w-btn").click(function(){
+	if(!confirm("삭제하시겠습니까?")){
+		return;
+	}
+	form
+	.attr("action", "/court/remove")
+	.attr("method", "post") //post remove로 매핑 된다.
+	.submit();
+});
+</script>
+    </th:block>
+
+</th:block>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+	<th:block th:fragment="content">
+		<head>
+<title>게시물 조회</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="../BOARD/style.css">
+<link href="/css/formstyle.css" rel="stylesheet">
+
+<style>
+.w-btn-gray {
+	background-color: #a3a1a1;
+	color: #e3dede;
+}
+
+textarea {
+	width: 87%;
+	height: 6.25em;
+	resize: none;
+}
+
+.w-btn {
+	position: relative;
+	border: none;
+	display: inline-block;
+	padding: 10px 20px;
+	margin: 0px 10px 0px 10px;
+	border-radius: 15px;
+	font-family: "paybooc-Light", sans-serif;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	text-decoration: none;
+	font-weight: 600;
+	transition: 0.25s;
+}
+
+.card {
+	overflow: hidden;
+	height: auto;
+}
+</style>
+		</head>
+		<body>
+
+			<div class="card">
+				<div class="card-header4">
+					<h3>게시물 조회</h3>
+				</div>
+				<div class="card-edit">
+
+					<div class="title">
+						<label>게시물 번호</label><input type="text" name="boardNo"
+							th:value="${dto.boardNo}" readonly>
+					</div>
+					<div class="title">
+						<label>게시물 제목</label><input type="text" name="boardTitle"
+							th:value="${dto.boardTitle}" readonly>
+					</div>
+					<div class="title">
+						<label>게시물 내용</label>
+						<textarea cols="40" rows="3" readonly>[[${dto.boardContent}]]</textarea>
+					</div>
+					<div class="title">
+						<label>게시물 작성자</label> <input type="text" name="boardWriter"
+							th:value="${dto.boardWriter}" readonly>
+					</div>
+
+					<div class="title">
+						<label>등록일</label> <input type="text" name="regDate"
+							th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}"
+							readonly>
+					</div>
+					<div class="title">
+						<label>수정일</label> <input type="text" name="modDate"
+							th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}"
+							readonly>
+					</div>
+
+					<th:block th:if="${dto.imgPath!=null}">
+						<div class="title">
+
+							<img th:src="'/uploadfile/'+${dto.imgPath}">
+
+						</div>
+					</th:block>
+
+					<!-- 댓글 추가 -->
+
+					<div class="card-header4">
+						<h4>댓글보기</h4>
+						<div class="title" id="commentdiv">
+					</div>
+					<div class="card-edit" >
+						<textarea id="commentContent" rows="3"></textarea>
+						<button type="button" class="-btn w-btn-gray"
+							onclick="registerComment()">댓글등록</button>
+					</div>
+					<a th:href="@{/board/modify(boardNo = ${dto.boardNo})}">
+						<button class="w-btn w-btn-gray" type="submit">수정</button>
+					</a> <a th:href="@{/board/list}">
+						<button class="w-btn w-btn-gray" type="submit">목록으로</button>
+					</a>
+
+
+				</div>
+			</div>
+</div>
+		</body>
+		<script th:inline="javascript">
+		$(document).ready(
+				function(){
+					showComment();
+				}
+				);
+		function showComment(){
+			// 컨트롤러에서 정보 가져오기
+			var board = [[${dto}]]
+			// 컨트롤러에서 정보 가져오기
+			
+			// 댓글에 div 부분 태그 가져오기
+			let comment_div = $('#commentdiv');
+			// ajax설정
+			$.ajax({
+			type: "GET",
+				 //경로 ? 같음
+			url: "/comment/list?boardNo="+ board.boardNo + "&page=" + board.page,
+			success: function(response){
+				// 자식 엘리먼트 모두 지우기
+				 comment_div.empty();
+				//response에 commentlist 저장
+				commentlist = response;
+				for(i in commentlist){
+					let comment = commentlist[i];
+					
+					let writer_span = '<span class="fw-bold strong mar">'+comment.commentWriter+'</span>';
+	    			 let content_span = '<span class="mar"> '+comment.commentContent+' </span>';
+	    			 let content_span2 = '<span class="mar"> '+comment.modDate+' </span>';
+	    			 let delete_btn = '<a href="javascript:removeComment('+comment.commentNo+')">삭제</a>';
+	    			 
+	    			 let comment_html = writer_span + content_span + content_span2+ delete_btn +  '</br>';
+	    			 comment_div.append(comment_html);
+					
+				} 
+			}
+			});
+			}
+		function registerComment(){
+			// 컨트롤러에서 전달받은 게시물 정보를 변수 board에 저장
+			var board = [[${dto}]];
+			
+			let commentContent = document.getElementById("commentContent");
+			
+			let commentDto ={
+					'commentBoardNo':board.boardNo,
+					'commentContent':commentContent.value
+			}
+			
+			$.ajax({
+			type: "POST", // 요청방식
+			data: commentDto, //데이터 
+			url: "/comment/register", // 주소
+			// ajax에서부터 여기까지 요청부분
+			success: function(response){
+				// 등록에 성공했다면, textaree를 깨끗하게 비우고, 목록 다시 불러오기
+				if(response.success){
+					// 저장이되면 textaree를 깨끗하게 비우는 부분
+					commentContent.value=null;
+					showComment();
+				}// success에서부터 여기까지 응답부분
+			}
+			});
+			}
+ 		function removeComment(commentNo){
+			// 응답부분은 readhtml에 있고 호출 부분은 localhost8080 게시물 페이지 댓글 목록 삭제 버튼에 있다
+
+			$.ajax({
+			type: "GET", // 요청방식
+			url: "/comment/remove?commentNo="+commentNo, // 주소값
+				
+				success: function(response){
+					//삭제하는 부분
+					if(response.success){
+					showComment();
+				}
+			}
+			});
+			} 
+		</script>
+	</th:block>
+
+</th:block>
+</html>

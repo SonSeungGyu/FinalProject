@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/formstyle.css" rel="stylesheet">
+    <title>글수정</title>
+    <style>
+		.w-btn-gray {
+    		background-color: #a3a1a1;
+   			color: #e3dede;
+   		}
+   			
+   		.w-btn {
+		    position: relative;
+		    border: none;
+		    display: inline-block;
+		    padding: 10px 20px;
+		   	margin: 0px 10px 0px 10px;
+		    border-radius: 15px;
+		    font-family: "paybooc-Light", sans-serif;
+		    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		    text-decoration: none;
+		    font-weight: 600;
+		    transition: 0.25s;
+		}
+			
+		.card{
+			overflow:hidden;
+			height:auto;
+		}
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="card-header4"><a href="../BOARD/index.html"><h1>My Page Update</h1></a></div>
+        <div class="card-edit">
+
+       <form>
+             <div class="title">
+                <label>회원이름</label><input name="memberName" th:value="${dto.memberName}" readonly>
+            </div>
+             <div class="title">
+                <label>회원ID</label><input name="memberId" th:value="${dto.memberId}" readonly>
+            </div>
+             <div class="title">
+                <label>비밀번호</label><input type="password" name="memberPassword" th:value="${dto.memberPassword}" readonly>
+            </div>
+             <div class="title">
+                <label>회원주소</label><input name="memberAddress" th:value="${dto.memberAddress}">
+            </div>
+             <div class="title">
+                <label>회원이메일</label><input name="memberEmail" th:value="${dto.memberEmail}">
+            </div>
+             <div class="title">
+                <label>전화번호</label><input name="memberNumber" th:value="${dto.memberNumber}">
+            </div>
+             <div class="title">
+                <label>생년월일</label><input name="memberBirthDay" th:value="${dto.memberBirthDay}">
+            </div>
+            <div class="title">
+                <label>등급</label><input name="role" th:value= "${dto.role}" readonly>
+            </div>
+      </form>
+      <button type="button" class="w-btn w-btn-gray modifyBtn">수정하기</button>
+      <button type="button" class="myInfo w-btn w-btn-gray">이전화면</button>
+
+        </div>
+    </div>
+
+</body>
+<!-- 0223 정보 수정 -->
+<script th:inline="javascript">
+	var form = $("form");
+	
+	$(".modifyBtn").click(function(){
+		if(!confirm("수정하시겠습니까?")){
+			return;
+		}
+		form
+			.attr("action", "/member/modify")
+			.attr("method", "post")
+			.submit();
+	});
+	var form = $("form");
+	
+	/* 수정을 안하고 다시 mypage로 가는 클릭이벤트 */
+	$(".myInfo").click(function(){
+		if(!confirm("수정을 멈추시겠습니까?")){
+			return;
+		}
+		form
+			.attr("action", "/member/mypage")
+			.attr("method", "get")
+			.submit();
+	});
+</script>
+    </th:block>
+
+</th:block>
+</html>
