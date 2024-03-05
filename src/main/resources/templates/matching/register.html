@@ -92,7 +92,7 @@ a:hover {
 							<label>구장</label> 
 							</div>
 							<div class="title">
-							<select name="matchingCourtName" id="lang">
+							<select name="matchingCourtName" id=lang>
 							
 								<th:block th:each="dto:${list}">
 									<option>[[${dto.courtName}]]</option>
@@ -134,6 +134,8 @@ a:hover {
 				ps.keywordSearch('인천 가좌동 풋살장', placesSearchCB); 
 				//}
 			
+
+				
 				// 키워드 검색 완료 시 호출되는 콜백함수
 				function placesSearchCB (data, status) {
 				    if (status === kakao.maps.services.Status.OK) {
