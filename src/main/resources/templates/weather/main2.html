@@ -52,6 +52,24 @@
 
 <label>모래기온</label><input type="text" th:value="${weather4.numEf}" readonly>
 </div>
+<div class="title">
+<label>3일후 오전날씨</label><input type="text" th:value="${skyWeather.wf3Am}" readonly>
+
+<label>3일후 오후날씨</label><input type="text" th:value="${skyWeather.wf3Pm}" readonly>
+
+<label>3일후 최저기온</label><input type="text" th:value="${tempWeather.taMin3}+℃" readonly>
+
+<label>3일후 최고기온</label><input type="text" th:value="${tempWeather.taMax3}+℃" readonly>
+</div>
+<div class="title">
+<label>4일후 오전날씨</label><input type="text" th:value="${skyWeather.wf4Am}" readonly>
+
+<label>4일후 오후날씨</label><input type="text" th:value="${skyWeather.wf4Pm}" readonly>
+
+<label>4일후 최저기온</label><input type="text" th:value="${tempWeather.taMin4}+℃" readonly>
+
+<label>4일후 최고기온</label><input type="text" th:value="${tempWeather.taMax4}+℃" readonly>
+</div>
 </div>
 
 

@@ -1,0 +1,315 @@
+@charset "EUC-KR";
+a       { text-decoration: none; }
+
+#bold-black { font-weight: bold; color: black;}
+
+/* ----------메뉴(navbar)------------- */
+/* 메뉴 내 페이지명 */
+.pagename { color: black; font-weight: 700; font-size: 20px; padding-right: 3px;}
+/* 페이지명 옆 메뉴 아이템 */
+.nav-item { color: gray; padding: 5px;}
+
+/* 페이지 전체 wrapper */
+.page-wrap { padding: 2rem; }
+
+/* -----------날씨 위젯 부분----------- */
+/* 현 위치 버튼 */
+.btn-loc {
+	width: 20px;
+	background: url("../img/geo-alt-fill.svg") no-repeat;
+    background-size: auto 20px;
+    border: none;
+}
+
+/* 현 위치 출력 div id */
+#userloc {
+	display: inline-block;
+}
+
+/* 날씨 카드 */
+.weather-info {
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #fff;
+    font-family: inherit;
+    box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+	-moz-box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+    min-width: 300px;
+	width: 100%;
+	height: 100%;
+	font-size: 1.2em;
+}
+
+.weather-card {
+	display: flex;
+	flex-direction: column;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #fff;
+    font-family: inherit;
+    box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+	-moz-box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+    min-width: 360px;
+    font-size: 1rem;
+	width: 30%;
+	align-items: center;
+}
+
+.sunrise-sunset {
+	display: flex;
+	flex-direction: column;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #fff;
+    font-family: inherit;
+    box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+	-moz-box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+    min-width: 360px;
+    font-size: 1rem;
+	width: 30%;
+	align-items: center;
+	justify-content: center;
+}
+
+.news-card {
+	display: flex;
+	flex-direction: column;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #fff;
+    font-family: inherit;
+    box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+	-moz-box-shadow: 0px 0px 5px 1px rgba(66,60,60,0.54);
+    min-width: 360px;
+    font-size: 1rem;
+	width: 30%;
+}
+
+/* 날씨 아이콘 */
+#weather-icon {
+	width: 200px;
+	height: 200px;
+}
+
+/* 현재 온도 */
+.temperature {
+	font-size: 45px;
+	
+}
+
+/* 현재 날씨 */
+.weather-desc {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+			.page-wrap {
+				display: flex;
+				margin: 0;
+				padding: 0 20% 0 20%;
+				flex-direction: column;
+				align-content: center;
+				justify-content: center;
+				height: 100%;
+				width: 100%;
+				min-width: 1000px;
+			}
+			.logo-box {
+				padding: 50px 0 25px 0;
+			}
+			.logo {
+				font-size: 35pt;
+				font-family: 'Jost', sans-serif;
+                font-weight: bold;
+			}
+			.top-section {
+				display: grid;
+				grid-template-columns: 1fr 0.35fr;
+				grid-template-rows: 1fr 0.6fr 1fr 0.25fr;
+				grid-column-gap: 25px;
+				grid-row-gap: 25px;
+			}
+            .wideboi {
+                grid-area: 4/1 / 4/3;
+            }
+			.weather-now {
+				/* Current weather widget */
+				grid-area: 1/1 / 2/2;
+			}
+			.weather-week {
+				/* Weekly weather widget outer */
+				grid-area: 2/1 / 2/1;
+			}
+			.weather-national {
+				/* National weather widget */
+				grid-area: 2/2 / 1/2;
+				width: 100%;
+			}
+			.grid-1 {
+				/* Weekly weather widget inner */
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+				grid-template-rows: 1fr;
+				grid-column-gap: 0px;
+				grid-row-gap: 0px;
+				justify-content: center;
+			}
+			.weekly-weather.topbar {
+				padding-bottom: 15px;
+			}
+			.ww-elem {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+			}
+			.ww-icon-small {
+				width: 115px;
+				height: auto;
+			}
+			.national-weather {
+				/* Weekly weather widget inner */
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+				grid-column-gap: 0px;
+				grid-row-gap: 0px;
+				height: 100%;
+				justify-content: space-between;
+			}
+
+			.national-list-elem {
+				display: flex;
+				flex-direction: row;
+				min-height: 45px;
+				font-size: 1.25em;
+				align-items: center;
+				justify-content: flex-end;
+			}
+			
+			.hr3-grid {
+				/* Weekly weather widget inner */
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+				grid-template-rows: 0.25fr 1fr 0.45fr 0.45fr 0.45fr ;
+				grid-column-gap: 0px;
+				grid-row-gap: 0px;
+				height: 90%;
+				justify-content: center;
+				align-content: center;
+				text-align: center;
+			}
+			
+			.nl-icon-small {
+				max-width: 45px;
+                min-width: 45px;
+			}
+			.nl-temp {
+				font-size: 1em;
+			}
+			.sun-icons {
+				width: 120px;
+			}
+
+			/* Text size definitions */
+			.bigtemp {
+				font-size: 3.25em;
+			}
+			.desc-text {
+				display: flex;
+				width: 100%;
+				flex-direction: row;
+				align-content: flex-start;
+				font-size: 1.5em;
+			}
+			#weather-desc {
+				font-size: 1.25em;
+				margin-top: -30px;
+			}
+			.emp-125 {
+				font-size: 1.25em;
+			}
+			
+			.news-line {
+				line-height: 2.25em;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+			}
+			.hr3-icon-tiny {
+				width: 100px;
+				height: 100px;
+			}
+			.forecast-3hr-title {
+				padding-bottom: 10px;
+			}
+
+			/* Text manipulation macros */
+			.bold {
+				font-weight: bold;
+			}
+			.black-text {
+				color: #1B1B1B;
+			}
+			.gray-text {
+				color: #888888;
+			}
+			.red-text {
+				color: #86CD29;
+				font-weight: bold;
+			}
+			.placeholder {
+				color: white;
+				font-size: 4em;
+				text-align: center;
+				background-color: #FFFFFF;
+			}
+			.placeholder:after {
+				content: " ";
+			}
+
+			/* Flex mode macros */
+			.flex-row {
+				display: flex;
+				flex-direction: row;
+			}
+			.flex-col {
+				display: flex;
+				flex-direction: column;
+			}
+			.flex-center {
+				justify-content: center;
+				align-items: center;
+			}
+			.space-between {
+				width: 85%;
+				justify-content: space-between;
+			}
+			.padded15 {
+				padding: 0 15 0 15;
+			}
+			.paddedv15 {
+				padding: 15 0 0 0;
+			}
+			.padme1 {
+				padding-right: 24px;
+			}
+			.wh-100 {
+				width: 100%;
+				height: 75%;
+			}
+			.flex-1 {
+				flex: 1;
+			}
+            
