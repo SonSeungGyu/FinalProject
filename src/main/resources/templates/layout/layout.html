@@ -97,14 +97,18 @@
 									<!-- <li><a href="blog-single.html" title="Blog Single ">MyTeam</a></li> -->
 									<!-- </ul></li> -->
 
-									<li><a sec 
+									<li><a sec:authorize="isAnonymous()"
 									th:href="@{/customlogin}" title="Contact Us">로그인
 									</a></li>
-									<li><a th:href="@{/member/register}" title="Testimonial">회원가입</a>
-									</li>
+									
 									<li><a
 										sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"
 										href="/logout">로그아웃</a></li>
+									
+									<li><a sec:authorize="isAnonymous()" 
+									th:href="@{/member/register}" title="Testimonial">회원가입</a>
+									</li>
+								
 								</ul>
 							</div>
 						</div>

@@ -75,11 +75,12 @@ public class BoardController {
 	
 	  @GetMapping("/search") 
 	  public void search(String keyword, Model
-	  model,@PageableDefault(size = 10,sort = "regDate",direction = Sort.Direction.DESC)
+	  model,@PageableDefault(size = 20,sort = "regDate",direction = Sort.Direction.DESC)
 	  Pageable pageable){ 
 		  
 		  Page<BoardDto> searchList = service.search(keyword,
-	  pageable); model.addAttribute("searchList",searchList);
+	  pageable); 
+		  model.addAttribute("searchList",searchList);
 	  
 	  }
 	  
