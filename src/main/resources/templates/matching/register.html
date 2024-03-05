@@ -107,6 +107,8 @@ a:hover {
 			   
 				// 장소 검색 객체를 생성
 				var ps = new kakao.maps.services.Places(); 
+				//var ps2 = new kakao.maps.services.Places(); 
+				
 				
 				// 먼저 지도가 로드 될 때 모든 풋살장에 마커를 표시한 채 지도 표출
 				ps.keywordSearch('인천 가좌동 풋살장', placesSearchCB);//지도가 로드된후 해당 검색어로 검색하고 그 검색한 정보는 placeSearchCB에 있음
@@ -116,6 +118,43 @@ a:hover {
 					var place = document.getElementById('select_value');
 					ps.keywordSearch(place.options[place.selectedIndex].text, placesSearchCB); 
 				} 
+				//이하 수정
+		/* 		
+		 		function placesSearchCB2(data, status,coords){
+					if (status === kakao.maps.services.Status.OK){
+						var bounds2 = new kakao.maps.LatLngBounds();
+						
+						displayMarker(data);
+						//bounds2.extend(new kakao.maps.LatLng(data[0].y,data[0].x));
+						
+						navigator.geolocation.getCurrentPosition(function(position) {
+				            
+				            var lat1 = position.coords.latitude, // 위도
+				                lon1 = position.coords.longitude; // 경도
+				            
+				            bounds2.extend(new kakao.maps.LatLng(lat1, lon1));
+						}); 
+						//map.setBounds(bounds2);
+						
+						var points = [
+						    new kakao.maps.LatLng(data[0].y, data[0].x),
+						    new kakao.maps.LatLng(coords.latitude, coords.longitude)
+						];
+						
+						var i, marker;
+						for (i = 0; i < points.length; i++) {
+						    // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
+						    marker = new kakao.maps.Marker({ position : points[i] });
+						    marker.setMap(map);
+						    
+						    // LatLngBounds 객체에 좌표를 추가합니다
+						    bounds2.extend(points[i]);
+						}
+						map.setBounds(bounds2);
+					}
+				}  */
+				
+				//이상 수정
 			
 				// 키워드 검색 완료 시 호출되는 콜백함수
 				function placesSearchCB (data, status) {
@@ -129,8 +168,21 @@ a:hover {
 				            displayMarker(data[i]);    
 				            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
 				        }
-				        // 검색된 장소 위치를 기준으로 지도 범위를 재설정
+				        //이하 수정
+						navigator.geolocation.getCurrentPosition(function(position) {
+				            
+				            var lat = position.coords.latitude,  // 위도
+				                lon = position.coords.longitude; // 경도
+				            
+				            bounds.extend(new kakao.maps.LatLng(lat, lon));
+						}); 
+						//bounds.extend(new kakao.maps.LatLng(lat, lon));
+				        //이상 수정
+				        
+				        //  검색된 장소 위치를 기준으로 지도 범위를 재설정
 				        map.setBounds(bounds);
+				        var level = map.getLevel();
+				        map.setLevel(level+1);
 				    } 
 				}
 				
@@ -156,7 +208,7 @@ a:hover {
 				        					);
 				        infowindow.open(map, marker);
 				});
-				
+				}
 				    
 				 /* 여기부터 내 지도
 				// 마커에 마우스아웃 이벤트를 등록
@@ -227,7 +279,7 @@ a:hover {
 				        map.setCenter(locPosition);     
 				    }  
 				      
-				}
+				// }
 				
 	</script>
 			
