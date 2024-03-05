@@ -1,21 +1,9 @@
 @charset "EUC-KR";
-* {
-	box-sizing: border-box;
-	padding: 0; margin: 0;
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
 a       { text-decoration: none; }
 
 #bold-black { font-weight: bold; color: black;}
 
 /* ----------메뉴(navbar)------------- */
-.navbar { 
-	font-size: 17px;
-	border-bottom: 1px groove lightgray;
-	padding: 9px;
-	margin-bottom: 25px;
-	 }
 /* 메뉴 내 페이지명 */
 .pagename { color: black; font-weight: 700; font-size: 20px; padding-right: 3px;}
 /* 페이지명 옆 메뉴 아이템 */

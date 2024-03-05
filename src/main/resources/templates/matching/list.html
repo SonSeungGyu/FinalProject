@@ -16,95 +16,108 @@
         <span class="separator">|</span>
         <span class="main gray-text" id="weekly-location">인천광역시</span>
     </div>
+    
     <div class="weekly-weather grid-1" id="weekly-weather">
         <div class="ww-elem">
             <div class="ww-top-text">
-                <span class="bold sub black-text weekday"><span id="day1">월</span></span>
-                <span class="bold sub gray-text date"> / <span id="date1">5.15</span></span>
+                <span class="bold sub black-text weekday"><span id="day1"><sapn id="month"></sapn><span id="date"></span></span></span>
             </div>
             <div class="ww-icon">
-                <img class="ww-icon-small" src="https://raw.githubusercontent.com/comet-azure/ApiCaller/85061730f1af7c947ce04c6461e2cf9cc661eaad/public/img/fog.svg" alt="weather icon small" />
+                <img class="ww-icon-small" th:src="${weather0.img}" alt="weather icon small"/>
             </div>
             <div class="ww-bottom-text">
-                <span class="bold sub black-text"><span id="weather1">비 약간</span></span>
+                <span class="bold sub black-text"><span id="weather1">[[${weather0.wf}]]</span></span>
                 <br />
-                <span class="bold sub black-text"> <span id="low-temp1">10</span>&deg;C</span>
-                <span class="bold sub gray-text"> / <span id="high-temp1">24</span>&deg;C</span>
+                <span class="bold sub black-text"> <span id="low-temp1">[[${weather0.ta}]]</span>&deg;C</span>
+                <span class="bold sub gray-text"> / <span id="high-temp1">[[${weather0.numEf}]]</span>&deg;C</span>
+                <br />
+                <span class="bold sub black-text"> <span id="low-temp6">강수확률</span></span>
+                <span class="bold sub gray-text"> : <span id="high-temp6">[[${weather0.rnSt}]]</span>%</span>
             </div>
         </div>
         <div class="ww-elem">
             <div class="ww-top-text">
-                <span class="bold sub black-text weekday"><span id="day2">화</span></span>
-                <span class="bold sub gray-text date"> / <span id="date2">5.15</span></span>
+                <span class="bold sub black-text weekday"><span id="day1"><sapn id="month2"></sapn><span id="date2"></span></span></span>
             </div>
             <div class="ww-icon">
-                <img class="ww-icon-small" src="https://raw.githubusercontent.com/comet-azure/ApiCaller/85061730f1af7c947ce04c6461e2cf9cc661eaad/public/img/cloudy.svg" alt="weather icon small" />
+                <img class="ww-icon-small" th:src="${weather2.img}" alt="weather icon small" />
             </div>
             <div class="ww-bottom-text">
-                <span class="bold sub black-text"><span id="weather2">비 약간</span></span>
+                <span class="bold sub black-text"><span id="weather2">[[${weather2.wf}]]</span></span>
                 <br />
-                <span class="bold sub black-text"> <span id="low-temp2">10</span>&deg;C</span>
-                <span class="bold sub gray-text"> / <span id="high-temp2">24</span>&deg;C</span>
+                <span class="bold sub black-text"> <span id="low-temp2">[[${weather2.ta}]]</span>&deg;C</span>
+                <span class="bold sub gray-text"> / <span id="high-temp2">[[${weather2.numEf}]]</span>&deg;C</span>
+                <br />
+                <span class="bold sub black-text"> <span id="low-temp6">강수확률</span></span>
+                <span class="bold sub gray-text"> : <span id="high-temp6">[[${weather2.rnSt}]]</span>%</span>
             </div>
         </div>
         <div class="ww-elem">
             <div class="ww-top-text">
-                <span class="bold sub black-text weekday"><span id="day3">수</span></span>
-                <span class="bold sub gray-text date"> / <span id="date3">5.15</span></span>
+                <span class="bold sub black-text weekday"><span id="day1"><sapn id="month3"></sapn><span id="date3"></span></span></span>
             </div>
             <div class="ww-icon">
-                <img class="ww-icon-small" src="img/light-rain.svg" alt="weather icon small" />
+                <img class="ww-icon-small" th:src="${weather4.img}" alt="weather icon small" />
             </div>
             <div class="ww-bottom-text">
-                <span class="bold sub black-text"><span id="weather3">비 약간</span></span>
+                <span class="bold sub black-text"><span id="weather3">[[${weather4.wf}]]</span></span>
                 <br />
-                <span class="bold sub black-text"> <span id="low-temp3">10</span>&deg;C</span>
-                <span class="bold sub gray-text"> / <span id="high-temp3">24</span>&deg;C</span>
+                <span class="bold sub black-text"> <span id="low-temp3">[[${weather4.ta}]]</span>&deg;C</span>
+                <span class="bold sub gray-text"> / <span id="high-temp3">[[${weather4.numEf}]]</span>&deg;C</span>
+                <br />
+                <span class="bold sub black-text"> <span id="low-temp6">강수확률</span></span>
+                <span class="bold sub gray-text"> : <span id="high-temp6">[[${weather4.rnSt}]]</span>%</span>
             </div>
         </div>
         <div class="ww-elem">
             <div class="ww-top-text">
-                <span class="bold sub black-text weekday"><span id="day4">목</span></span>
-                <span class="bold sub gray-text date"> / <span id="date4">5.15</span></span>
+                <span class="bold sub black-text weekday"><span id="day1"><sapn id="month4"></sapn><span id="date4"></span></span></span>
             </div>
             <div class="ww-icon">
-                <img class="ww-icon-small" src="img/light-rain.svg" alt="weather icon small" />
+                <img class="ww-icon-small" th:src="${skyWeather.wf3PmImg}" alt="weather icon small" />
             </div>
             <div class="ww-bottom-text">
-                <span class="bold sub black-text"><span id="weather4">비 약간</span></span>
+                <span class="bold sub black-text"><span id="weather4">[[${skyWeather.wf3Pm}]]</span></span>
                 <br />
-                <span class="bold sub black-text"> <span id="low-temp4">10</span>&deg;C</span>
-                <span class="bold sub gray-text"> / <span id="high-temp4">24</span>&deg;C</span>
+                <span class="bold sub black-text"> <span id="low-temp4">[[${tempWeather.taMin3}]]</span>&deg;C</span>
+                <span class="bold sub gray-text"> / <span id="high-temp4">[[${tempWeather.taMax3}]]</span>&deg;C</span>
+                <br />
+                <span class="bold sub black-text"> <span id="low-temp6">강수확률</span></span>
+                <span class="bold sub gray-text"> : <span id="high-temp6">[[${skyWeather.rnSt3Pm}]]</span>%</span>
             </div>
         </div>
         <div class="ww-elem">
             <div class="ww-top-text">
-                <span class="bold sub black-text weekday"><span id="day5">금</span></span>
-                <span class="bold sub gray-text date"> / <span id="date5">5.15</span></span>
+                <span class="bold sub black-text weekday"><span id="day1"><sapn id="month5"></sapn><span id="date5"></span></span></span>
             </div>
             <div class="ww-icon">
-                <img class="ww-icon-small" src="img/light-rain.svg" alt="weather icon small" />
+                <img class="ww-icon-small" th:src="${skyWeather.wf4PmImg}" alt="weather icon small" />
             </div>
             <div class="ww-bottom-text">
-                <span class="bold sub black-text"><span id="weather5">비 약간</span></span>
+                <span class="bold sub black-text"><span id="weather5">[[${skyWeather.wf4Pm}]]</span></span>
                 <br />
-                <span class="bold sub black-text"> <span id="low-temp5">10</span>&deg;C</span>
-                <span class="bold sub gray-text"> / <span id="high-temp5">24</span>&deg;C</span>
+                <span class="bold sub black-text"> <span id="low-temp5">[[${tempWeather.taMin4}]]</span>&deg;C</span>
+                <span class="bold sub gray-text"> / <span id="high-temp5">[[${tempWeather.taMax4}]]</span>&deg;C</span>
+                <br />
+                <span class="bold sub black-text"> <span id="low-temp6">강수확률</span></span>
+                <span class="bold sub gray-text"> : <span id="high-temp6">[[${skyWeather.rnSt4Pm}]]</span>%</span>
             </div>
         </div>
         <div class="ww-elem padme1">
             <div class="ww-top-text">
-                <span class="bold sub black-text weekday"><span id="day6">토</span></span>
-                <span class="bold sub gray-text date"> / <span id="date6">5.15</span></span>
+                <span class="bold sub black-text weekday"><span id="day1"><sapn id="month6"></sapn><span id="date6"></span></span></span>
             </div>
             <div class="ww-icon">
-                <img class="ww-icon-small" src="img/light-rain.svg" alt="weather icon small" />
+                <img class="ww-icon-small" th:src="${skyWeather.wf5PmImg}" alt="weather icon small" />
             </div>
             <div class="ww-bottom-text">
-                <span class="bold sub black-text"><span id="weather6">비 약간</span></span>
+                <span class="bold sub black-text"><span id="weather6">[[${skyWeather.wf5Pm}]]</span></span>
                 <br />
-                <span class="bold sub black-text"> <span id="low-temp6">10</span>&deg;C</span>
-                <span class="bold sub gray-text"> / <span id="high-temp6">24</span>&deg;C</span>
+                <span class="bold sub black-text"> <span id="low-temp6">[[${tempWeather.taMin5}]]</span>&deg;C</span>
+                <span class="bold sub gray-text"> / <span id="high-temp6">[[${tempWeather.taMax5}]]</span>&deg;C</span>
+                <br />
+                <span class="bold sub black-text"> <span id="low-temp6">강수확률</span></span>
+                <span class="bold sub gray-text"> : <span id="high-temp6">[[${skyWeather.rnSt5Pm}]]</span>%</span>
             </div>
         </div>
     </div>
@@ -149,6 +162,21 @@
         </div>
     </div>
     
+    <script type="text/javascript">
+	    let day = new Date();
+	    document.getElementById('month').innerHTML =parseInt(day.getMonth()+1) + "월";	
+	    document.getElementById('month2').innerHTML =parseInt(day.getMonth()+1) + "월";
+	    document.getElementById('month3').innerHTML =parseInt(day.getMonth()+1) + "월";
+	    document.getElementById('month4').innerHTML =parseInt(day.getMonth()+1) + "월";
+	    document.getElementById('month5').innerHTML =parseInt(day.getMonth()+1) + "월";
+	    document.getElementById('month6').innerHTML =parseInt(day.getMonth()+1) + "월";
+	    document.getElementById('date').innerHTML = day.getDate()+"일";
+	    document.getElementById('date2').innerHTML = day.getDate()+1+"일";
+	    document.getElementById('date3').innerHTML = day.getDate()+2+"일";
+	    document.getElementById('date4').innerHTML = day.getDate()+3+"일";
+	    document.getElementById('date5').innerHTML = day.getDate()+4+"일";
+	    document.getElementById('date6').innerHTML = day.getDate()+5+"일";
+    </script>
 
 </section>
 
