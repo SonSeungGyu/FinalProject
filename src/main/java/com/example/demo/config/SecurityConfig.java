@@ -51,7 +51,7 @@ public class SecurityConfig {
 
 
 
-		http.oauth2Login().loginProcessingUrl("customlogin")
+		http.oauth2Login()
 		.successHandler(new CustomAuthenticationSuccessHandler());
 		return http.build();
 
