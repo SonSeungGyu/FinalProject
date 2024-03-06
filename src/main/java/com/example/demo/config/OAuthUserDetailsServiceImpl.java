@@ -29,10 +29,10 @@ public class OAuthUserDetailsServiceImpl extends DefaultOAuth2UserService{
 		String clientName = userRequest.getClientRegistration().getClientName();
 		System.out.println(clientName); // 구글
 		
-
-		String clientName2 = userRequest.getClientRegistration().getClientName();
-		System.out.println(clientName2); // 네이버
-		
+//
+//		String clientName2 = userRequest.getClientRegistration().getClientName();
+//		System.out.println(clientName2); // 네이버
+//		
 		
 		
 		OAuth2User oAuth2User = super.loadUser(userRequest);
