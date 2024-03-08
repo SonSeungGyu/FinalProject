@@ -17,10 +17,9 @@ public class HomeController {
 		return "home/login";
 	}
 	
-	
-	//0222 mypage 수정
-//	@GetMapping("/mypage")
-//	public String myPage() {
-//		return "home/mypage";
-//	}
+	@GetMapping("/home/weather")
+	public void weather() {
+		
+	}
+
 }
