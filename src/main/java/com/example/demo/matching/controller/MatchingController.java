@@ -23,7 +23,9 @@ import com.example.demo.weatherInfo.service.WeatherInfoService;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 @Controller
+
 @RequestMapping("/matching")
 public class MatchingController {
 	
@@ -67,8 +69,7 @@ public class MatchingController {
 		String weather = weatherInfoService.getWeather();
 		String tempWeather = weatherInfoService.forceastTempWeather();
 		String skyWeather = weatherInfoService.forceastSkyWeather();
-		//json 문자열을 클래스로 변환
-		
+		//json 문자열을 클래스로 변환		
 		TempRoot tempRoot = null;
 		tempRoot = tempMapper.readValue(tempWeather, TempRoot.class);
 		SkyRoot skyRoot =null;
@@ -79,9 +80,11 @@ public class MatchingController {
 		String sky1 = "흐림";
 		String sky2 = "구름많음";
 		String sky3 = "맑음";
+		String sky4 = "구름많고 비/눈";
 		String img1 = "/images/cloudy1.png"; // 흐림
 		String img2 = "/images/cloudy.png"; // 구름 많음
 		String img3 = "/images/sunny.png"; // 맑음
+		String img4 = "/images/cloudy_snow_rain.png"; // 구름많고 비/눈
 		for(int i = 0; i < root.response.body.items.item.size(); i++) {
 			if("DB01".equals(root.response.body.items.item.get(i).wfCd)) {
 				root.response.body.items.item.get(i).setImg(img3);
@@ -100,6 +103,8 @@ public class MatchingController {
 			skyRoot.response.body.items.item.get(0).setWf3PmImg(img2);
 		} else if(sky3.equals(skyRoot.response.body.items.item.get(0).wf3Pm)){
 			skyRoot.response.body.items.item.get(0).setWf3PmImg(img3);
+		} else if(sky4.equals(skyRoot.response.body.items.item.get(0).wf3Pm)){
+			skyRoot.response.body.items.item.get(0).setWf3PmImg(img4);
 		} else {
 			skyRoot.response.body.items.item.get(0).setWf3PmImg(" ");
 		}
@@ -110,6 +115,8 @@ public class MatchingController {
 			skyRoot.response.body.items.item.get(0).setWf4PmImg(img2);
 		} else if(sky3.equals(skyRoot.response.body.items.item.get(0).wf4Pm)){
 			skyRoot.response.body.items.item.get(0).setWf4PmImg(img3);
+		} else if(sky4.equals(skyRoot.response.body.items.item.get(0).wf4Pm)){
+			skyRoot.response.body.items.item.get(0).setWf4PmImg(img4);
 		} else {
 			skyRoot.response.body.items.item.get(0).setWf4PmImg(" ");
 		}
@@ -120,9 +127,12 @@ public class MatchingController {
 			skyRoot.response.body.items.item.get(0).setWf5PmImg(img2);
 		} else if(sky3.equals(skyRoot.response.body.items.item.get(0).wf5Pm)){
 			skyRoot.response.body.items.item.get(0).setWf5PmImg(img3);
+		} else if(sky4.equals(skyRoot.response.body.items.item.get(0).wf5Pm)){
+			skyRoot.response.body.items.item.get(0).setWf5PmImg(img4);
 		} else {
 			skyRoot.response.body.items.item.get(0).setWf5PmImg(" ");
 		}
+	    
 		//api 문서 참고 
 		model.addAttribute("list", list);
 		model.addAttribute("weather0",root.response.body.items.item.get(0));
